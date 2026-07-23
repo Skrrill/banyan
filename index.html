@@ -5,142 +5,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Banyan — One place to learn everything that matters</title>
 <meta name="description" content="Coding, gen AI, maths, science, English, money, test prep and more. One-to-one, live, $11 a class in every country. First class free." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg stroke='%233F7D5C' stroke-width='3' fill='none' stroke-linecap='round'%3E%3Cpath d='M20 34V14'/%3E%3Cpath d='M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4'/%3E%3Cpath d='M8 20v8M32 20v8M14 24v6M26 24v6'/%3E%3C/g%3E%3Ccircle cx='20' cy='10' r='6' fill='%23E2A03F'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg stroke='%233E7A59' stroke-width='3' fill='none' stroke-linecap='round'%3E%3Cpath d='M20 34V14'/%3E%3Cpath d='M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4'/%3E%3Cpath d='M8 20v8M32 20v8M14 24v6M26 24v6'/%3E%3C/g%3E%3Ccircle cx='20' cy='10' r='6' fill='%23D9954A'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#FFFCF7; --paper-2:#F7F1E8;
-    --ink:#231F2B; --ink-soft:#6B6172;
-    --bark:#3F7D5C; --bark-deep:#2E5C44;
-    --amber:#E2A03F; --rose:#C2708A;
-    --line:#E8DED2; --r:20px;
-    --disp:"Fraunces",Georgia,serif;
-    --body:"Hanken Grotesk",system-ui,sans-serif;
+    /* warm, easy on the eyes */
+    --bg:#F3EADB;          /* page */
+    --bg-2:#EBDFCB;        /* alternating band */
+    --surface:#FCF8F1;     /* cards */
+    --ink:#2A231E;
+    --ink-soft:#7A6A59;
+    --bark:#3E7A59;
+    --bark-deep:#2C5940;
+    --amber:#D9954A;
+    --rose:#C2708A;
+    --line:#DDCEB8;
+    --r:20px;
+    --disp:"Newsreader",Georgia,serif;
+    --body:"Figtree",system-ui,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,monospace;
-    --shadow:0 20px 50px -28px rgba(60,45,35,.45);
+    --shadow:0 20px 46px -30px rgba(80,58,36,.55);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-
-  /* straighten Fraunces: no wonky j / f descenders */
-  h1,h2,h3,h4,.brand b,.price-num b{
-    font-family:var(--disp);font-weight:600;line-height:1.06;letter-spacing:-.02em;
-    font-variation-settings:"SOFT" 0,"WONK" 0;
-  }
+  h1,h2,h3,h4,.brand b,.price-num b{font-family:var(--disp);font-weight:600;line-height:1.1;letter-spacing:-.015em}
 
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bark)}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;border-radius:999px;font-family:var(--body);font-weight:600;font-size:1rem;padding:.9rem 1.7rem;cursor:pointer;transition:transform .16s ease,background .16s ease}
-  .btn-primary,a.btn-primary,.nav-links a.btn-primary{background:var(--bark);color:#FFFFFF;box-shadow:0 14px 30px -16px rgba(63,125,92,.9)}
+  .btn-primary,a.btn-primary,.nav-links a.btn-primary{background:var(--bark);color:#FFFFFF;box-shadow:0 14px 28px -18px rgba(44,89,64,.95)}
   .btn-primary:hover,.nav-links a.btn-primary:hover{background:var(--bark-deep);color:#FFFFFF;transform:translateY(-2px)}
-  .btn-ghost,a.btn-ghost,.nav-links a.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost,a.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
   .btn-ghost:hover{border-color:var(--bark);color:var(--bark-deep)}
   :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
 
-  header{position:sticky;top:0;z-index:60;background:rgba(255,252,247,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header{position:sticky;top:0;z-index:60;background:rgba(243,234,219,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1120px;margin:0 auto}
   .brand{display:flex;align-items:center;gap:10px}
   .brand svg{width:30px;height:30px}
-  .brand b{font-size:1.35rem;font-weight:700}
+  .brand b{font-size:1.38rem;font-weight:700}
   .nav-links{display:flex;align-items:center;gap:22px}
   .nav-links a{font-size:.93rem;font-weight:500;color:var(--ink-soft)}
   .nav-links a:hover{color:var(--bark-deep)}
   .nav-links a.btn{padding:.6rem 1.25rem;font-size:.9rem}
   .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  .hero{padding:52px 0 24px}
-  .hero-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:38px;align-items:center}
-  .hero h1{font-size:clamp(2.5rem,5.3vw,3.9rem);margin:16px 0 14px}
+  .hero{padding:52px 0 26px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:38px;align-items:center}
+  .hero h1{font-size:clamp(2.5rem,5.2vw,3.9rem);margin:16px 0 14px}
   .hero h1 em{font-style:italic;color:var(--bark)}
-  .hero p.lede{font-size:1.12rem;color:var(--ink-soft);max-width:32em}
+  .hero p.lede{font-size:1.1rem;color:var(--ink-soft);max-width:32em}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
   .hero-note{margin-top:20px;font-size:.9rem;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
   .hero-note span{display:flex;align-items:center;gap:7px}
   .pip{width:8px;height:8px;border-radius:50%;background:var(--amber)}
 
   .tree-wrap{position:relative}
-  .tree{width:100%;height:auto;display:block;overflow:visible}
-  .root{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:2.6;opacity:.42}
-  .branch{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:4;opacity:.55}
+  .tree{width:100%;height:auto;display:block}
+  .root{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:2.4;opacity:.4}
+  .branch{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:4.5;opacity:.6}
   .trunk{stroke:var(--bark-deep);fill:none;stroke-width:11;stroke-linecap:round}
   .node{cursor:pointer}
   .node circle{transition:r .18s ease}
-  .node text{font-family:var(--body);font-size:12px;font-weight:600;fill:var(--ink-soft)}
+  .node text{
+    font-family:var(--body);font-size:11.5px;font-weight:600;fill:var(--ink-soft);
+    paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round;
+  }
   .node:hover circle,.node:focus circle{r:13}
   .node:hover text,.node:focus text{fill:var(--ink)}
-  .tree-cap{text-align:center;margin-top:8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .tree-cap{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 
-  section.band{padding:78px 0}
-  .band.tint{background:var(--paper-2)}
-  .head{max-width:620px;margin-bottom:40px}
-  .head h2{font-size:clamp(1.85rem,3.9vw,2.6rem);margin-top:12px}
-  .head p{color:var(--ink-soft);margin-top:12px;font-size:1.05rem}
+  section.band{padding:76px 0}
+  .band.tint{background:var(--bg-2)}
+  .head{max-width:620px;margin-bottom:38px}
+  .head h2{font-size:clamp(1.85rem,3.8vw,2.55rem);margin-top:12px}
+  .head p{color:var(--ink-soft);margin-top:12px;font-size:1.04rem}
 
   .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .subj{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .18s ease,box-shadow .18s ease}
+  .subj{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .18s ease,box-shadow .18s ease}
   .subj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
   .subj .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;color:#fff;margin-bottom:12px}
-  .subj h3{font-size:1.14rem;margin-bottom:5px}
+  .subj h3{font-size:1.16rem;margin-bottom:5px}
   .subj p{font-size:.9rem;color:var(--ink-soft)}
   .subj .who{margin-top:12px;font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
 
   .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .aud-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px}
-  .aud-card h3{font-size:1.28rem;margin-bottom:8px}
+  .aud-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+  .aud-card h3{font-size:1.3rem;margin-bottom:8px}
   .aud-card p{color:var(--ink-soft);font-size:.95rem}
   .aud-card ul{list-style:none;margin-top:14px}
   .aud-card li{font-size:.92rem;padding:5px 0 5px 22px;position:relative}
   .aud-card li::before{content:"";position:absolute;left:0;top:12px;width:11px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
 
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
   .step .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--bark);display:block;margin-bottom:9px}
-  .step h3{font-size:1.06rem;margin-bottom:5px}
+  .step h3{font-size:1.08rem;margin-bottom:5px}
   .step p{font-size:.9rem;color:var(--ink-soft)}
 
-  /* pricing, kept calm */
-  .price-hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
-  .price-card{background:var(--paper);border:2px solid var(--bark);border-radius:24px;padding:30px}
+  /* pricing: both panels equal height */
+  .price-hero{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+  .price-card,.cmp{background:var(--surface);border:1px solid var(--line);border-radius:22px;display:flex;flex-direction:column;height:100%}
+  .price-card{border:2px solid var(--bark);padding:30px}
   .price-num{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
-  .price-num b{font-size:3.6rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  .price-num b{font-size:3.5rem;font-weight:700;line-height:1;letter-spacing:-.03em}
   .price-num span{color:var(--ink-soft);font-weight:600}
-  .price-sub{color:var(--ink-soft);font-size:.96rem}
-  .price-list{list-style:none;margin:20px 0 0}
+  .price-sub{color:var(--ink-soft);font-size:.95rem}
+  .price-list{list-style:none;margin:18px 0 0;flex:1}
   .price-list li{font-size:.95rem;padding:7px 0 7px 24px;position:relative}
   .price-list li::before{content:"";position:absolute;left:0;top:14px;width:11px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
-  .local-line{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:.87rem;color:var(--ink-soft)}
+  .local-line{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:.86rem;color:var(--ink-soft)}
   .local-line b{color:var(--ink)}
 
-  .cmp{background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}
-  .cmp table{width:100%;border-collapse:collapse}
-  .cmp th,.cmp td{text-align:left;padding:15px 18px;font-size:.93rem;border-bottom:1px solid var(--line);vertical-align:top}
-  .cmp thead th{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2)}
+  .cmp{overflow:hidden}
+  .cmp table{width:100%;height:100%;border-collapse:collapse}
+  .cmp th,.cmp td{text-align:left;padding:14px 18px;font-size:.92rem;border-bottom:1px solid var(--line);vertical-align:top}
+  .cmp thead th{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--bg-2)}
   .cmp thead th.us{color:var(--bark)}
   .cmp td.us{font-weight:600}
   .cmp td.them{color:var(--ink-soft)}
   .cmp tr:last-child td{border-bottom:none}
 
-  .cur-box{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px}
+  .cur-box{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px}
   .cur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .cur-field label{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
-  .cur-field select{width:100%;font-family:var(--body);font-size:.96rem;padding:.72rem .85rem;border:1.5px solid var(--line);border-radius:12px;background:var(--paper-2);color:var(--ink);cursor:pointer}
-  .cur-field select:focus{outline:none;border-color:var(--bark);box-shadow:0 0 0 3px rgba(63,125,92,.15)}
+  .cur-field label{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  .cur-field select{width:100%;font-family:var(--body);font-size:.95rem;padding:.72rem .85rem;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);cursor:pointer}
+  .cur-field select:focus{outline:none;border-color:var(--bark);box-shadow:0 0 0 3px rgba(62,122,89,.18)}
   .cur-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-  .cur-meta{margin-top:14px;font-size:.88rem;color:var(--ink-soft)}
+  .cur-meta{margin-top:14px;font-size:.87rem;color:var(--ink-soft)}
   .cur-meta b{color:var(--bark-deep)}
 
-  .cta-box{background:linear-gradient(135deg,var(--bark),var(--bark-deep));color:#fff;border-radius:26px;padding:46px;text-align:center}
-  .cta-box h2{color:#fff;font-size:clamp(1.85rem,3.9vw,2.5rem)}
-  .cta-box p{color:rgba(255,255,255,.87);margin:12px auto 24px;max-width:34em}
+  .cta-box{background:linear-gradient(135deg,var(--bark),var(--bark-deep));color:#fff;border-radius:24px;padding:46px;text-align:center}
+  .cta-box h2{color:#fff;font-size:clamp(1.85rem,3.8vw,2.5rem)}
+  .cta-box p{color:rgba(255,255,255,.88);margin:12px auto 24px;max-width:34em}
   .cta-box a.btn-primary{background:#fff;color:var(--bark-deep);box-shadow:none}
-  .cta-box a.btn-primary:hover{background:var(--paper-2);color:var(--bark-deep)}
+  .cta-box a.btn-primary:hover{background:var(--bg);color:var(--bark-deep)}
 
-  footer{padding:42px 0 30px;border-top:1px solid var(--line);margin-top:66px}
+  footer{padding:42px 0 30px;border-top:1px solid var(--line);margin-top:64px}
   .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
   .foot p{font-size:.85rem;color:var(--ink-soft)}
   .foot-links{display:flex;gap:20px;font-size:.9rem;color:var(--ink-soft)}
@@ -150,7 +156,7 @@
     .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
     .aud,.price-hero,.cur-grid{grid-template-columns:1fr}
-    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line)}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line)}
     .nav-links.open{display:flex}
     .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
     .nav-links a.btn{margin-top:12px}
@@ -158,7 +164,7 @@
     .cmp{overflow-x:auto}
     .cta-box{padding:32px 20px}
   }
-  @media(max-width:560px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} }
+  @media(max-width:560px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} .node text{font-size:13px} }
   @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto} }
 </style>
 </head>
@@ -167,7 +173,7 @@
 <header>
   <div class="nav">
     <a class="brand" href="#top" aria-label="Banyan home">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3F7D5C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#E2A03F"/></svg>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3E7A59" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#D9954A"/></svg>
       <b>Banyan</b>
     </a>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
@@ -328,7 +334,7 @@
 <footer>
   <div class="wrap foot">
     <div class="brand">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3F7D5C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#E2A03F"/></svg>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3E7A59" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#D9954A"/></svg>
       <b>Banyan</b>
     </div>
     <div class="foot-links"><a href="#subjects">Subjects</a><a href="#pricing">Pricing</a><a href="#start">Book</a></div>
@@ -344,18 +350,18 @@ var PRICE_USD=11;
 /* ====================== */
 
 var SUBJECT_LIST=[
- {key:"coding",   name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",           who:"School \u00b7 College"},
- {key:"ai",       name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",         who:"College \u00b7 Adults"},
- {key:"maths",    name:"Maths",              short:"Maths",    color:"#E2A03F", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",       who:"School"},
- {key:"science",  name:"Science",            short:"Science",  color:"#3F7D5C", blurb:"The why behind the syllabus, taught with things you can see, test and question.",           who:"School"},
- {key:"english",  name:"English",            short:"English",  color:"#C98A4B", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",         who:"School \u00b7 College"},
- {key:"money",    name:"Financial literacy", short:"Money",    color:"#2E5C44", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",           who:"College \u00b7 Adults"},
- {key:"testprep", name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the confidence to sit down calmly.",       who:"School \u00b7 College"},
- {key:"speaking", name:"Public speaking",    short:"Speaking", color:"#8A9A5B", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",               who:"All ages"},
- {key:"data",     name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",         who:"College \u00b7 Adults"},
- {key:"spanish",  name:"Spanish",            short:"Spanish",  color:"#D2694E", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",             who:"All ages"},
- {key:"chess",    name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.",      who:"School"},
- {key:"movement", name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",        who:"All ages"}
+ {key:"coding",   name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",      who:"School \u00b7 College"},
+ {key:"ai",       name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",    who:"College \u00b7 Adults"},
+ {key:"maths",    name:"Maths",              short:"Maths",    color:"#D9954A", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",  who:"School"},
+ {key:"science",  name:"Science",            short:"Science",  color:"#3E7A59", blurb:"The why behind the syllabus, taught with things you can see, test and question.",      who:"School"},
+ {key:"english",  name:"English",            short:"English",  color:"#C08246", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",    who:"School \u00b7 College"},
+ {key:"money",    name:"Financial literacy", short:"Money",    color:"#2C5940", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",      who:"College \u00b7 Adults"},
+ {key:"testprep", name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the calm to sit down and begin.",     who:"School \u00b7 College"},
+ {key:"speaking", name:"Public speaking",    short:"Speaking", color:"#87995A", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",          who:"All ages"},
+ {key:"data",     name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",    who:"College \u00b7 Adults"},
+ {key:"spanish",  name:"Spanish",            short:"Spanish",  color:"#CC6446", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",        who:"All ages"},
+ {key:"chess",    name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.", who:"School"},
+ {key:"movement", name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",   who:"All ages"}
 ];
 
 var GRADES=["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
@@ -394,13 +400,13 @@ var UNITS={
  "Test prep":{
   "Primary (age 6-10)":["How to sit a test calmly","Reading the question properly","Timing and pacing","Showing your working","Common careless mistakes","Practice paper walkthrough","Confidence before exam day"],
   "Middle (age 11-13)":["Exam formats explained","Revision that actually works","Timing and pacing","Multiple choice strategy","Written answer structure","Full practice paper","Reviewing your mistakes"],
-  "High school (age 14-18)":["Diagnostic: where you stand","SAT / ACT maths sections","Reading and writing sections","Timing under pressure","Elimination and guessing strategy","Full timed mocks","Score review and targeting"],
+  "High school (age 14-18)":["Diagnostic: where you stand","SAT and ACT maths sections","Reading and writing sections","Timing under pressure","Elimination and guessing strategy","Full timed mocks","Score review and targeting"],
   "College and adults":["Diagnostic and target setting","Quantitative sections","Verbal and reading sections","Essay and writing tasks","Timing strategy","Full timed mocks","Final week plan"]},
  "Public speaking":{
   "Primary (age 6-10)":["Speaking so people can hear you","Standing still and steady","Telling a short story","Show and tell, done well","Answering questions","Nerves are normal","Project: a two-minute talk"],
   "Middle (age 11-13)":["Structuring a talk","Voice, pace and pauses","Body language","Class presentations","Introduction to debate","Handling questions","Project: a five-minute talk"],
   "High school (age 14-18)":["Persuasive speech structure","Argument and rebuttal","Formal debate formats","Slides that help, not distract","Interview technique","Impromptu speaking","Project: a debate round"],
-  "College and adults":["Presenting at work","Storytelling with data","Executive summary speaking","Job interview technique","Handling hostile questions","Virtual presence on calls","Project: a stakeholder pitch"]},
+  "College and adults":["Presenting at work","Storytelling with data","Speaking to executives","Job interview technique","Handling hostile questions","Presence on video calls","Project: a stakeholder pitch"]},
  "Data & analytics":{
   "Primary (age 6-10)":["What data is","Collecting information","Tally charts and graphs","Reading a chart correctly","Sorting and grouping","Spotting patterns","Project: a class survey"],
   "Middle (age 11-13)":["Spreadsheets from scratch","Formulas and functions","Charts that tell the truth","Averages and spread","Cleaning messy data","Misleading graphs","Project: analyse a real dataset"],
@@ -410,9 +416,9 @@ var UNITS={
   "Primary (age 6-10)":["Sounds and greetings","Numbers, colours, family","Everyday objects","Simple sentences","Songs and games","Listening practice","Project: introduce yourself"],
   "Middle (age 11-13)":["Present tense verbs","Everyday conversation","Food, school, hobbies","Reading short texts","Asking and answering","Past tense basics","Project: a short dialogue"],
   "High school (age 14-18)":["Tenses in full","Conversation fluency","Reading and comprehension","Writing paragraphs and essays","Listening at natural speed","Culture and context","Exam preparation"],
-  "College and adults":["Conversational Spanish fast","Travel and daily situations","Workplace Spanish","Grammar that matters most","Listening to native speakers","Building vocabulary that sticks","Project: a ten-minute conversation"]},
+  "College and adults":["Conversational Spanish fast","Travel and daily situations","Workplace Spanish","Grammar that matters most","Listening to native speakers","Vocabulary that sticks","Project: a ten-minute conversation"]},
  "Chess":{
-  "Primary (age 6-10)":["How the pieces move","Check, checkmate, stalemate","Piece value and trades","Simple opening principles","Basic checkmate patterns","Playing a full game","Project: your first tournament game"],
+  "Primary (age 6-10)":["How the pieces move","Check, checkmate, stalemate","Piece value and trades","Simple opening principles","Basic checkmate patterns","Playing a full game","Project: your first full game"],
   "Middle (age 11-13)":["Opening principles properly","Tactics: forks, pins, skewers","Endgame basics","Planning a middlegame","Recording your games","Analysing your losses","Project: a rated game reviewed"],
   "High school (age 14-18)":["An opening repertoire","Advanced tactics and calculation","Positional understanding","King and pawn endgames","Time management","Studying master games","Project: tournament preparation"],
   "College and adults":["Learning chess as an adult","Openings without memorising","Tactics training that works","Endgame essentials","Online play and rating growth","Reviewing your own games","Project: a rating goal plan"]},
@@ -454,7 +460,6 @@ navLinks.querySelectorAll("a").forEach(function(a){
   a.addEventListener("click",function(){navLinks.classList.remove("open");burger.setAttribute("aria-expanded","false");});
 });
 
-/* ---------- subject cards ---------- */
 var grid=$("subjectGrid");
 SUBJECT_LIST.forEach(function(s,i){
   var el=document.createElement("article");
@@ -464,41 +469,40 @@ SUBJECT_LIST.forEach(function(s,i){
   grid.appendChild(el);
 });
 
-/* ---------- the banyan ---------- */
+/* ---------- the banyan: 6 roots each side, centre kept clear for the trunk ---------- */
 (function buildTree(){
   var svg=$("tree"), NS="http://www.w3.org/2000/svg";
-  function el(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n;}
-  // leafy canopy: layered blobs so it reads as foliage, not an empty circle
-  var canopy=[
-    {cx:320,cy:96,rx:250,ry:74,o:.10},{cx:320,cy:84,rx:206,ry:62,o:.14},
-    {cx:190,cy:96,rx:96,ry:50,o:.16},{cx:450,cy:96,rx:96,ry:50,o:.16},
-    {cx:262,cy:66,rx:84,ry:44,o:.18},{cx:382,cy:66,rx:84,ry:44,o:.18},
-    {cx:320,cy:54,rx:66,ry:38,o:.22},{cx:130,cy:112,rx:56,ry:32,o:.14},
-    {cx:510,cy:112,rx:56,ry:32,o:.14}
-  ];
-  canopy.forEach(function(c){ svg.appendChild(el("ellipse",{cx:c.cx,cy:c.cy,rx:c.rx,ry:c.ry,fill:"#3F7D5C","fill-opacity":c.o})); });
-  // a few leaf dots for texture
-  [[150,70],[498,72],[236,40],[404,40],[320,28],[96,100],[548,100]].forEach(function(p){
-    svg.appendChild(el("circle",{cx:p[0],cy:p[1],r:7,fill:"#3F7D5C","fill-opacity":.22}));
-  });
-  // trunk + main branch
-  svg.appendChild(el("path",{class:"trunk",d:"M320 430V150"}));
-  svg.appendChild(el("path",{class:"branch",d:"M60 196 Q320 150 580 196"}));
-  // ground
-  svg.appendChild(el("path",{d:"M40 430h560",stroke:"#E8DED2","stroke-width":3,"stroke-linecap":"round",fill:"none"}));
+  function mk(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n;}
 
-  var P0={x:60,y:196},P1={x:320,y:150},P2={x:580,y:196};
-  function bez(t,a,b,c){var m=1-t;return m*m*a+2*m*t*b+t*t*c;}
+  var canopy=[
+    {cx:320,cy:100,rx:252,ry:72,o:.10},{cx:320,cy:88,rx:208,ry:60,o:.13},
+    {cx:186,cy:100,rx:98,ry:50,o:.15},{cx:454,cy:100,rx:98,ry:50,o:.15},
+    {cx:258,cy:70,rx:86,ry:44,o:.17},{cx:382,cy:70,rx:86,ry:44,o:.17},
+    {cx:320,cy:58,rx:68,ry:38,o:.20},{cx:124,cy:116,rx:56,ry:30,o:.13},
+    {cx:516,cy:116,rx:56,ry:30,o:.13}
+  ];
+  canopy.forEach(function(c){svg.appendChild(mk("ellipse",{cx:c.cx,cy:c.cy,rx:c.rx,ry:c.ry,fill:"#3E7A59","fill-opacity":c.o}));});
+  [[146,74],[498,76],[236,44],[404,44],[320,32],[94,104],[548,104]].forEach(function(p){
+    svg.appendChild(mk("circle",{cx:p[0],cy:p[1],r:7,fill:"#3E7A59","fill-opacity":.2}));
+  });
+
+  svg.appendChild(mk("path",{class:"trunk",d:"M320 440V150"}));
+  svg.appendChild(mk("path",{class:"branch",d:"M62 206 Q192 176 320 172"}));
+  svg.appendChild(mk("path",{class:"branch",d:"M320 172 Q448 176 578 206"}));
+  svg.appendChild(mk("path",{d:"M40 440h560",stroke:"#DDCEB8","stroke-width":3,"stroke-linecap":"round",fill:"none"}));
+
+  // explicit x positions: nothing lands within 55px of the trunk
+  var XS=[265,225,185,145,105,65, 375,415,455,495,535,575];
+  function branchY(x){ return 172 + Math.abs(x-320)*0.132; }
 
   SUBJECT_LIST.forEach(function(s,i){
-    var t=(i+0.5)/SUBJECT_LIST.length;
-    var x=bez(t,P0.x,P1.x,P2.x), yTop=bez(t,P0.y,P1.y,P2.y);
+    var x=XS[i];
     var low=(i%2===1);
-    var yDot=low?348:296;
-    svg.appendChild(el("path",{class:"root",d:"M"+x.toFixed(1)+" "+yTop.toFixed(1)+"V"+(yDot-14)}));
-    var g=el("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
-    g.appendChild(el("circle",{cx:x.toFixed(1),cy:yDot,r:11,fill:s.color}));
-    var tx=el("text",{x:x.toFixed(1),y:yDot+28,"text-anchor":"middle"});
+    var yDot=low?352:296;
+    svg.appendChild(mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-13)}));
+    var g=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
+    g.appendChild(mk("circle",{cx:x,cy:yDot,r:11,fill:s.color}));
+    var tx=mk("text",{x:x,y:yDot+27,"text-anchor":"middle"});
     tx.textContent=s.short;
     g.appendChild(tx);
     function go(){
@@ -548,13 +552,13 @@ $("curDownload").addEventListener("click",function(){
   var total=units.reduce(function(a,u,i){return a+2+(i%2);},0);
   var freeTxt=FREE_CLASSES===1?"Your first class is free.":("Your first "+FREE_CLASSES+" classes are free.");
   var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Banyan curriculum \u2014 '+subject+', '+region+'</title>'+
-   '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#231F2B;line-height:1.6}'+
+   '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#2A231E;background:#FCF8F1;line-height:1.6}'+
    'h1{font-size:2rem;margin-bottom:4px}h2{font-size:1.1rem;margin-top:32px}'+
-   '.tag{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#3F7D5C}'+
-   'table{width:100%;border-collapse:collapse;margin-top:12px}td{padding:10px 8px;border-bottom:1px solid #E8DED2;font-size:.95rem}'+
-   'td.n{font-family:ui-monospace,monospace;color:#3F7D5C;width:44px}'+
-   '.box{background:#F7F1E8;border-radius:14px;padding:18px;margin-top:24px;font-size:.92rem}'+
-   '.foot{margin-top:32px;padding-top:16px;border-top:1px solid #E8DED2;font-size:.82rem;color:#6B6172}</style></head><body>'+
+   '.tag{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#3E7A59}'+
+   'table{width:100%;border-collapse:collapse;margin-top:12px}td{padding:10px 8px;border-bottom:1px solid #DDCEB8;font-size:.95rem}'+
+   'td.n{font-family:ui-monospace,monospace;color:#3E7A59;width:44px}'+
+   '.box{background:#F3EADB;border-radius:14px;padding:18px;margin-top:24px;font-size:.92rem}'+
+   '.foot{margin-top:32px;padding-top:16px;border-top:1px solid #DDCEB8;font-size:.82rem;color:#7A6A59}</style></head><body>'+
    '<p class="tag">Banyan curriculum</p><h1>'+subject+'</h1>'+
    '<p><b>'+grade+'</b> &middot; '+region+', '+country+'<br>Mapped to '+fw+'</p>'+
    '<h2>What this course covers</h2><table>'+rows+'</table>'+
