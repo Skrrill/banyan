@@ -4,24 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Banyan — One place to learn everything that matters</title>
-<meta name="description" content="Coding, gen AI, maths, science, English, money and movement. One tutor, one plan, built around your child or yourself. Online, anywhere in the world." />
+<meta name="description" content="Coding, gen AI, maths, science, English, money, test prep and more. One-to-one, live, $11 a class in every country. First class free." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg stroke='%233F7D5C' stroke-width='3' fill='none' stroke-linecap='round'%3E%3Cpath d='M20 34V14'/%3E%3Cpath d='M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4'/%3E%3Cpath d='M8 20v8M32 20v8M14 24v6M26 24v6'/%3E%3C/g%3E%3Ccircle cx='20' cy='10' r='6' fill='%23E2A03F'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#FFFCF7;
-    --paper-2:#F7F1E8;
-    --ink:#231F2B;
-    --ink-soft:#6B6172;
-    --bark:#3F7D5C;
-    --bark-deep:#2E5C44;
-    --amber:#E2A03F;
-    --rose:#C2708A;
-    --sky:#4E7FA8;
-    --line:#E8DED2;
-    --r:20px;
+    --paper:#FFFCF7; --paper-2:#F7F1E8;
+    --ink:#231F2B; --ink-soft:#6B6172;
+    --bark:#3F7D5C; --bark-deep:#2E5C44;
+    --amber:#E2A03F; --rose:#C2708A;
+    --line:#E8DED2; --r:20px;
     --disp:"Fraunces",Georgia,serif;
     --body:"Hanken Grotesk",system-ui,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,monospace;
@@ -31,159 +25,141 @@
   html{scroll-behavior:smooth}
   body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  h1,h2,h3{font-family:var(--disp);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+
+  /* straighten Fraunces: no wonky j / f descenders */
+  h1,h2,h3,h4,.brand b,.price-num b{
+    font-family:var(--disp);font-weight:600;line-height:1.06;letter-spacing:-.02em;
+    font-variation-settings:"SOFT" 0,"WONK" 0;
+  }
+
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bark)}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;border-radius:999px;font-family:var(--body);font-weight:600;font-size:1rem;padding:.9rem 1.7rem;cursor:pointer;transition:transform .16s ease,background .16s ease,box-shadow .16s ease}
-  .btn-primary{background:var(--bark);color:#fff;box-shadow:0 14px 30px -16px rgba(63,125,92,.9)}
-  .btn-primary:hover{background:var(--bark-deep);transform:translateY(-2px)}
-  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;border-radius:999px;font-family:var(--body);font-weight:600;font-size:1rem;padding:.9rem 1.7rem;cursor:pointer;transition:transform .16s ease,background .16s ease}
+  .btn-primary,a.btn-primary,.nav-links a.btn-primary{background:var(--bark);color:#FFFFFF;box-shadow:0 14px 30px -16px rgba(63,125,92,.9)}
+  .btn-primary:hover,.nav-links a.btn-primary:hover{background:var(--bark-deep);color:#FFFFFF;transform:translateY(-2px)}
+  .btn-ghost,a.btn-ghost,.nav-links a.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
   .btn-ghost:hover{border-color:var(--bark);color:var(--bark-deep)}
   :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
 
-  /* nav */
-  header{position:sticky;top:0;z-index:60;background:rgba(255,252,247,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header{position:sticky;top:0;z-index:60;background:rgba(255,252,247,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1120px;margin:0 auto}
   .brand{display:flex;align-items:center;gap:10px}
   .brand svg{width:30px;height:30px}
-  .brand b{font-family:var(--disp);font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
-  .nav-links{display:flex;align-items:center;gap:26px}
-  .nav-links a{font-size:.94rem;font-weight:500;color:var(--ink-soft)}
+  .brand b{font-size:1.35rem;font-weight:700}
+  .nav-links{display:flex;align-items:center;gap:22px}
+  .nav-links a{font-size:.93rem;font-weight:500;color:var(--ink-soft)}
   .nav-links a:hover{color:var(--bark-deep)}
-  .nav-links .btn{padding:.6rem 1.2rem;font-size:.9rem}
+  .nav-links a.btn{padding:.6rem 1.25rem;font-size:.9rem}
   .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  /* hero */
-  .hero{padding:56px 0 20px;position:relative}
-  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
-  .hero h1{font-size:clamp(2.6rem,5.6vw,4.1rem);margin:16px 0 14px}
+  .hero{padding:52px 0 24px}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.08fr;gap:38px;align-items:center}
+  .hero h1{font-size:clamp(2.5rem,5.3vw,3.9rem);margin:16px 0 14px}
   .hero h1 em{font-style:italic;color:var(--bark)}
-  .hero p.lede{font-size:1.13rem;color:var(--ink-soft);max-width:32em}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .hero p.lede{font-size:1.12rem;color:var(--ink-soft);max-width:32em}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
   .hero-note{margin-top:20px;font-size:.9rem;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
   .hero-note span{display:flex;align-items:center;gap:7px}
   .pip{width:8px;height:8px;border-radius:50%;background:var(--amber)}
 
-  /* signature: the banyan */
   .tree-wrap{position:relative}
   .tree{width:100%;height:auto;display:block;overflow:visible}
-  .limb{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:3.4;opacity:.5;transition:opacity .2s,stroke-width .2s}
-  .trunk{stroke:var(--bark-deep);stroke-width:9;opacity:.85}
+  .root{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:2.6;opacity:.42}
+  .branch{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:4;opacity:.55}
+  .trunk{stroke:var(--bark-deep);fill:none;stroke-width:11;stroke-linecap:round}
   .node{cursor:pointer}
-  .node circle{transition:r .2s ease,filter .2s ease}
-  .node text{font-family:var(--body);font-size:12.5px;font-weight:600;fill:var(--ink);opacity:0;transition:opacity .2s}
-  .node:hover circle,.node:focus circle{r:19}
-  .node:hover text,.node:focus text,.node.on text{opacity:1}
-  .node:hover ~ .limb{opacity:1}
-  .tree-cap{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .node circle{transition:r .18s ease}
+  .node text{font-family:var(--body);font-size:12px;font-weight:600;fill:var(--ink-soft)}
+  .node:hover circle,.node:focus circle{r:13}
+  .node:hover text,.node:focus text{fill:var(--ink)}
+  .tree-cap{text-align:center;margin-top:8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 
-  /* sections */
-  section.band{padding:82px 0}
+  section.band{padding:78px 0}
   .band.tint{background:var(--paper-2)}
-  .head{max-width:620px;margin-bottom:44px}
-  .head h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-top:12px}
-  .head p{color:var(--ink-soft);margin-top:12px;font-size:1.06rem}
+  .head{max-width:620px;margin-bottom:40px}
+  .head h2{font-size:clamp(1.85rem,3.9vw,2.6rem);margin-top:12px}
+  .head p{color:var(--ink-soft);margin-top:12px;font-size:1.05rem}
 
-  /* subject cards */
-  .subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-  .subj{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+  .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .subj{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .18s ease,box-shadow .18s ease}
   .subj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-  .subj .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;font-weight:500;color:#fff;margin-bottom:14px}
-  .subj h3{font-size:1.25rem;margin-bottom:6px}
-  .subj p{font-size:.94rem;color:var(--ink-soft)}
-  .subj .who{margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .subj .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;color:#fff;margin-bottom:12px}
+  .subj h3{font-size:1.14rem;margin-bottom:5px}
+  .subj p{font-size:.9rem;color:var(--ink-soft)}
+  .subj .who{margin-top:12px;font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
 
-  /* audience */
   .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .aud-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px}
-  .aud-card h3{font-size:1.3rem;margin-bottom:8px}
-  .aud-card p{color:var(--ink-soft);font-size:.96rem}
+  .aud-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+  .aud-card h3{font-size:1.28rem;margin-bottom:8px}
+  .aud-card p{color:var(--ink-soft);font-size:.95rem}
   .aud-card ul{list-style:none;margin-top:14px}
-  .aud-card li{font-size:.92rem;padding:5px 0 5px 22px;position:relative;color:var(--ink)}
+  .aud-card li{font-size:.92rem;padding:5px 0 5px 22px;position:relative}
   .aud-card li::before{content:"";position:absolute;left:0;top:12px;width:11px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
 
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
-  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px}
-  .step .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--bark);display:block;margin-bottom:10px}
-  .step h3{font-size:1.1rem;margin-bottom:6px}
-  .step p{font-size:.92rem;color:var(--ink-soft)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .step .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--bark);display:block;margin-bottom:9px}
+  .step h3{font-size:1.06rem;margin-bottom:5px}
+  .step p{font-size:.9rem;color:var(--ink-soft)}
 
-  /* cta */
-  .cta-box{background:linear-gradient(135deg,var(--bark),var(--bark-deep));color:#fff;border-radius:28px;padding:48px;text-align:center}
-  .cta-box h2{color:#fff;font-size:clamp(1.9rem,4vw,2.6rem)}
-  .cta-box p{color:rgba(255,255,255,.86);margin:12px auto 26px;max-width:34em}
-  .cta-box .btn-primary{background:#fff;color:var(--bark-deep)}
-  .cta-box .btn-primary:hover{background:var(--paper-2)}
-
-  footer{padding:44px 0 30px;border-top:1px solid var(--line);margin-top:70px}
-  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-  .foot p{font-size:.86rem;color:var(--ink-soft)}
-  .foot-links{display:flex;gap:20px;font-size:.9rem;color:var(--ink-soft)}
-
-  /* ---- pricing ---- */
-  .price-hero{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:stretch}
-  .price-card{background:var(--paper);border:2px solid var(--bark);border-radius:26px;padding:34px;box-shadow:var(--shadow);position:relative}
-  .price-card .flag{position:absolute;top:-14px;left:34px;background:var(--amber);color:#3a2a10;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px;font-weight:500}
-  .price-num{display:flex;align-items:baseline;gap:8px;margin:8px 0 4px}
-  .price-num b{font-family:var(--disp);font-size:4rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  /* pricing, kept calm */
+  .price-hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
+  .price-card{background:var(--paper);border:2px solid var(--bark);border-radius:24px;padding:30px}
+  .price-num{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+  .price-num b{font-size:3.6rem;font-weight:700;line-height:1;letter-spacing:-.03em}
   .price-num span{color:var(--ink-soft);font-weight:600}
-  .price-sub{color:var(--ink-soft);font-size:.98rem}
-  .price-list{list-style:none;margin:22px 0 0}
-  .price-list li{font-size:.96rem;padding:8px 0 8px 26px;position:relative}
-  .price-list li::before{content:"";position:absolute;left:0;top:15px;width:12px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
-  .local-line{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.9rem;color:var(--ink-soft)}
+  .price-sub{color:var(--ink-soft);font-size:.96rem}
+  .price-list{list-style:none;margin:20px 0 0}
+  .price-list li{font-size:.95rem;padding:7px 0 7px 24px;position:relative}
+  .price-list li::before{content:"";position:absolute;left:0;top:14px;width:11px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
+  .local-line{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:.87rem;color:var(--ink-soft)}
   .local-line b{color:var(--ink)}
 
-  .cmp{background:var(--paper);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+  .cmp{background:var(--paper);border:1px solid var(--line);border-radius:24px;overflow:hidden}
   .cmp table{width:100%;border-collapse:collapse}
-  .cmp th,.cmp td{text-align:left;padding:14px 16px;font-size:.92rem;border-bottom:1px solid var(--line);vertical-align:top}
-  .cmp thead th{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2)}
+  .cmp th,.cmp td{text-align:left;padding:15px 18px;font-size:.93rem;border-bottom:1px solid var(--line);vertical-align:top}
+  .cmp thead th{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2)}
   .cmp thead th.us{color:var(--bark)}
-  .cmp td.us{font-weight:600;color:var(--ink)}
+  .cmp td.us{font-weight:600}
   .cmp td.them{color:var(--ink-soft)}
   .cmp tr:last-child td{border-bottom:none}
 
-  /* ---- curriculum builder ---- */
-  .cur-box{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+  .cur-box{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px}
   .cur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .cur-field label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
-  .cur-field select{width:100%;font-family:var(--body);font-size:.98rem;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:13px;background:var(--paper-2);color:var(--ink);cursor:pointer}
+  .cur-field label{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  .cur-field select{width:100%;font-family:var(--body);font-size:.96rem;padding:.72rem .85rem;border:1.5px solid var(--line);border-radius:12px;background:var(--paper-2);color:var(--ink);cursor:pointer}
   .cur-field select:focus{outline:none;border-color:var(--bark);box-shadow:0 0 0 3px rgba(63,125,92,.15)}
-  .cur-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
-  .cur-meta{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
+  .cur-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+  .cur-meta{margin-top:14px;font-size:.88rem;color:var(--ink-soft)}
   .cur-meta b{color:var(--bark-deep)}
 
-  /* ---- promises ---- */
-  .promises{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .promise{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
-  .promise h3{font-size:1.06rem;margin-bottom:6px}
-  .promise p{font-size:.92rem;color:var(--ink-soft)}
+  .cta-box{background:linear-gradient(135deg,var(--bark),var(--bark-deep));color:#fff;border-radius:26px;padding:46px;text-align:center}
+  .cta-box h2{color:#fff;font-size:clamp(1.85rem,3.9vw,2.5rem)}
+  .cta-box p{color:rgba(255,255,255,.87);margin:12px auto 24px;max-width:34em}
+  .cta-box a.btn-primary{background:#fff;color:var(--bark-deep);box-shadow:none}
+  .cta-box a.btn-primary:hover{background:var(--paper-2);color:var(--bark-deep)}
 
-  @media(max-width:900px){
-    .price-hero{grid-template-columns:1fr}
-    .cur-grid{grid-template-columns:1fr}
-    .promises{grid-template-columns:1fr}
-    .cmp{overflow-x:auto}
-  }
+  footer{padding:42px 0 30px;border-top:1px solid var(--line);margin-top:66px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .foot p{font-size:.85rem;color:var(--ink-soft)}
+  .foot-links{display:flex;gap:20px;font-size:.9rem;color:var(--ink-soft)}
 
+  @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:10px}
+    .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
-    .aud,.steps{grid-template-columns:1fr}
+    .aud,.price-hero,.cur-grid{grid-template-columns:1fr}
     .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line)}
     .nav-links.open{display:flex}
     .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
-    .nav-links .btn{margin-top:12px}
+    .nav-links a.btn{margin-top:12px}
     .burger{display:block}
-    .node text{opacity:1;font-size:15px}
-    .cta-box{padding:34px 22px}
+    .cmp{overflow-x:auto}
+    .cta-box{padding:32px 20px}
   }
-  @media(prefers-reduced-motion:reduce){
-    *{transition:none!important;animation:none!important}
-    html{scroll-behavior:auto}
-  }
+  @media(max-width:560px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto} }
 </style>
 </head>
 <body>
@@ -200,7 +176,6 @@
     <nav class="nav-links" id="navLinks">
       <a href="#subjects">Subjects</a>
       <a href="#who">Who it's for</a>
-      <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#curriculum">Curriculum</a>
       <a class="btn btn-primary" href="#start">Start free</a>
@@ -208,103 +183,40 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero wrap" id="top">
   <div class="hero-grid">
     <div>
       <span class="mono">One tree, many branches</span>
       <h1>Everything worth learning, in <em>one place</em>.</h1>
-      <p class="lede">Coding, gen AI, maths, science, English, money and movement. Each learner answers a few questions, then gets one clear plan built around them, taught live and tracked as they go.</p>
+      <p class="lede">Twelve subjects, one teacher who knows your child, and one price anywhere in the world. Live, one-to-one, eleven dollars a class.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#start">Start with a free class</a>
         <a class="btn btn-ghost" href="#subjects">See the subjects</a>
       </div>
       <div class="hero-note">
-        <span><i class="pip"></i> Live one-on-one</span>
-        <span><i class="pip"></i> Online, worldwide</span>
+        <span><i class="pip"></i> Live one-to-one</span>
+        <span><i class="pip"></i> Every country, one price</span>
         <span><i class="pip"></i> First class free</span>
       </div>
     </div>
-
-    <!-- SIGNATURE: the banyan -->
     <div class="tree-wrap">
-      <svg class="tree" viewBox="0 0 560 420" role="img" aria-label="A banyan tree where each hanging root is a subject Banyan teaches">
-        <!-- canopy -->
-        <ellipse cx="280" cy="96" rx="196" ry="66" fill="#3F7D5C" opacity=".12"/>
-        <ellipse cx="280" cy="86" rx="150" ry="52" fill="#3F7D5C" opacity=".16"/>
-        <!-- trunk -->
-        <path class="limb trunk" d="M280 392V150"/>
-        <!-- branches out -->
-        <path class="limb" d="M280 158C218 138 150 142 96 156"/>
-        <path class="limb" d="M280 158c62-20 130-16 184-2"/>
-        <path class="limb" d="M280 168c-40-6-78 2-112 14"/>
-        <path class="limb" d="M280 168c40-6 78 2 112 14"/>
-        <!-- aerial roots (one per subject) -->
-        <path class="limb" d="M96 156v104"/>
-        <path class="limb" d="M168 182v96"/>
-        <path class="limb" d="M232 156v122"/>
-        <path class="limb" d="M330 156v122"/>
-        <path class="limb" d="M392 182v96"/>
-        <path class="limb" d="M464 156v104"/>
-        <path class="limb" d="M280 260v52"/>
-        <!-- ground -->
-        <path d="M60 392h440" stroke="#E8DED2" stroke-width="3" stroke-linecap="round"/>
-
-        <g class="node" tabindex="0" data-s="code">
-          <circle cx="96" cy="268" r="15" fill="#4E7FA8"/>
-          <text x="96" y="300" text-anchor="middle">Coding</text>
-        </g>
-        <g class="node" tabindex="0" data-s="ai">
-          <circle cx="168" cy="286" r="15" fill="#7A6BB5"/>
-          <text x="168" y="318" text-anchor="middle">Gen AI</text>
-        </g>
-        <g class="node" tabindex="0" data-s="maths">
-          <circle cx="232" cy="286" r="15" fill="#E2A03F"/>
-          <text x="232" y="318" text-anchor="middle">Maths</text>
-        </g>
-        <g class="node" tabindex="0" data-s="science">
-          <circle cx="330" cy="286" r="15" fill="#3F7D5C"/>
-          <text x="330" y="318" text-anchor="middle">Science</text>
-        </g>
-        <g class="node" tabindex="0" data-s="english">
-          <circle cx="392" cy="286" r="15" fill="#C98A4B"/>
-          <text x="392" y="318" text-anchor="middle">English</text>
-        </g>
-        <g class="node" tabindex="0" data-s="money">
-          <circle cx="464" cy="268" r="15" fill="#2E5C44"/>
-          <text x="464" y="300" text-anchor="middle">Money</text>
-        </g>
-        <g class="node" tabindex="0" data-s="pe">
-          <circle cx="280" cy="320" r="15" fill="#C2708A"/>
-          <text x="280" y="352" text-anchor="middle">Movement</text>
-        </g>
-      </svg>
-      <p class="tree-cap">Tap a root to jump to that subject</p>
+      <svg class="tree" id="tree" viewBox="0 0 640 470" role="img" aria-label="A banyan tree whose hanging roots are the subjects Banyan teaches"></svg>
+      <p class="tree-cap">Tap a root to open that subject</p>
     </div>
   </div>
 </section>
 
-<!-- SUBJECTS -->
 <section class="band tint" id="subjects">
   <div class="wrap">
     <div class="head">
       <span class="mono">The branches</span>
-      <h2>Seven subjects. One way of teaching.</h2>
-      <p>Every subject follows the same shape: a short intake, a plan made for that learner, live classes, and progress you can actually see.</p>
+      <h2>Twelve subjects. One way of teaching.</h2>
+      <p>Every subject runs the same way: a short intake, a plan built for that learner, live one-to-one classes, and progress you can see.</p>
     </div>
-    <div class="subjects">
-      <article class="subj" id="s-code"><div class="dot" style="background:#4E7FA8">01</div><h3>Coding</h3><p>Python, web, and real projects. From first line of code to something they built themselves.</p><div class="who">School · College</div></article>
-      <article class="subj" id="s-ai"><div class="dot" style="background:#7A6BB5">02</div><h3>Gen AI</h3><p>How to actually use AI well: prompting, tools, judgement, and where it gets things wrong.</p><div class="who">College · Adults</div></article>
-      <article class="subj" id="s-maths"><div class="dot" style="background:#E2A03F">03</div><h3>Maths</h3><p>Built from the ground up so it makes sense, not memorised. Confidence before speed.</p><div class="who">School</div></article>
-      <article class="subj" id="s-science"><div class="dot" style="background:#3F7D5C">04</div><h3>Science</h3><p>The why behind the syllabus, taught with things you can see, test and question.</p><div class="who">School</div></article>
-      <article class="subj" id="s-english"><div class="dot" style="background:#C98A4B">05</div><h3>English</h3><p>Speaking, writing and being understood. For exams, for interviews, for the world.</p><div class="who">School · College</div></article>
-      <article class="subj" id="s-money"><div class="dot" style="background:#2E5C44">06</div><h3>Financial literacy</h3><p>Saving, budgeting, compounding, and how money actually works. The class nobody taught us.</p><div class="who">College · Adults</div></article>
-      <article class="subj" id="s-pe"><div class="dot" style="background:#C2708A">07</div><h3>Movement</h3><p>Strength, yoga and mobility. Our physical education arm, and where Banyan started.</p><div class="who">All ages</div></article>
-    </div>
+    <div class="subjects" id="subjectGrid"></div>
   </div>
 </section>
 
-<!-- WHO -->
 <section class="band" id="who">
   <div class="wrap">
     <div class="head">
@@ -314,116 +226,85 @@
     <div class="aud">
       <div class="aud-card">
         <h3>School students</h3>
-        <p>Steady, patient teaching that follows the child's pace rather than the class average.</p>
-        <ul><li>Maths, science, English</li><li>Coding from scratch</li><li>Reports parents can read</li></ul>
+        <p>Patient teaching that follows the child's pace instead of the class average.</p>
+        <ul><li>Maths, science, English</li><li>Coding and chess from scratch</li><li>Reports parents can read</li></ul>
       </div>
       <div class="aud-card">
         <h3>College students</h3>
         <p>The practical skills degrees skip, taught by someone a few steps ahead, not decades.</p>
-        <ul><li>Coding and projects</li><li>Gen AI, used properly</li><li>Money and communication</li></ul>
+        <ul><li>Coding, data and gen AI</li><li>Speaking and interviews</li><li>Money that compounds early</li></ul>
       </div>
       <div class="aud-card">
         <h3>Parents</h3>
-        <p>One tutor, one plan, one place. You'll know exactly what your child is working on.</p>
-        <ul><li>Free first class</li><li>Progress you can see</li><li>Flexible timings</li></ul>
+        <p>One tutor, one plan, one place. You will know exactly what your child is working on.</p>
+        <ul><li>First class free</li><li>Progress you can check</li><li>Timings that fit your day</li></ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW -->
 <section class="band tint" id="how">
   <div class="wrap">
     <div class="head">
       <span class="mono">How it works</span>
-      <h2>Four steps, then you're learning.</h2>
-      <p>The order matters here, each step feeds the next.</p>
+      <h2>Four steps, then you are learning.</h2>
     </div>
     <div class="steps">
       <div class="step"><span class="n">Step 1</span><h3>Tell us where you are</h3><p>A few questions about the subject, the level, and what you want out of it.</p></div>
-      <div class="step"><span class="n">Step 2</span><h3>Get your plan</h3><p>A roadmap made for that learner, not a syllabus copied off a shelf.</p></div>
-      <div class="step"><span class="n">Step 3</span><h3>Learn live</h3><p>One-on-one classes online, at times that fit around school or work.</p></div>
-      <div class="step"><span class="n">Step 4</span><h3>See it add up</h3><p>Lessons completed, skills unlocked, progress you and your parents can check.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>Get your plan</h3><p>A roadmap built for that learner, not a syllabus copied off a shelf.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Learn live</h3><p>One-to-one classes online, at times that fit around school or work.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>See it add up</h3><p>Lessons done, skills unlocked, progress you and your parents can check.</p></div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="band" id="pricing">
   <div class="wrap">
     <div class="head">
       <span class="mono">Pricing</span>
       <h2>One price. Every subject, every country.</h2>
-      <p>Eleven dollars a class, whether you take four or four hundred. No packages to buy up front, no bulk discounts to chase, and no quiet markup because of where you live.</p>
+      <p>Eleven dollars a class, whether you take four or four hundred. Nothing to buy up front, and no quiet markup because of where you live.</p>
     </div>
-
     <div class="price-hero">
       <div class="price-card">
-        <span class="flag">Flat rate</span>
         <div class="price-num"><b>$11</b><span>per class</span></div>
-        <p class="price-sub">One-to-one, live, 50 minutes. Same price for coding, maths, science, English, gen AI, money and movement.</p>
+        <p class="price-sub">Live, one-to-one, 50 minutes. The same price for every subject.</p>
         <ul class="price-list">
-          <li>Your first <span data-freeclasses>1</span> class free</li>
+          <li id="freeLine">Your first class is free</li>
           <li>Pay per class, cancel any time</li>
           <li>The same teacher every session</li>
-          <li>No contracts and no joining fee</li>
-          <li>Money back on your first five paid classes</li>
+          <li>No contracts, no joining fee</li>
         </ul>
-        <div class="local-line" id="localLine">Roughly <b id="localAmt">$11</b> where you are. Converted for convenience only, the price itself never changes.</div>
+        <div class="local-line">Roughly <b id="localAmt">$11</b> where you are. Converted for convenience, the price itself never changes.</div>
       </div>
-
       <div class="cmp">
         <table>
-          <thead>
-            <tr><th>What you're comparing</th><th class="us">Banyan</th><th>Typical online tutoring</th></tr>
-          </thead>
+          <thead><tr><th>&nbsp;</th><th class="us">Banyan</th><th>Typical online tutoring</th></tr></thead>
           <tbody>
-            <tr><td>Price per class</td><td class="us">$11, always</td><td class="them">$25 to $60, and often higher or lower depending on your country</td></tr>
-            <tr><td>Buying more classes</td><td class="us">Same $11. Volume changes nothing</td><td class="them">Locked packages of 48 to 96 classes, sold as a discount</td></tr>
-            <tr><td>Class format</td><td class="us">Always one-to-one</td><td class="them">Often group classes at the one-to-one price</td></tr>
+            <tr><td>Price per class</td><td class="us">$11, always</td><td class="them">$25 to $60, and often different depending on your country</td></tr>
+            <tr><td>Buying more</td><td class="us">Same $11. Volume changes nothing</td><td class="them">Locked packages of 48 to 96 classes</td></tr>
             <tr><td>Your teacher</td><td class="us">The same person every class</td><td class="them">Whoever is free that day</td></tr>
-            <tr><td>Curriculum</td><td class="us">Mapped to your state or board</td><td class="them">One global syllabus for everyone</td></tr>
-            <tr><td>Leaving</td><td class="us">Stop whenever you like</td><td class="them">Refund policies buried in the contract</td></tr>
+            <tr><td>Leaving</td><td class="us">Stop whenever you like</td><td class="them">Refund terms buried in the contract</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-
-    <div class="promises" style="margin-top:26px">
-      <div class="promise"><h3>No country pricing</h3><p>Most tutoring platforms quietly charge more in some countries and less in others for the identical class. We publish one number and hold it.</p></div>
-      <div class="promise"><h3>No package pressure</h3><p>Nobody will call you to upgrade. Buying a hundred classes costs exactly the same per class as buying one.</p></div>
-      <div class="promise"><h3>No wasted classes</h3><p>Reschedule up to a few hours before. Unused classes stay yours, they don't expire into thin air.</p></div>
-    </div>
   </div>
 </section>
 
-<!-- CURRICULUM -->
 <section class="band tint" id="curriculum">
   <div class="wrap">
     <div class="head">
       <span class="mono">Curriculum</span>
       <h2>Built for where you actually study.</h2>
-      <p>A child in Texas isn't taught the same way as a child in California, or Karnataka, or Kent. Pick your place and subject and take the full curriculum with you, free, no email required.</p>
+      <p>A child in Texas is not taught like a child in California, or Karnataka, or Kent. Pick your place and subject, and take the whole curriculum with you. Free, no email needed.</p>
     </div>
-
     <div class="cur-box">
       <div class="cur-grid">
-        <div class="cur-field">
-          <label for="curCountry">Country</label>
-          <select id="curCountry"></select>
-        </div>
-        <div class="cur-field" id="regionWrap">
-          <label for="curRegion" id="regionLabel">State</label>
-          <select id="curRegion"></select>
-        </div>
-        <div class="cur-field">
-          <label for="curSubject">Subject</label>
-          <select id="curSubject"></select>
-        </div>
-        <div class="cur-field">
-          <label for="curGrade">Level</label>
-          <select id="curGrade"></select>
-        </div>
+        <div class="cur-field"><label for="curCountry">Country</label><select id="curCountry"></select></div>
+        <div class="cur-field"><label for="curRegion" id="regionLabel">State</label><select id="curRegion"></select></div>
+        <div class="cur-field"><label for="curSubject">Subject</label><select id="curSubject"></select></div>
+        <div class="cur-field"><label for="curGrade">Level</label><select id="curGrade"></select></div>
       </div>
       <div class="cur-actions">
         <button class="btn btn-primary" id="curDownload">Download curriculum</button>
@@ -434,7 +315,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="band" id="start">
   <div class="wrap">
     <div class="cta-box">
@@ -451,192 +331,243 @@
       <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3F7D5C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#E2A03F"/></svg>
       <b>Banyan</b>
     </div>
-    <div class="foot-links">
-      <a href="#subjects">Subjects</a><a href="#how">How it works</a><a href="#start">Book</a>
-    </div>
-    <p>Learning that grows with you. © <span id="yr"></span> Banyan.</p>
+    <div class="foot-links"><a href="#subjects">Subjects</a><a href="#pricing">Pricing</a><a href="#start">Book</a></div>
+    <p>Learning that grows with you. &copy; <span id="yr"></span> Banyan.</p>
   </div>
 </footer>
 
 <script>
-  var WHATSAPP="919113865545";
-  document.getElementById("waCta").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hi Banyan, I'd like to book a free first class.");
-  document.getElementById("yr").textContent=new Date().getFullYear();
+/* ===== EDIT THESE ===== */
+var WHATSAPP="919113865545";
+var FREE_CLASSES=1;
+var PRICE_USD=11;
+/* ====================== */
 
-  var b=document.getElementById("burger"),n=document.getElementById("navLinks");
-  b.addEventListener("click",function(){
-    var o=n.classList.toggle("open");
-    b.setAttribute("aria-expanded",o?"true":"false");
+var SUBJECT_LIST=[
+ {key:"coding",   name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",           who:"School \u00b7 College"},
+ {key:"ai",       name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",         who:"College \u00b7 Adults"},
+ {key:"maths",    name:"Maths",              short:"Maths",    color:"#E2A03F", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",       who:"School"},
+ {key:"science",  name:"Science",            short:"Science",  color:"#3F7D5C", blurb:"The why behind the syllabus, taught with things you can see, test and question.",           who:"School"},
+ {key:"english",  name:"English",            short:"English",  color:"#C98A4B", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",         who:"School \u00b7 College"},
+ {key:"money",    name:"Financial literacy", short:"Money",    color:"#2E5C44", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",           who:"College \u00b7 Adults"},
+ {key:"testprep", name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the confidence to sit down calmly.",       who:"School \u00b7 College"},
+ {key:"speaking", name:"Public speaking",    short:"Speaking", color:"#8A9A5B", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",               who:"All ages"},
+ {key:"data",     name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",         who:"College \u00b7 Adults"},
+ {key:"spanish",  name:"Spanish",            short:"Spanish",  color:"#D2694E", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",             who:"All ages"},
+ {key:"chess",    name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.",      who:"School"},
+ {key:"movement", name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",        who:"All ages"}
+];
+
+var GRADES=["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
+
+var UNITS={
+ "Coding":{
+  "Primary (age 6-10)":["What a computer actually does","Blocks to text: first programs","Sequences, loops and repeats","Making decisions with if","Drawing and animation","Debugging your own mistakes","Build: your first game"],
+  "Middle (age 11-13)":["Python basics: variables and types","Loops and conditionals","Lists and dictionaries","Functions and reusable code","Reading and writing files","Intro to HTML and CSS","Build: a web page and a Python tool"],
+  "High school (age 14-18)":["Python fundamentals, properly","Data structures","Functions, modules and clean code","Object-oriented programming","APIs and real data","Version control with Git","Build: a portfolio project"],
+  "College and adults":["Python for real work","Data handling with pandas","SQL and databases","APIs and automation","Git and GitHub","Testing and debugging","Build: a deployed project"]},
+ "Gen AI":{
+  "Primary (age 6-10)":["What AI is, in plain words","How machines learn from examples","Talking to AI safely","Making pictures and stories","Spotting when AI is wrong","Being honest with AI","Project: a story you made"],
+  "Middle (age 11-13)":["How language models work","Writing better prompts","Using AI to learn, not to cheat","Checking answers against sources","Bias and mistakes","AI in everyday apps","Project: AI-assisted research"],
+  "High school (age 14-18)":["How models are trained","Prompt design and iteration","Giving AI the right context","Judging output and hallucination","Ethics and academic honesty","AI tools for study","Project: an AI workflow you use"],
+  "College and adults":["Practical LLM use at work","Prompting that holds up","AI for analysis and writing","Automating tasks","Building with APIs","Limits, risk, verification","Project: automate one real task"]},
+ "Maths":{
+  "Primary (age 6-10)":["Number sense and place value","Addition and subtraction with meaning","Times tables that stick","Fractions you can picture","Shapes and measurement","Word problems without fear","Mental maths confidence"],
+  "Middle (age 11-13)":["Fractions, decimals, percentages","Ratio and proportion","Introduction to algebra","Geometry and angles","Data, graphs and averages","Negative numbers","Problem solving strategies"],
+  "High school (age 14-18)":["Algebra and equations","Functions and graphs","Trigonometry","Probability and statistics","Sequences and series","Introduction to calculus","Exam technique"],
+  "College and adults":["Algebra refresher, done properly","Functions and modelling","Statistics for real decisions","Probability and risk","Calculus foundations","Maths for data and coding","Applying maths to your field"]},
+ "Science":{
+  "Primary (age 6-10)":["Living things and habitats","Materials and properties","Forces you can feel","Light, sound and senses","Earth, sun and seasons","Simple experiments at home","Asking scientific questions"],
+  "Middle (age 11-13)":["Cells and body systems","Atoms and compounds","Forces and motion","Energy and its forms","Ecosystems","The solar system","Designing a fair test"],
+  "High school (age 14-18)":["Biology: genetics and evolution","Chemistry: bonding and reactions","Physics: mechanics and electricity","Chemical calculations","Waves, light and sound","Practical and lab skills","Exam-style questions"],
+  "College and adults":["Scientific reasoning","Reading a research paper","Statistics in science","Physics and chemistry foundations","Biology for the informed adult","Evaluating evidence","Science in the news"]},
+ "English":{
+  "Primary (age 6-10)":["Phonics and confident reading","Vocabulary that grows","Sentence building","Story writing","Reading comprehension","Speaking clearly aloud","Spelling and punctuation"],
+  "Middle (age 11-13)":["Reading longer texts","Grammar that helps","Descriptive and narrative writing","Comprehension and inference","Essay structure","Presenting to a room","Vocabulary for school"],
+  "High school (age 14-18)":["Literary analysis","Essay writing and argument","Poetry and prose technique","Persuasive and formal writing","Comprehension under time","Speaking and listening","Exam technique"],
+  "College and adults":["Professional writing","Email and workplace tone","Presentations","Interview language","Clarity and pronunciation","Reports and proposals","Confidence in English at work"]},
+ "Financial literacy":{
+  "Primary (age 6-10)":["What money is","Needs versus wants","Saving and why it works","Earning, spending, giving","Prices and value","Budgeting pocket money","Project: save for a goal"],
+  "Middle (age 11-13)":["Budgeting properly","How bank accounts work","Interest, explained simply","Saving goals and habits","How advertising works on you","Digital money and safety","Project: a one-month budget"],
+  "High school (age 14-18)":["Income, tax and payslips","Compound interest and time","Credit, debt and traps","Introduction to investing","Insurance and risk","Scams and safety","Project: your first financial plan"],
+  "College and adults":["A budget you will keep","Emergency funds","Debt strategy and credit scores","Investing: index funds, risk, horizon","Retirement and compounding","Tax literacy","Project: a personal roadmap"]},
+ "Test prep":{
+  "Primary (age 6-10)":["How to sit a test calmly","Reading the question properly","Timing and pacing","Showing your working","Common careless mistakes","Practice paper walkthrough","Confidence before exam day"],
+  "Middle (age 11-13)":["Exam formats explained","Revision that actually works","Timing and pacing","Multiple choice strategy","Written answer structure","Full practice paper","Reviewing your mistakes"],
+  "High school (age 14-18)":["Diagnostic: where you stand","SAT / ACT maths sections","Reading and writing sections","Timing under pressure","Elimination and guessing strategy","Full timed mocks","Score review and targeting"],
+  "College and adults":["Diagnostic and target setting","Quantitative sections","Verbal and reading sections","Essay and writing tasks","Timing strategy","Full timed mocks","Final week plan"]},
+ "Public speaking":{
+  "Primary (age 6-10)":["Speaking so people can hear you","Standing still and steady","Telling a short story","Show and tell, done well","Answering questions","Nerves are normal","Project: a two-minute talk"],
+  "Middle (age 11-13)":["Structuring a talk","Voice, pace and pauses","Body language","Class presentations","Introduction to debate","Handling questions","Project: a five-minute talk"],
+  "High school (age 14-18)":["Persuasive speech structure","Argument and rebuttal","Formal debate formats","Slides that help, not distract","Interview technique","Impromptu speaking","Project: a debate round"],
+  "College and adults":["Presenting at work","Storytelling with data","Executive summary speaking","Job interview technique","Handling hostile questions","Virtual presence on calls","Project: a stakeholder pitch"]},
+ "Data & analytics":{
+  "Primary (age 6-10)":["What data is","Collecting information","Tally charts and graphs","Reading a chart correctly","Sorting and grouping","Spotting patterns","Project: a class survey"],
+  "Middle (age 11-13)":["Spreadsheets from scratch","Formulas and functions","Charts that tell the truth","Averages and spread","Cleaning messy data","Misleading graphs","Project: analyse a real dataset"],
+  "High school (age 14-18)":["Spreadsheet modelling","Introduction to SQL","Descriptive statistics","Visualising data well","Correlation versus causation","Dashboards","Project: a data story"],
+  "College and adults":["Excel and Sheets, properly","SQL for real queries","Python with pandas","Statistics for decisions","Dashboards and reporting","Communicating findings","Project: an end-to-end analysis"]},
+ "Spanish":{
+  "Primary (age 6-10)":["Sounds and greetings","Numbers, colours, family","Everyday objects","Simple sentences","Songs and games","Listening practice","Project: introduce yourself"],
+  "Middle (age 11-13)":["Present tense verbs","Everyday conversation","Food, school, hobbies","Reading short texts","Asking and answering","Past tense basics","Project: a short dialogue"],
+  "High school (age 14-18)":["Tenses in full","Conversation fluency","Reading and comprehension","Writing paragraphs and essays","Listening at natural speed","Culture and context","Exam preparation"],
+  "College and adults":["Conversational Spanish fast","Travel and daily situations","Workplace Spanish","Grammar that matters most","Listening to native speakers","Building vocabulary that sticks","Project: a ten-minute conversation"]},
+ "Chess":{
+  "Primary (age 6-10)":["How the pieces move","Check, checkmate, stalemate","Piece value and trades","Simple opening principles","Basic checkmate patterns","Playing a full game","Project: your first tournament game"],
+  "Middle (age 11-13)":["Opening principles properly","Tactics: forks, pins, skewers","Endgame basics","Planning a middlegame","Recording your games","Analysing your losses","Project: a rated game reviewed"],
+  "High school (age 14-18)":["An opening repertoire","Advanced tactics and calculation","Positional understanding","King and pawn endgames","Time management","Studying master games","Project: tournament preparation"],
+  "College and adults":["Learning chess as an adult","Openings without memorising","Tactics training that works","Endgame essentials","Online play and rating growth","Reviewing your own games","Project: a rating goal plan"]},
+ "Movement":{
+  "Primary (age 6-10)":["Moving safely and warming up","Balance and coordination","Strength through play","Flexibility and stretching","Posture awareness","Confidence in the body","Building an active habit"],
+  "Middle (age 11-13)":["Warm-up and cool-down","Bodyweight strength","Mobility and flexibility","Core and posture","Yoga basics and breathing","Rest and recovery","A routine that fits school"],
+  "High school (age 14-18)":["Strength training fundamentals","Progressing safely","Mobility and injury prevention","Yoga for calm and focus","Nutrition basics","Sleep and performance","Your own training plan"],
+  "College and adults":["Strength built around your body","Hips, core and posture","Yoga and mobility","Training around a desk job","Nutrition without fads","Consistency and habit design","A plan you can hold for a year"]}
+};
+
+var US_STATES={"Alabama":"Alabama Course of Study","Alaska":"Alaska State Standards","Arizona":"Arizona Academic Standards","Arkansas":"Arkansas Academic Standards","California":"California Common Core and NGSS","Colorado":"Colorado Academic Standards","Connecticut":"Connecticut Core Standards","Delaware":"Delaware Academic Standards","District of Columbia":"DC Academic Standards","Florida":"Florida B.E.S.T. Standards","Georgia":"Georgia Standards of Excellence","Hawaii":"Hawaii Content Standards","Idaho":"Idaho Content Standards","Illinois":"Illinois Learning Standards","Indiana":"Indiana Academic Standards","Iowa":"Iowa Core","Kansas":"Kansas Academic Standards","Kentucky":"Kentucky Academic Standards","Louisiana":"Louisiana Student Standards","Maine":"Maine Learning Results","Maryland":"Maryland College and Career Ready Standards","Massachusetts":"Massachusetts Curriculum Frameworks","Michigan":"Michigan Academic Standards","Minnesota":"Minnesota Academic Standards","Mississippi":"Mississippi College and Career Readiness Standards","Missouri":"Missouri Learning Standards","Montana":"Montana Content Standards","Nebraska":"Nebraska College and Career Ready Standards","Nevada":"Nevada Academic Content Standards","New Hampshire":"New Hampshire College and Career Ready Standards","New Jersey":"New Jersey Student Learning Standards","New Mexico":"New Mexico Content Standards","New York":"New York State Next Generation Standards","North Carolina":"North Carolina Standard Course of Study","North Dakota":"North Dakota Academic Content Standards","Ohio":"Ohio Learning Standards","Oklahoma":"Oklahoma Academic Standards","Oregon":"Oregon Academic Content Standards","Pennsylvania":"Pennsylvania Core Standards","Rhode Island":"Rhode Island Academic Standards","South Carolina":"South Carolina College and Career Ready Standards","South Dakota":"South Dakota Content Standards","Tennessee":"Tennessee Academic Standards","Texas":"Texas Essential Knowledge and Skills (TEKS)","Utah":"Utah Core Standards","Vermont":"Vermont Framework of Standards","Virginia":"Virginia Standards of Learning (SOL)","Washington":"Washington State Learning Standards","West Virginia":"West Virginia College and Career Readiness Standards","Wisconsin":"Wisconsin Academic Standards","Wyoming":"Wyoming Content Standards"};
+
+var COUNTRIES={
+ "United States":{cur:"USD",sym:"$",rate:1,label:"State",regions:US_STATES},
+ "India":{cur:"INR",sym:"\u20b9",rate:88,label:"Board",regions:{"CBSE":"CBSE","ICSE / ISC":"ICSE","State Board":"State Board curriculum","IB":"International Baccalaureate"}},
+ "United Kingdom":{cur:"GBP",sym:"\u00a3",rate:0.79,label:"Nation",regions:{"England":"National Curriculum (England)","Scotland":"Curriculum for Excellence","Wales":"Curriculum for Wales","Northern Ireland":"Northern Ireland Curriculum"}},
+ "Canada":{cur:"CAD",sym:"C$",rate:1.37,label:"Province",regions:{"Ontario":"Ontario Curriculum","British Columbia":"BC Curriculum","Alberta":"Alberta Programs of Study","Quebec":"Qu\u00e9bec Education Program","Manitoba":"Manitoba Curriculum","Nova Scotia":"Nova Scotia Curriculum"}},
+ "Australia":{cur:"AUD",sym:"A$",rate:1.51,label:"State",regions:{"New South Wales":"NSW Syllabus","Victoria":"Victorian Curriculum","Queensland":"Australian Curriculum (QLD)","Western Australia":"WA Curriculum","South Australia":"Australian Curriculum (SA)"}},
+ "United Arab Emirates":{cur:"AED",sym:"AED ",rate:3.67,label:"Curriculum",regions:{"UAE MoE":"UAE Ministry of Education curriculum","British":"National Curriculum (England)","American":"US Common Core","IB":"International Baccalaureate"}},
+ "Singapore":{cur:"SGD",sym:"S$",rate:1.29,label:"Curriculum",regions:{"MOE":"Singapore MOE syllabus","IB":"International Baccalaureate"}},
+ "New Zealand":{cur:"NZD",sym:"NZ$",rate:1.65,label:"Curriculum",regions:{"National":"The New Zealand Curriculum"}},
+ "Ireland":{cur:"EUR",sym:"\u20ac",rate:0.92,label:"Curriculum",regions:{"National":"Irish National Curriculum"}},
+ "South Africa":{cur:"ZAR",sym:"R",rate:18,label:"Curriculum",regions:{"National":"CAPS"}},
+ "Other":{cur:"USD",sym:"$",rate:1,label:"Curriculum",regions:{"International":"International / IB-aligned"}}
+};
+
+function $(id){return document.getElementById(id);}
+
+$("waCta").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hi Banyan, I'd like to book a free first class.");
+$("yr").textContent=new Date().getFullYear();
+$("freeLine").textContent = FREE_CLASSES===1 ? "Your first class is free" : ("Your first "+FREE_CLASSES+" classes are free");
+
+var burger=$("burger"), navLinks=$("navLinks");
+burger.addEventListener("click",function(){
+  var open=navLinks.classList.toggle("open");
+  burger.setAttribute("aria-expanded",open?"true":"false");
+});
+navLinks.querySelectorAll("a").forEach(function(a){
+  a.addEventListener("click",function(){navLinks.classList.remove("open");burger.setAttribute("aria-expanded","false");});
+});
+
+/* ---------- subject cards ---------- */
+var grid=$("subjectGrid");
+SUBJECT_LIST.forEach(function(s,i){
+  var el=document.createElement("article");
+  el.className="subj"; el.id="s-"+s.key;
+  el.innerHTML='<div class="dot" style="background:'+s.color+'">'+String(i+1).padStart(2,"0")+'</div>'+
+    '<h3>'+s.name+'</h3><p>'+s.blurb+'</p><div class="who">'+s.who+'</div>';
+  grid.appendChild(el);
+});
+
+/* ---------- the banyan ---------- */
+(function buildTree(){
+  var svg=$("tree"), NS="http://www.w3.org/2000/svg";
+  function el(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n;}
+  // leafy canopy: layered blobs so it reads as foliage, not an empty circle
+  var canopy=[
+    {cx:320,cy:96,rx:250,ry:74,o:.10},{cx:320,cy:84,rx:206,ry:62,o:.14},
+    {cx:190,cy:96,rx:96,ry:50,o:.16},{cx:450,cy:96,rx:96,ry:50,o:.16},
+    {cx:262,cy:66,rx:84,ry:44,o:.18},{cx:382,cy:66,rx:84,ry:44,o:.18},
+    {cx:320,cy:54,rx:66,ry:38,o:.22},{cx:130,cy:112,rx:56,ry:32,o:.14},
+    {cx:510,cy:112,rx:56,ry:32,o:.14}
+  ];
+  canopy.forEach(function(c){ svg.appendChild(el("ellipse",{cx:c.cx,cy:c.cy,rx:c.rx,ry:c.ry,fill:"#3F7D5C","fill-opacity":c.o})); });
+  // a few leaf dots for texture
+  [[150,70],[498,72],[236,40],[404,40],[320,28],[96,100],[548,100]].forEach(function(p){
+    svg.appendChild(el("circle",{cx:p[0],cy:p[1],r:7,fill:"#3F7D5C","fill-opacity":.22}));
   });
-  n.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");b.setAttribute("aria-expanded","false");});});
+  // trunk + main branch
+  svg.appendChild(el("path",{class:"trunk",d:"M320 430V150"}));
+  svg.appendChild(el("path",{class:"branch",d:"M60 196 Q320 150 580 196"}));
+  // ground
+  svg.appendChild(el("path",{d:"M40 430h560",stroke:"#E8DED2","stroke-width":3,"stroke-linecap":"round",fill:"none"}));
 
-  /* ===== CONFIG YOU CAN EDIT ===== */
-  var FREE_CLASSES = 1;          // set to 1, 2 or 5
-  var PRICE_USD    = 11;         // flat rate, every country
-  /* =============================== */
+  var P0={x:60,y:196},P1={x:320,y:150},P2={x:580,y:196};
+  function bez(t,a,b,c){var m=1-t;return m*m*a+2*m*t*b+t*t*c;}
 
-  document.querySelectorAll("[data-freeclasses]").forEach(function(el){ el.textContent = FREE_CLASSES; });
-
-  // Frameworks: what each place actually teaches to.
-  var US_STATES = {
-    "Alabama":"Alabama Course of Study","Alaska":"Alaska State Standards","Arizona":"Arizona Academic Standards",
-    "Arkansas":"Arkansas Academic Standards","California":"California Common Core & NGSS","Colorado":"Colorado Academic Standards",
-    "Connecticut":"Connecticut Core Standards","Delaware":"Delaware Academic Standards","District of Columbia":"DC Academic Standards",
-    "Florida":"Florida B.E.S.T. Standards","Georgia":"Georgia Standards of Excellence","Hawaii":"Hawaii Content Standards",
-    "Idaho":"Idaho Content Standards","Illinois":"Illinois Learning Standards","Indiana":"Indiana Academic Standards",
-    "Iowa":"Iowa Core","Kansas":"Kansas Academic Standards","Kentucky":"Kentucky Academic Standards",
-    "Louisiana":"Louisiana Student Standards","Maine":"Maine Learning Results","Maryland":"Maryland College and Career Ready Standards",
-    "Massachusetts":"Massachusetts Curriculum Frameworks","Michigan":"Michigan Academic Standards","Minnesota":"Minnesota Academic Standards",
-    "Mississippi":"Mississippi College and Career Readiness Standards","Missouri":"Missouri Learning Standards","Montana":"Montana Content Standards",
-    "Nebraska":"Nebraska College and Career Ready Standards","Nevada":"Nevada Academic Content Standards","New Hampshire":"NH College and Career Ready Standards",
-    "New Jersey":"New Jersey Student Learning Standards","New Mexico":"New Mexico Content Standards","New York":"New York State Next Generation Standards",
-    "North Carolina":"NC Standard Course of Study","North Dakota":"North Dakota Academic Content Standards","Ohio":"Ohio Learning Standards",
-    "Oklahoma":"Oklahoma Academic Standards","Oregon":"Oregon Academic Content Standards","Pennsylvania":"PA Core Standards",
-    "Rhode Island":"Rhode Island Academic Standards","South Carolina":"SC College and Career Ready Standards","South Dakota":"South Dakota Content Standards",
-    "Tennessee":"Tennessee Academic Standards","Texas":"Texas Essential Knowledge and Skills (TEKS)","Utah":"Utah Core Standards",
-    "Vermont":"Vermont Framework of Standards","Virginia":"Virginia Standards of Learning (SOL)","Washington":"Washington State Learning Standards",
-    "West Virginia":"West Virginia College and Career Readiness Standards","Wisconsin":"Wisconsin Academic Standards","Wyoming":"Wyoming Content Standards"
-  };
-
-  var COUNTRIES = {
-    "United States":{cur:"USD",sym:"$",rate:1,label:"State",regions:US_STATES},
-    "India":{cur:"INR",sym:"\u20b9",rate:88,label:"Board",regions:{"CBSE":"CBSE","ICSE / ISC":"ICSE","State Board":"State Board curriculum","IB":"International Baccalaureate"}},
-    "United Kingdom":{cur:"GBP",sym:"\u00a3",rate:0.79,label:"Nation",regions:{"England":"National Curriculum (England)","Scotland":"Curriculum for Excellence","Wales":"Curriculum for Wales","Northern Ireland":"NI Curriculum"}},
-    "Canada":{cur:"CAD",sym:"C$",rate:1.37,label:"Province",regions:{"Ontario":"Ontario Curriculum","British Columbia":"BC Curriculum","Alberta":"Alberta Programs of Study","Quebec":"Qu\u00e9bec Education Program","Manitoba":"Manitoba Curriculum","Nova Scotia":"Nova Scotia Curriculum"}},
-    "Australia":{cur:"AUD",sym:"A$",rate:1.51,label:"State",regions:{"New South Wales":"NSW Syllabus","Victoria":"Victorian Curriculum","Queensland":"Australian Curriculum (QLD)","Western Australia":"WA Curriculum","South Australia":"Australian Curriculum (SA)"}},
-    "United Arab Emirates":{cur:"AED",sym:"AED ",rate:3.67,label:"Curriculum",regions:{"UAE MoE":"UAE Ministry of Education curriculum","British":"National Curriculum (England)","American":"US Common Core","IB":"International Baccalaureate"}},
-    "Singapore":{cur:"SGD",sym:"S$",rate:1.29,label:"Curriculum",regions:{"MOE":"Singapore MOE syllabus","IB":"International Baccalaureate"}},
-    "New Zealand":{cur:"NZD",sym:"NZ$",rate:1.65,label:"Curriculum",regions:{"National":"The New Zealand Curriculum"}},
-    "Ireland":{cur:"EUR",sym:"\u20ac",rate:0.92,label:"Curriculum",regions:{"National":"Irish National Curriculum"}},
-    "South Africa":{cur:"ZAR",sym:"R",rate:18,label:"Curriculum",regions:{"National":"CAPS"}},
-    "Other":{cur:"USD",sym:"$",rate:1,label:"Curriculum",regions:{"International":"International / IB-aligned"}}
-  };
-
-  var SUBJECTS = {
-    "Coding":{
-      "Primary (age 6-10)":["What a computer actually does","Blocks to text: first programs","Sequences, loops and repeats","Making decisions with if","Drawing and animation projects","Debugging: finding your own mistakes","Build: your first game"],
-      "Middle (age 11-13)":["Python basics: variables and types","Loops and conditionals in real problems","Lists and dictionaries","Functions and reusable code","Reading and writing files","Intro to HTML and CSS","Build: a working web page and a Python tool"],
-      "High school (age 14-18)":["Python fundamentals, properly","Data structures: lists, dicts, sets","Functions, modules and clean code","Object-oriented programming","APIs and working with real data","Version control with Git","Build: a portfolio project you can show"],
-      "College and adults":["Python for real work","Data handling with pandas","SQL and databases","APIs, requests and automation","Git, GitHub and collaboration","Testing and debugging like a professional","Build: a deployed project"]
-    },
-    "Gen AI":{
-      "Primary (age 6-10)":["What AI is, in plain words","How machines learn from examples","Talking to AI safely","Using AI to make pictures and stories","Spotting when AI is wrong","Being kind and honest with AI","Project: a story you made with AI"],
-      "Middle (age 11-13)":["How large language models work","Writing better prompts","Using AI to learn, not to cheat","Checking AI answers against sources","Bias and why AI gets things wrong","AI in everyday apps","Project: an AI-assisted research piece"],
-      "High school (age 14-18)":["How LLMs are trained","Prompt design and iteration","Retrieval and giving AI context","Judging output quality and hallucination","Ethics, bias and academic honesty","AI tools for study and creation","Project: an AI workflow you actually use"],
-      "College and adults":["Practical LLM use for work","Prompt engineering that holds up","Using AI for analysis and writing","Automating tasks with AI tools","Building with APIs","Limits, risk and verification","Project: automate one real task end to end"]
-    },
-    "Maths":{
-      "Primary (age 6-10)":["Number sense and place value","Addition and subtraction with meaning","Times tables that stick","Fractions you can picture","Shapes, space and measurement","Word problems without fear","Mental maths confidence"],
-      "Middle (age 11-13)":["Fractions, decimals and percentages","Ratio and proportion","Introduction to algebra","Geometry and angles","Data, graphs and averages","Negative numbers and integers","Problem solving strategies"],
-      "High school (age 14-18)":["Algebra and equations","Functions and graphs","Trigonometry","Probability and statistics","Sequences and series","Introduction to calculus","Exam technique and timed practice"],
-      "College and adults":["Algebra refresher, done properly","Functions and modelling","Statistics for real decisions","Probability and risk","Calculus foundations","Maths for data and coding","Applying maths to your field"]
-    },
-    "Science":{
-      "Primary (age 6-10)":["Living things and habitats","Materials and their properties","Forces you can feel","Light, sound and the senses","Earth, sun and seasons","Simple experiments at home","Asking scientific questions"],
-      "Middle (age 11-13)":["Cells and body systems","Atoms, elements and compounds","Forces and motion","Energy and its forms","Ecosystems and the environment","The solar system","Designing a fair test"],
-      "High school (age 14-18)":["Biology: genetics and evolution","Chemistry: bonding and reactions","Physics: mechanics and electricity","Chemical equations and calculations","Waves, light and sound","Practical work and lab skills","Exam-style questions and technique"],
-      "College and adults":["Scientific reasoning and method","Reading a research paper","Statistics in science","Physics and chemistry foundations","Biology for the informed adult","Evaluating claims and evidence","Science in the news, assessed properly"]
-    },
-    "English":{
-      "Primary (age 6-10)":["Phonics and confident reading","Vocabulary that grows","Sentence building","Story writing","Reading comprehension","Speaking clearly and aloud","Spelling and punctuation"],
-      "Middle (age 11-13)":["Reading longer texts","Grammar that actually helps","Descriptive and narrative writing","Comprehension and inference","Essay structure","Presenting to a room","Vocabulary for school subjects"],
-      "High school (age 14-18)":["Literary analysis","Essay writing and argument","Poetry and prose techniques","Persuasive and formal writing","Comprehension under time","Speaking and listening assessment","Exam technique"],
-      "College and adults":["Professional writing","Email and workplace communication","Presentation and public speaking","Interview language","Accent neutrality and clarity","Report and proposal writing","Confidence in English at work"]
-    },
-    "Financial literacy":{
-      "Primary (age 6-10)":["What money is and where it comes from","Needs versus wants","Saving in a jar and why it works","Earning, spending, giving","Prices and value","Simple budgeting with pocket money","Project: save for a goal"],
-      "Middle (age 11-13)":["Budgeting properly","Banks and how accounts work","Interest, explained simply","Saving goals and habits","Advertising and how it works on you","Digital money and safety","Project: a one-month budget"],
-      "High school (age 14-18)":["Income, tax and payslips","Compound interest and time","Credit, debt and how it traps people","Introduction to investing","Insurance and risk","Scams and financial safety","Project: your first financial plan"],
-      "College and adults":["Building a budget you'll keep","Emergency funds and safety nets","Debt strategy and credit scores","Investing basics: index funds, risk, horizon","Retirement and long-term compounding","Tax literacy","Project: a personal financial roadmap"]
-    },
-    "Movement":{
-      "Primary (age 6-10)":["Moving safely and warming up","Balance and coordination","Basic strength through play","Flexibility and stretching","Posture awareness","Confidence in the body","Building an active habit"],
-      "Middle (age 11-13)":["Warm-up and cool-down routines","Bodyweight strength foundations","Mobility and flexibility","Core and posture","Yoga basics and breathing","Rest and recovery","A weekly routine that fits school"],
-      "High school (age 14-18)":["Strength training fundamentals","Progressive overload, safely","Mobility and injury prevention","Yoga for calm and focus","Nutrition basics","Sleep, stress and performance","Your own training plan"],
-      "College and adults":["Strength built around your body","Hips, core and posture","Yoga and mobility practice","Training around a desk job","Nutrition without fads","Consistency and habit design","A plan you can hold for a year"]
-    }
-  };
-
-  var GRADES = ["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
-
-  var cCountry=document.getElementById("curCountry"),
-      cRegion=document.getElementById("curRegion"),
-      cSubject=document.getElementById("curSubject"),
-      cGrade=document.getElementById("curGrade"),
-      cMeta=document.getElementById("curMeta"),
-      cBook=document.getElementById("curBook"),
-      regionLabel=document.getElementById("regionLabel"),
-      localAmt=document.getElementById("localAmt");
-
-  function fill(sel,arr){ sel.innerHTML=""; arr.forEach(function(v){ var o=document.createElement("option"); o.textContent=v; sel.appendChild(o); }); }
-
-  fill(cCountry,Object.keys(COUNTRIES));
-  fill(cSubject,Object.keys(SUBJECTS));
-  fill(cGrade,GRADES);
-
-  function syncRegions(){
-    var c=COUNTRIES[cCountry.value];
-    regionLabel.textContent=c.label;
-    fill(cRegion,Object.keys(c.regions));
-    var local=Math.round(PRICE_USD*c.rate);
-    localAmt.textContent = c.cur==="USD" ? ("$"+PRICE_USD) : (c.sym+local.toLocaleString()+" ("+c.cur+")");
-    syncMeta();
-  }
-  function framework(){ return COUNTRIES[cCountry.value].regions[cRegion.value] || cRegion.value; }
-  function syncMeta(){
-    cMeta.innerHTML='Your download is a Banyan curriculum for <b>'+cSubject.value+'</b>, '+cGrade.value.toLowerCase()+
-      ', mapped to <b>'+framework()+'</b>. It is our teaching plan aligned to that framework, not an official government document.';
-    cBook.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
-      "Hi Banyan, I'd like a free class in "+cSubject.value+" ("+cGrade.value+"), based in "+cRegion.value+", "+cCountry.value+".");
-  }
-  cCountry.addEventListener("change",syncRegions);
-  [cRegion,cSubject,cGrade].forEach(function(el){ el.addEventListener("change",syncMeta); });
-  syncRegions();
-
-  document.getElementById("curDownload").addEventListener("click",function(){
-    var subject=cSubject.value, grade=cGrade.value, region=cRegion.value, country=cCountry.value, fw=framework();
-    var units=SUBJECTS[subject][grade];
-    var rows=units.map(function(u,i){
-      return '<tr><td class="n">'+String(i+1).padStart(2,"0")+'</td><td><b>'+u+'</b></td><td>'+(2+(i%2))+' classes</td></tr>';
-    }).join("");
-    var total=units.reduce(function(a,u,i){return a+2+(i%2);},0);
-    var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Banyan curriculum — '+subject+', '+region+'</title>'+
-      '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#231F2B;line-height:1.6}'+
-      'h1{font-size:2rem;margin-bottom:4px}h2{font-size:1.1rem;margin-top:34px}'+
-      '.tag{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#3F7D5C}'+
-      'table{width:100%;border-collapse:collapse;margin-top:12px}td{padding:10px 8px;border-bottom:1px solid #E8DED2;font-size:.95rem}'+
-      'td.n{font-family:ui-monospace,monospace;color:#3F7D5C;width:44px}'+
-      '.box{background:#F7F1E8;border-radius:14px;padding:18px;margin-top:26px;font-size:.92rem}'+
-      '.foot{margin-top:34px;padding-top:16px;border-top:1px solid #E8DED2;font-size:.82rem;color:#6B6172}</style></head><body>'+
-      '<p class="tag">Banyan curriculum</p>'+
-      '<h1>'+subject+'</h1>'+
-      '<p><b>'+grade+'</b> &middot; '+region+', '+country+'<br>Mapped to '+fw+'</p>'+
-      '<h2>What this course covers</h2><table>'+rows+'</table>'+
-      '<p style="margin-top:14px"><b>Total: about '+total+' classes.</b> At $'+PRICE_USD+' a class, one-to-one, that is $'+(total*PRICE_USD)+' for the full course. '+
-      'Your first '+FREE_CLASSES+' class'+(FREE_CLASSES>1?"es are":" is")+' free.</p>'+
-      '<div class="box"><b>How we teach it.</b> Every class is one-to-one and live, with the same teacher throughout. '+
-      'We start by finding out what the learner already knows, then move at their pace. Pace changes, the order rarely does, because each unit is built on the one before it.</div>'+
-      '<div class="foot">This is Banyan\u2019s own teaching plan, aligned to '+fw+'. It is not an official document of any education authority. '+
-      'Curriculum last reviewed by Banyan. Questions: wa.me/'+WHATSAPP+'</div></body></html>';
-    var blob=new Blob([doc],{type:"text/html"});
-    var a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);
-    a.download="Banyan-"+subject.replace(/\s+/g,"-")+"-"+region.replace(/[^A-Za-z0-9]+/g,"-")+".html";
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
-  });
-  var map={code:"s-code",ai:"s-ai",maths:"s-maths",science:"s-science",english:"s-english",money:"s-money",pe:"s-pe"};
-  document.querySelectorAll(".node").forEach(function(g){
+  SUBJECT_LIST.forEach(function(s,i){
+    var t=(i+0.5)/SUBJECT_LIST.length;
+    var x=bez(t,P0.x,P1.x,P2.x), yTop=bez(t,P0.y,P1.y,P2.y);
+    var low=(i%2===1);
+    var yDot=low?348:296;
+    svg.appendChild(el("path",{class:"root",d:"M"+x.toFixed(1)+" "+yTop.toFixed(1)+"V"+(yDot-14)}));
+    var g=el("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
+    g.appendChild(el("circle",{cx:x.toFixed(1),cy:yDot,r:11,fill:s.color}));
+    var tx=el("text",{x:x.toFixed(1),y:yDot+28,"text-anchor":"middle"});
+    tx.textContent=s.short;
+    g.appendChild(tx);
     function go(){
-      var el=document.getElementById(map[g.getAttribute("data-s")]);
-      if(!el) return;
-      el.scrollIntoView({behavior:"smooth",block:"center"});
-      el.style.boxShadow="0 0 0 2px #3F7D5C";
-      setTimeout(function(){el.style.boxShadow="";},1400);
+      var card=$("s-"+s.key); if(!card) return;
+      card.scrollIntoView({behavior:"smooth",block:"center"});
+      card.style.boxShadow="0 0 0 2px "+s.color;
+      setTimeout(function(){card.style.boxShadow="";},1500);
     }
     g.addEventListener("click",go);
     g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+    svg.appendChild(g);
   });
+})();
+
+/* ---------- curriculum builder ---------- */
+var cCountry=$("curCountry"),cRegion=$("curRegion"),cSubject=$("curSubject"),cGrade=$("curGrade"),
+    cMeta=$("curMeta"),cBook=$("curBook"),regionLabel=$("regionLabel"),localAmt=$("localAmt");
+
+function fill(sel,arr){sel.innerHTML="";arr.forEach(function(v){var o=document.createElement("option");o.textContent=v;sel.appendChild(o);});}
+fill(cCountry,Object.keys(COUNTRIES));
+fill(cSubject,SUBJECT_LIST.map(function(s){return s.name;}));
+fill(cGrade,GRADES);
+
+function framework(){return COUNTRIES[cCountry.value].regions[cRegion.value]||cRegion.value;}
+function syncMeta(){
+  cMeta.innerHTML='Your download is a Banyan curriculum for <b>'+cSubject.value+'</b>, '+cGrade.value.toLowerCase()+
+    ', mapped to <b>'+framework()+'</b>. It is our teaching plan aligned to that framework, not an official government document.';
+  cBook.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
+    "Hi Banyan, I'd like a free class in "+cSubject.value+" ("+cGrade.value+"), based in "+cRegion.value+", "+cCountry.value+".");
+}
+function syncRegions(){
+  var c=COUNTRIES[cCountry.value];
+  regionLabel.textContent=c.label;
+  fill(cRegion,Object.keys(c.regions));
+  var local=Math.round(PRICE_USD*c.rate);
+  localAmt.textContent = c.cur==="USD" ? ("$"+PRICE_USD) : (c.sym+local.toLocaleString()+" "+c.cur);
+  syncMeta();
+}
+cCountry.addEventListener("change",syncRegions);
+[cRegion,cSubject,cGrade].forEach(function(el){el.addEventListener("change",syncMeta);});
+syncRegions();
+
+$("curDownload").addEventListener("click",function(){
+  var subject=cSubject.value,grade=cGrade.value,region=cRegion.value,country=cCountry.value,fw=framework();
+  var units=(UNITS[subject]||{})[grade]||[];
+  var rows=units.map(function(u,i){return '<tr><td class="n">'+String(i+1).padStart(2,"0")+'</td><td><b>'+u+'</b></td><td>'+(2+(i%2))+' classes</td></tr>';}).join("");
+  var total=units.reduce(function(a,u,i){return a+2+(i%2);},0);
+  var freeTxt=FREE_CLASSES===1?"Your first class is free.":("Your first "+FREE_CLASSES+" classes are free.");
+  var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Banyan curriculum \u2014 '+subject+', '+region+'</title>'+
+   '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#231F2B;line-height:1.6}'+
+   'h1{font-size:2rem;margin-bottom:4px}h2{font-size:1.1rem;margin-top:32px}'+
+   '.tag{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#3F7D5C}'+
+   'table{width:100%;border-collapse:collapse;margin-top:12px}td{padding:10px 8px;border-bottom:1px solid #E8DED2;font-size:.95rem}'+
+   'td.n{font-family:ui-monospace,monospace;color:#3F7D5C;width:44px}'+
+   '.box{background:#F7F1E8;border-radius:14px;padding:18px;margin-top:24px;font-size:.92rem}'+
+   '.foot{margin-top:32px;padding-top:16px;border-top:1px solid #E8DED2;font-size:.82rem;color:#6B6172}</style></head><body>'+
+   '<p class="tag">Banyan curriculum</p><h1>'+subject+'</h1>'+
+   '<p><b>'+grade+'</b> &middot; '+region+', '+country+'<br>Mapped to '+fw+'</p>'+
+   '<h2>What this course covers</h2><table>'+rows+'</table>'+
+   '<p style="margin-top:14px"><b>About '+total+' classes in total.</b> At $'+PRICE_USD+' a class, one-to-one, that is $'+(total*PRICE_USD)+' for the whole course. '+freeTxt+'</p>'+
+   '<div class="box"><b>How we teach it.</b> Every class is live and one-to-one, with the same teacher throughout. We start by finding out what the learner already knows, then move at their pace. The pace changes, the order rarely does, because each unit is built on the one before it.</div>'+
+   '<div class="foot">This is Banyan\u2019s own teaching plan, aligned to '+fw+'. It is not an official document of any education authority. Questions: wa.me/'+WHATSAPP+'</div></body></html>';
+  var blob=new Blob([doc],{type:"text/html"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="Banyan-"+subject.replace(/[^A-Za-z0-9]+/g,"-")+"-"+region.replace(/[^A-Za-z0-9]+/g,"-")+".html";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
+});
 </script>
 </body>
 </html>
