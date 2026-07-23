@@ -3,920 +3,640 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sukoon — In-home personal training for women in Bengaluru</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23ec97b3' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z'/%3E%3Cpath d='M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z' transform='rotate(-40 100 150)'/%3E%3Cpath d='M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z' transform='rotate(40 100 150)'/%3E%3Cpath d='M56,150 Q100,178 144,150'/%3E%3C/g%3E%3C/svg%3E" />
-<meta name="description" content="One-on-one bodyweight personal training for women. At home in Bengaluru, or online anywhere in the world." />
+<title>Banyan — One place to learn everything that matters</title>
+<meta name="description" content="Coding, gen AI, maths, science, English, money and movement. One tutor, one plan, built around your child or yourself. Online, anywhere in the world." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg stroke='%233F7D5C' stroke-width='3' fill='none' stroke-linecap='round'%3E%3Cpath d='M20 34V14'/%3E%3Cpath d='M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4'/%3E%3Cpath d='M8 20v8M32 20v8M14 24v6M26 24v6'/%3E%3C/g%3E%3Ccircle cx='20' cy='10' r='6' fill='%23E2A03F'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#2b1925;
-    --bg-2:#341f2d;
-    --bg-deep:#22131d;
-    --card:#3b2433;
-    --card-2:#47293c;
-    --rose:#e9b3b0;
-    --accent:#ef9cbb;
-    --accent-soft:#f7c2d6;
-    --accent-deep:#d2749a;
-    --sage:#a9c0a0;
-    --text:#f7edf1;
-    --muted:#cbb2c0;
-    --line:rgba(255,255,255,.12);
-    --radius:30px;
-    --maxw:1140px;
-    --display:"Playfair Display",Georgia,serif;
+    --paper:#FFFCF7;
+    --paper-2:#F7F1E8;
+    --ink:#231F2B;
+    --ink-soft:#6B6172;
+    --bark:#3F7D5C;
+    --bark-deep:#2E5C44;
+    --amber:#E2A03F;
+    --rose:#C2708A;
+    --sky:#4E7FA8;
+    --line:#E8DED2;
+    --r:20px;
+    --disp:"Fraunces",Georgia,serif;
     --body:"Hanken Grotesk",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --shadow:0 20px 50px -28px rgba(60,45,35,.45);
   }
-
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--body);
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:var(--disp);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bark)}
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:none;border-radius:999px;font-family:var(--body);font-weight:600;font-size:1rem;padding:.9rem 1.7rem;cursor:pointer;transition:transform .16s ease,background .16s ease,box-shadow .16s ease}
+  .btn-primary{background:var(--bark);color:#fff;box-shadow:0 14px 30px -16px rgba(63,125,92,.9)}
+  .btn-primary:hover{background:var(--bark-deep);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--bark);color:var(--bark-deep)}
+  :focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
 
-  .eyebrow{
-    font-size:.72rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    font-weight:600;
-    color:var(--accent);
-    display:inline-block;
-  }
-
-  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-.01em}
-
-  .btn{
-    display:inline-flex;align-items:center;gap:.55rem;
-    font-family:var(--body);font-weight:600;font-size:1rem;
-    padding:.95rem 1.7rem;border-radius:999px;border:none;cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-  }
-  .btn-primary{background:var(--accent);color:#241016;box-shadow:0 12px 28px -12px rgba(228,134,164,.6)}
-  .btn-primary:hover{background:var(--accent-soft);transform:translateY(-2px)}
-  .btn-ghost{background:transparent;color:var(--accent-soft);border:1.5px solid rgba(241,168,193,.45)}
-  .btn-ghost:hover{background:var(--accent);color:#241016;border-color:var(--accent);transform:translateY(-2px)}
-  .btn-wa{background:transparent;color:#25d366;border:1.5px solid #25d366}
-  .btn-wa:hover{background:rgba(37,211,102,.12);color:#25d366;transform:translateY(-2px)}
-
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(27,15,23,.82);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--maxw);margin:0 auto}
-  .brand{display:flex;flex-direction:row;align-items:center;gap:12px;line-height:1}
-  .brand-text{display:flex;flex-direction:column;line-height:1}
-  .brand-mark{height:50px;width:auto;color:#ec97b3;flex:none}
-  .brand .name{font-family:var(--display);font-size:1.45rem;font-weight:600;letter-spacing:-.02em;color:var(--text)}
-  .brand .sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:3px}
-  .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{font-size:.92rem;font-weight:500;color:var(--text)}
-  .nav-links a:hover{color:var(--accent)}
+  /* nav */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,252,247,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1120px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:30px;height:30px}
+  .brand b{font-family:var(--disp);font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
+  .nav-links{display:flex;align-items:center;gap:26px}
+  .nav-links a{font-size:.94rem;font-weight:500;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--bark-deep)}
   .nav-links .btn{padding:.6rem 1.2rem;font-size:.9rem}
-  .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--text)}
+  .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  /* ---------- HERO ---------- */
-  .hero{position:relative;padding:48px 0;overflow:hidden;min-height:calc(100svh - 72px);display:flex;flex-direction:column;justify-content:center}
-  .orb{
-    position:absolute;border-radius:50%;filter:blur(10px);opacity:.5;
-    animation:breathe 9s ease-in-out infinite;z-index:0;pointer-events:none;
+  /* hero */
+  .hero{padding:56px 0 20px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.6vw,4.1rem);margin:16px 0 14px}
+  .hero h1 em{font-style:italic;color:var(--bark)}
+  .hero p.lede{font-size:1.13rem;color:var(--ink-soft);max-width:32em}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .hero-note{margin-top:20px;font-size:.9rem;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
+  .hero-note span{display:flex;align-items:center;gap:7px}
+  .pip{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+
+  /* signature: the banyan */
+  .tree-wrap{position:relative}
+  .tree{width:100%;height:auto;display:block;overflow:visible}
+  .limb{stroke:var(--bark);fill:none;stroke-linecap:round;stroke-width:3.4;opacity:.5;transition:opacity .2s,stroke-width .2s}
+  .trunk{stroke:var(--bark-deep);stroke-width:9;opacity:.85}
+  .node{cursor:pointer}
+  .node circle{transition:r .2s ease,filter .2s ease}
+  .node text{font-family:var(--body);font-size:12.5px;font-weight:600;fill:var(--ink);opacity:0;transition:opacity .2s}
+  .node:hover circle,.node:focus circle{r:19}
+  .node:hover text,.node:focus text,.node.on text{opacity:1}
+  .node:hover ~ .limb{opacity:1}
+  .tree-cap{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* sections */
+  section.band{padding:82px 0}
+  .band.tint{background:var(--paper-2)}
+  .head{max-width:620px;margin-bottom:44px}
+  .head h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-top:12px}
+  .head p{color:var(--ink-soft);margin-top:12px;font-size:1.06rem}
+
+  /* subject cards */
+  .subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .subj{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+  .subj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .subj .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;font-weight:500;color:#fff;margin-bottom:14px}
+  .subj h3{font-size:1.25rem;margin-bottom:6px}
+  .subj p{font-size:.94rem;color:var(--ink-soft)}
+  .subj .who{margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* audience */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .aud-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .aud-card h3{font-size:1.3rem;margin-bottom:8px}
+  .aud-card p{color:var(--ink-soft);font-size:.96rem}
+  .aud-card ul{list-style:none;margin-top:14px}
+  .aud-card li{font-size:.92rem;padding:5px 0 5px 22px;position:relative;color:var(--ink)}
+  .aud-card li::before{content:"";position:absolute;left:0;top:12px;width:11px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .step .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--bark);display:block;margin-bottom:10px}
+  .step h3{font-size:1.1rem;margin-bottom:6px}
+  .step p{font-size:.92rem;color:var(--ink-soft)}
+
+  /* cta */
+  .cta-box{background:linear-gradient(135deg,var(--bark),var(--bark-deep));color:#fff;border-radius:28px;padding:48px;text-align:center}
+  .cta-box h2{color:#fff;font-size:clamp(1.9rem,4vw,2.6rem)}
+  .cta-box p{color:rgba(255,255,255,.86);margin:12px auto 26px;max-width:34em}
+  .cta-box .btn-primary{background:#fff;color:var(--bark-deep)}
+  .cta-box .btn-primary:hover{background:var(--paper-2)}
+
+  footer{padding:44px 0 30px;border-top:1px solid var(--line);margin-top:70px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .foot p{font-size:.86rem;color:var(--ink-soft)}
+  .foot-links{display:flex;gap:20px;font-size:.9rem;color:var(--ink-soft)}
+
+  /* ---- pricing ---- */
+  .price-hero{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:stretch}
+  .price-card{background:var(--paper);border:2px solid var(--bark);border-radius:26px;padding:34px;box-shadow:var(--shadow);position:relative}
+  .price-card .flag{position:absolute;top:-14px;left:34px;background:var(--amber);color:#3a2a10;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px;font-weight:500}
+  .price-num{display:flex;align-items:baseline;gap:8px;margin:8px 0 4px}
+  .price-num b{font-family:var(--disp);font-size:4rem;font-weight:700;line-height:1;letter-spacing:-.03em}
+  .price-num span{color:var(--ink-soft);font-weight:600}
+  .price-sub{color:var(--ink-soft);font-size:.98rem}
+  .price-list{list-style:none;margin:22px 0 0}
+  .price-list li{font-size:.96rem;padding:8px 0 8px 26px;position:relative}
+  .price-list li::before{content:"";position:absolute;left:0;top:15px;width:12px;height:6px;border-left:2px solid var(--bark);border-bottom:2px solid var(--bark);transform:rotate(-45deg)}
+  .local-line{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:.9rem;color:var(--ink-soft)}
+  .local-line b{color:var(--ink)}
+
+  .cmp{background:var(--paper);border:1px solid var(--line);border-radius:26px;overflow:hidden}
+  .cmp table{width:100%;border-collapse:collapse}
+  .cmp th,.cmp td{text-align:left;padding:14px 16px;font-size:.92rem;border-bottom:1px solid var(--line);vertical-align:top}
+  .cmp thead th{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2)}
+  .cmp thead th.us{color:var(--bark)}
+  .cmp td.us{font-weight:600;color:var(--ink)}
+  .cmp td.them{color:var(--ink-soft)}
+  .cmp tr:last-child td{border-bottom:none}
+
+  /* ---- curriculum builder ---- */
+  .cur-box{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}
+  .cur-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .cur-field label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  .cur-field select{width:100%;font-family:var(--body);font-size:.98rem;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:13px;background:var(--paper-2);color:var(--ink);cursor:pointer}
+  .cur-field select:focus{outline:none;border-color:var(--bark);box-shadow:0 0 0 3px rgba(63,125,92,.15)}
+  .cur-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}
+  .cur-meta{margin-top:16px;font-size:.9rem;color:var(--ink-soft)}
+  .cur-meta b{color:var(--bark-deep)}
+
+  /* ---- promises ---- */
+  .promises{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .promise{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .promise h3{font-size:1.06rem;margin-bottom:6px}
+  .promise p{font-size:.92rem;color:var(--ink-soft)}
+
+  @media(max-width:900px){
+    .price-hero{grid-template-columns:1fr}
+    .cur-grid{grid-template-columns:1fr}
+    .promises{grid-template-columns:1fr}
+    .cmp{overflow-x:auto}
   }
-  .orb-1{width:540px;height:540px;right:-130px;top:-90px;background:radial-gradient(circle at 30% 30%,var(--rose),transparent 70%)}
-  .orb-2{width:440px;height:440px;left:-150px;bottom:-130px;background:radial-gradient(circle at 50% 50%,var(--sage),transparent 70%);animation-delay:-3s;opacity:.38}
-  .orb-3{width:320px;height:320px;right:18%;bottom:-70px;background:radial-gradient(circle at 50% 50%,var(--accent),transparent 72%);opacity:.4;animation-delay:-6s}
-  @keyframes breathe{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.12) translateY(-14px)}}
 
-  .hero-inner{position:relative;z-index:2;max-width:760px}
-  .hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem);color:var(--text);margin:18px 0 8px}
-  .hero h1 em{font-style:italic;color:var(--accent)}
-  .hero .lede{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);max-width:560px;margin-top:14px}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-  .hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:38px;font-size:.9rem;color:var(--text)}
-  .hero-meta span{display:flex;align-items:center;gap:.5rem;font-weight:500}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-
-  /* ---------- SECTION SHELL ---------- */
-  .section{padding:88px 0}
-  .section-head{max-width:620px;margin-bottom:52px}
-  .section-head h2{font-size:clamp(2rem,4.4vw,3rem);color:var(--text);margin-top:14px}
-  .section-head p{color:var(--muted);margin-top:14px;font-size:1.08rem}
-  .alt{background:var(--bg-2)}
-  .dark{background:var(--bg-deep)}
-  .dark .eyebrow{color:var(--rose)}
-
-  /* ---------- STEPS ---------- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px}
-  .step .num{font-family:var(--display);font-size:1.1rem;color:var(--accent);font-weight:600}
-  .step h3{font-size:1.35rem;color:var(--text);margin:10px 0 8px}
-  .step p{color:var(--muted);font-size:.98rem}
-
-  /* ---------- SESSIONS / FEATURES ---------- */
-  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 40px;max-width:760px}
-  .feat{display:flex;gap:14px;align-items:flex-start;padding:8px 0}
-  .feat .ic{flex:none;width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.06);display:grid;place-items:center;color:var(--accent)}
-  .feat h4{font-family:var(--body);font-weight:600;font-size:1.02rem;margin-bottom:2px;color:var(--text)}
-  .feat p{font-size:.92rem;color:var(--muted)}
-
-  /* ---------- OFFER BANNER ---------- */
-  .offer{background:linear-gradient(120deg,var(--accent),var(--rose));color:#241016;border-radius:var(--radius);padding:38px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 18px 44px -18px rgba(228,134,164,.45)}
-  .offer h3{font-size:1.7rem;color:#241016}
-  .offer p{color:rgba(36,16,22,.82);margin-top:4px;max-width:520px}
-  .offer .btn-primary{background:#241016;color:var(--accent-soft);box-shadow:none}
-  .offer .btn-primary:hover{background:#3a1d28;color:#fff}
-
-  /* ---------- PRICING ---------- */
-  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .price-controls{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:30px}
-  .mode-toggle{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px}
-  .mode-btn{font-family:var(--body);font-size:.92rem;font-weight:600;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:.6rem 1.25rem;border-radius:999px;transition:all .18s ease}
-  .mode-btn.active{background:var(--accent);color:#2a1217}
-  .cur-select{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:8px;font-weight:500}
-  .cur-select select{font-family:var(--body);font-size:.92rem;font-weight:600;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.55rem .8rem;cursor:pointer}
-  .cur-select select option{background:var(--card);color:var(--text)}
-  .plan{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;transition:transform .2s ease,box-shadow .2s ease}
-  .plan:hover{transform:translateY(-6px);box-shadow:0 24px 48px -28px rgba(0,0,0,.65)}
-  .plan.featured{background:linear-gradient(180deg,var(--card-2),var(--card));border:1.5px solid var(--accent)}
-  .plan .tier{font-family:var(--display);font-size:1.6rem;font-weight:600;color:var(--text)}
-  .plan .len{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:4px}
-  .plan.featured .len{color:var(--rose)}
-  .plan .price{font-family:var(--display);font-size:2.5rem;color:var(--text);margin:20px 0 2px;font-weight:600}
-  .plan .price small{font-family:var(--body);font-size:.95rem;font-weight:500;color:var(--muted)}
-  .plan .monthly{font-size:.95rem;color:var(--muted);padding:14px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);margin:16px 0}
-  .plan .monthly b{color:var(--text)}
-  .plan ul{list-style:none;margin:6px 0 24px;flex:1}
-  .plan li{font-size:.95rem;padding:7px 0 7px 26px;position:relative;color:#e4d3da}
-  .plan li::before{content:"";position:absolute;left:0;top:13px;width:12px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
-  .plan.featured li::before{border-color:var(--rose)}
-  .plan .btn{width:100%;justify-content:center}
-  .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#241016;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 14px;border-radius:999px}
-  .plan-wrap{position:relative}
-  .price-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:26px}
-
-  /* ---------- ABOUT ---------- */
-  .about-stack{display:flex;flex-direction:column;gap:46px}
-  .about-intro{max-width:780px}
-  .trainer-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 28px 56px -34px rgba(0,0,0,.7)}
-  .trainer-h{display:grid;grid-template-columns:minmax(240px,330px) 1fr;align-items:stretch}
-  .trainer-photo{
-    position:relative;min-height:300px;
-    background:
-      radial-gradient(120% 120% at 20% 10%, rgba(226,163,156,.85), transparent 55%),
-      radial-gradient(120% 120% at 90% 90%, rgba(159,181,146,.7), transparent 55%),
-      linear-gradient(135deg, #3a2230, #160c12);
-  }
-  .trainer-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-  .trainer-photo .photo-brand{text-align:center;line-height:1}
-  .photo-mark{display:block;font-family:var(--display);font-size:1.9rem;font-weight:600;color:#fff;letter-spacing:-.01em}
-  .photo-line{display:block;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:9px}
-  .trainer-body{padding:34px 36px 32px}
-  .trainer-body .eyebrow{margin-bottom:10px}
-  .trainer-body h3{font-size:1.7rem;color:var(--text);margin-bottom:14px;line-height:1.12}
-  .trainer-body p{color:var(--muted);margin-bottom:14px}
-  .trainer-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0 4px}
-  .tstat{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center}
-  .tstat b{display:block;font-family:var(--display);font-size:1.25rem;font-weight:600;color:var(--text);line-height:1}
-  .tstat span{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-  .editnote{font-size:.74rem;color:var(--accent-soft);background:rgba(228,134,164,.10);border:1px dashed rgba(228,134,164,.5);border-radius:10px;padding:8px 12px;margin-top:18px}
-
-  /* ---------- FAQ ---------- */
-  .faq{max-width:780px;margin:0 auto}
-  details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 24px;margin-bottom:14px}
-  details summary{font-family:var(--body);font-weight:600;font-size:1.05rem;color:var(--text);cursor:pointer;list-style:none;padding:16px 0;display:flex;justify-content:space-between;align-items:center}
-  details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+";font-size:1.5rem;color:var(--accent);font-weight:400}
-  details[open] summary::after{content:"–"}
-  details p{color:var(--muted);padding:0 0 18px;font-size:.98rem}
-
-  /* ---------- CONTACT / FORM ---------- */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-  .contact-copy{position:sticky;top:96px}
-  @media(max-width:860px){.contact-copy{position:static;top:auto}}
-  .reassure{list-style:none;margin:30px 0 0;padding:0}
-  .reassure li{position:relative;padding:9px 0 9px 30px;color:var(--text);font-size:1rem}
-  .reassure li::before{content:"";position:absolute;left:0;top:14px;width:13px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
-  .contact-copy h2{font-size:clamp(2rem,4.4vw,2.8rem);color:var(--text)}
-  .contact-copy p{color:var(--muted);margin-top:14px;font-size:1.05rem;max-width:420px}
-  .wa-big{display:inline-flex;margin-top:26px}
-  .form{background:var(--card);border-radius:var(--radius);padding:34px;border:1px solid var(--line)}
-  .form label{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin:14px 0 6px;letter-spacing:.02em}
-  .form input,.form select,.form textarea{
-    width:100%;font-family:var(--body);font-size:.98rem;padding:.8rem 1rem;border:1.5px solid var(--line);
-    border-radius:12px;background:rgba(255,255,255,.05);color:var(--text);
-  }
-  .form input::placeholder,.form textarea::placeholder{color:var(--muted);opacity:.8}
-  .form select option{background:var(--card);color:var(--text)}
-  .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--accent)}
-  .form textarea{resize:vertical;min-height:84px}
-  .form .btn{width:100%;justify-content:center;margin-top:20px}
-  .form .tiny{font-size:.76rem;color:var(--muted);margin-top:12px;text-align:center}
-
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--bg-deep);color:var(--muted);padding:46px 0 30px}
-  .foot-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-  .foot-brand{display:flex;align-items:center;gap:13px}
-  .foot-mark{height:34px;width:auto;flex:none}
-  footer .name{font-family:var(--display);font-size:1.6rem;color:var(--text);font-weight:600}
-  footer .sub{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;margin-top:4px}
-  .foot-links{display:flex;gap:22px;font-size:.9rem}
-  .foot-links a:hover{color:var(--accent)}
-  .foot-bottom{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;opacity:.7;line-height:1.5}
-
-  /* ---------- ADDED: duration, training chips, form ---------- */
-  .price-controls.stack2{margin-top:14px}
-  .dur-save{font-size:.8rem;color:var(--muted);font-weight:500}
-  .plan .bill{font-size:.82rem;color:var(--muted);margin-top:2px}
-  .plan .price .was{font-family:var(--display);font-size:1.4rem;font-weight:500;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px;opacity:.7;margin-right:12px}
-  .train-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
-  .train-chip{position:relative;cursor:pointer;display:inline-block}
-  .train-chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
-  .train-chip span{display:inline-block;border:1.5px solid var(--line);background:rgba(255,255,255,.05);border-radius:999px;padding:8px 15px;font-size:.86rem;font-weight:600;color:var(--text);transition:.16s}
-  .train-chip input:checked + span{background:var(--accent);border-color:var(--accent);color:#2a1217}
-  .train-chip.locked{opacity:.38;pointer-events:none}
-  .phone-row{display:flex;gap:10px}
-  .phone-row .code-field{flex:0 0 96px;text-align:center;font-weight:600}
-  .phone-row .num-field{flex:1}
-  .form .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-  .form .actions .btn{flex:0 0 auto;width:auto;min-width:0;margin-top:0;padding:.72rem 1.4rem;font-size:.92rem;white-space:nowrap}
-  .lead-preview{margin-top:16px;border:1px dashed rgba(241,168,193,.5);background:rgba(228,134,164,.08);border-radius:14px;padding:14px 16px}
-  .lead-preview .pl{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
-  .lead-preview .pm{font-size:.9rem;color:var(--text);white-space:pre-wrap;line-height:1.5}
-
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:860px){
-    .steps,.plans{grid-template-columns:1fr}
-    .feat-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
-    .trainer-h{grid-template-columns:1fr}
-    .trainer-h .trainer-photo{min-height:340px}
-    .price-controls{flex-direction:column;align-items:stretch}
-    .nav-links{
-      display:none;position:absolute;top:100%;left:0;right:0;
-      background:var(--bg);flex-direction:column;gap:0;padding:10px 24px 20px;border-bottom:1px solid var(--line);
-    }
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:10px}
+    .tree-wrap{order:-1}
+    .aud,.steps{grid-template-columns:1fr}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 18px;border-bottom:1px solid var(--line)}
     .nav-links.open{display:flex}
-    .nav-links a{padding:12px 0;border-bottom:1px solid var(--line);width:100%}
-    .nav-links .btn{margin-top:12px;width:100%;justify-content:center}
-    .nav-toggle{display:block}
-    .offer{flex-direction:column;align-items:flex-start}
+    .nav-links a{padding:12px 0;border-bottom:1px solid var(--line)}
+    .nav-links .btn{margin-top:12px}
+    .burger{display:block}
+    .node text{opacity:1;font-size:15px}
+    .cta-box{padding:34px 22px}
   }
-
   @media(prefers-reduced-motion:reduce){
-    .orb{animation:none}
-    *{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+    html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="#top">
-      <svg class="brand-mark" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z"/>
-        <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z" transform="rotate(-40 100 150)"/>
-        <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z" transform="rotate(40 100 150)"/>
-        <path d="M56,150 Q100,178 144,150"/>
-        <circle cx="100" cy="92" r="6" fill="#fff3f8" stroke="none"/>
-      </svg>
-      <span class="brand-text">
-        <span class="name">Sukoon</span>
-      </span>
+<header>
+  <div class="nav">
+    <a class="brand" href="#top" aria-label="Banyan home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3F7D5C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#E2A03F"/></svg>
+      <b>Banyan</b>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
     </button>
     <nav class="nav-links" id="navLinks">
+      <a href="#subjects">Subjects</a>
+      <a href="#who">Who it's for</a>
       <a href="#how">How it works</a>
-      <a href="#sessions">Sessions</a>
       <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn btn-primary" href="#book">Book a session</a>
+      <a href="#curriculum">Curriculum</a>
+      <a class="btn btn-primary" href="#start">Start free</a>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero" id="top">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="wrap hero-inner">
-    <span class="eyebrow">One-on-one training for women · Bengaluru</span>
-    <h1>Train where you feel <em>most yourself</em>.</h1>
-    <p class="lede">Private, one-on-one bodyweight training for women. At home in Bengaluru, or online wherever you are. No gym, no crowd, no rush. Just you, a coach, and steady progress at your own pace.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#book">Book a free consultation</a>
-      <a class="btn btn-wa" id="waHero" href="#" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3 0-1.5.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2c.1.2.1.3 0 .5l-.4.6-.3.4c-.2.2-.4.4-.2.7.2.4.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.2.1.9-.1 1.4Z"/></svg>
-        Chat on WhatsApp
-      </a>
+<section class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div>
+      <span class="mono">One tree, many branches</span>
+      <h1>Everything worth learning, in <em>one place</em>.</h1>
+      <p class="lede">Coding, gen AI, maths, science, English, money and movement. Each learner answers a few questions, then gets one clear plan built around them, taught live and tracked as they go.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#start">Start with a free class</a>
+        <a class="btn btn-ghost" href="#subjects">See the subjects</a>
+      </div>
+      <div class="hero-note">
+        <span><i class="pip"></i> Live one-on-one</span>
+        <span><i class="pip"></i> Online, worldwide</span>
+        <span><i class="pip"></i> First class free</span>
+      </div>
     </div>
-    <div class="hero-meta">
-      <span><i class="dot"></i> Any day, Mon–Sun</span>
-      <span><i class="dot"></i> Bodyweight, no equipment to buy</span>
-      <span><i class="dot"></i> At home in Bengaluru · online anywhere</span>
+
+    <!-- SIGNATURE: the banyan -->
+    <div class="tree-wrap">
+      <svg class="tree" viewBox="0 0 560 420" role="img" aria-label="A banyan tree where each hanging root is a subject Banyan teaches">
+        <!-- canopy -->
+        <ellipse cx="280" cy="96" rx="196" ry="66" fill="#3F7D5C" opacity=".12"/>
+        <ellipse cx="280" cy="86" rx="150" ry="52" fill="#3F7D5C" opacity=".16"/>
+        <!-- trunk -->
+        <path class="limb trunk" d="M280 392V150"/>
+        <!-- branches out -->
+        <path class="limb" d="M280 158C218 138 150 142 96 156"/>
+        <path class="limb" d="M280 158c62-20 130-16 184-2"/>
+        <path class="limb" d="M280 168c-40-6-78 2-112 14"/>
+        <path class="limb" d="M280 168c40-6 78 2 112 14"/>
+        <!-- aerial roots (one per subject) -->
+        <path class="limb" d="M96 156v104"/>
+        <path class="limb" d="M168 182v96"/>
+        <path class="limb" d="M232 156v122"/>
+        <path class="limb" d="M330 156v122"/>
+        <path class="limb" d="M392 182v96"/>
+        <path class="limb" d="M464 156v104"/>
+        <path class="limb" d="M280 260v52"/>
+        <!-- ground -->
+        <path d="M60 392h440" stroke="#E8DED2" stroke-width="3" stroke-linecap="round"/>
+
+        <g class="node" tabindex="0" data-s="code">
+          <circle cx="96" cy="268" r="15" fill="#4E7FA8"/>
+          <text x="96" y="300" text-anchor="middle">Coding</text>
+        </g>
+        <g class="node" tabindex="0" data-s="ai">
+          <circle cx="168" cy="286" r="15" fill="#7A6BB5"/>
+          <text x="168" y="318" text-anchor="middle">Gen AI</text>
+        </g>
+        <g class="node" tabindex="0" data-s="maths">
+          <circle cx="232" cy="286" r="15" fill="#E2A03F"/>
+          <text x="232" y="318" text-anchor="middle">Maths</text>
+        </g>
+        <g class="node" tabindex="0" data-s="science">
+          <circle cx="330" cy="286" r="15" fill="#3F7D5C"/>
+          <text x="330" y="318" text-anchor="middle">Science</text>
+        </g>
+        <g class="node" tabindex="0" data-s="english">
+          <circle cx="392" cy="286" r="15" fill="#C98A4B"/>
+          <text x="392" y="318" text-anchor="middle">English</text>
+        </g>
+        <g class="node" tabindex="0" data-s="money">
+          <circle cx="464" cy="268" r="15" fill="#2E5C44"/>
+          <text x="464" y="300" text-anchor="middle">Money</text>
+        </g>
+        <g class="node" tabindex="0" data-s="pe">
+          <circle cx="280" cy="320" r="15" fill="#C2708A"/>
+          <text x="280" y="352" text-anchor="middle">Movement</text>
+        </g>
+      </svg>
+      <p class="tree-cap">Tap a root to jump to that subject</p>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
+<!-- SUBJECTS -->
+<section class="band tint" id="subjects">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>Three easy steps to start.</h2>
-      <p>No sign-up forms to wrestle with, no membership to lock into. Reach out, pick a time, and train.</p>
+    <div class="head">
+      <span class="mono">The branches</span>
+      <h2>Seven subjects. One way of teaching.</h2>
+      <p>Every subject follows the same shape: a short intake, a plan made for that learner, live classes, and progress you can actually see.</p>
+    </div>
+    <div class="subjects">
+      <article class="subj" id="s-code"><div class="dot" style="background:#4E7FA8">01</div><h3>Coding</h3><p>Python, web, and real projects. From first line of code to something they built themselves.</p><div class="who">School · College</div></article>
+      <article class="subj" id="s-ai"><div class="dot" style="background:#7A6BB5">02</div><h3>Gen AI</h3><p>How to actually use AI well: prompting, tools, judgement, and where it gets things wrong.</p><div class="who">College · Adults</div></article>
+      <article class="subj" id="s-maths"><div class="dot" style="background:#E2A03F">03</div><h3>Maths</h3><p>Built from the ground up so it makes sense, not memorised. Confidence before speed.</p><div class="who">School</div></article>
+      <article class="subj" id="s-science"><div class="dot" style="background:#3F7D5C">04</div><h3>Science</h3><p>The why behind the syllabus, taught with things you can see, test and question.</p><div class="who">School</div></article>
+      <article class="subj" id="s-english"><div class="dot" style="background:#C98A4B">05</div><h3>English</h3><p>Speaking, writing and being understood. For exams, for interviews, for the world.</p><div class="who">School · College</div></article>
+      <article class="subj" id="s-money"><div class="dot" style="background:#2E5C44">06</div><h3>Financial literacy</h3><p>Saving, budgeting, compounding, and how money actually works. The class nobody taught us.</p><div class="who">College · Adults</div></article>
+      <article class="subj" id="s-pe"><div class="dot" style="background:#C2708A">07</div><h3>Movement</h3><p>Strength, yoga and mobility. Our physical education arm, and where Banyan started.</p><div class="who">All ages</div></article>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="band" id="who">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">Who learns here</span>
+      <h2>Built for three kinds of people.</h2>
+    </div>
+    <div class="aud">
+      <div class="aud-card">
+        <h3>School students</h3>
+        <p>Steady, patient teaching that follows the child's pace rather than the class average.</p>
+        <ul><li>Maths, science, English</li><li>Coding from scratch</li><li>Reports parents can read</li></ul>
+      </div>
+      <div class="aud-card">
+        <h3>College students</h3>
+        <p>The practical skills degrees skip, taught by someone a few steps ahead, not decades.</p>
+        <ul><li>Coding and projects</li><li>Gen AI, used properly</li><li>Money and communication</li></ul>
+      </div>
+      <div class="aud-card">
+        <h3>Parents</h3>
+        <p>One tutor, one plan, one place. You'll know exactly what your child is working on.</p>
+        <ul><li>Free first class</li><li>Progress you can see</li><li>Flexible timings</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="band tint" id="how">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">How it works</span>
+      <h2>Four steps, then you're learning.</h2>
+      <p>The order matters here, each step feeds the next.</p>
     </div>
     <div class="steps">
-      <div class="step">
-        <span class="num">01</span>
-        <h3>Reach out</h3>
-        <p>Send a message on WhatsApp or fill the short form below. Tell me your goal and which part of the city you're in.</p>
-      </div>
-      <div class="step">
-        <span class="num">02</span>
-        <h3>Free consultation</h3>
-        <p>We start with a free online consultation. You see how I coach, ask anything, and decide if it feels right, with no commitment.</p>
-      </div>
-      <div class="step">
-        <span class="num">03</span>
-        <h3>Train at home</h3>
-        <p>Then we train: in your own home if you are in Bengaluru, or online from anywhere. Build strength at a pace that feels good, never rushed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SESSIONS -->
-<section class="section dark" id="sessions">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">What a session looks like</span>
-      <h2>Simple, private, and built around you.</h2>
-      <p>Everything is bodyweight, so there's nothing to buy and nothing intimidating. Just movement that meets you where you are.</p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
-        <div><h4>One-on-one, only you</h4><p>Full attention, every minute. No sharing the floor with anyone else.</p></div>
-      </div>
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
-        <div><h4>Bodyweight first</h4><p>No machines, no weights to buy. Just you and a little space to move.</p></div>
-      </div>
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-        <div><h4>60, 90 or 120 minutes</h4><p>Pick the length that suits your day and your energy.</p></div>
-      </div>
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-        <div><h4>Any day of the week</h4><p>Mornings, evenings, weekends. We find what fits around your life.</p></div>
-      </div>
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
-        <div><h4>In your own home</h4><p>Your space, your comfort. Train without ever stepping into a gym.</p></div>
-      </div>
-      <div class="feat">
-        <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 4.5-9 9-9 9Z"/></svg></span>
-        <div><h4>Judgment-free pace</h4><p>Start gentle and grow. Sessions adapt to how you feel that day.</p></div>
-      </div>
+      <div class="step"><span class="n">Step 1</span><h3>Tell us where you are</h3><p>A few questions about the subject, the level, and what you want out of it.</p></div>
+      <div class="step"><span class="n">Step 2</span><h3>Get your plan</h3><p>A roadmap made for that learner, not a syllabus copied off a shelf.</p></div>
+      <div class="step"><span class="n">Step 3</span><h3>Learn live</h3><p>One-on-one classes online, at times that fit around school or work.</p></div>
+      <div class="step"><span class="n">Step 4</span><h3>See it add up</h3><p>Lessons completed, skills unlocked, progress you and your parents can check.</p></div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section" id="pricing">
+<section class="band" id="pricing">
   <div class="wrap">
-    <!-- Offer banner -->
-    <div class="offer">
-      <div>
-        <h3>Your first consultation is free.</h3>
-        <p>Start with a free online consultation. No cost, no pressure. See how I coach and decide if it is a fit before anything else.</p>
-      </div>
-      <a class="btn btn-primary" id="waOffer" href="#" target="_blank" rel="noopener">Book the free session</a>
+    <div class="head">
+      <span class="mono">Pricing</span>
+      <h2>One price. Every subject, every country.</h2>
+      <p>Eleven dollars a class, whether you take four or four hundred. No packages to buy up front, no bulk discounts to chase, and no quiet markup because of where you live.</p>
     </div>
 
-    <div class="section-head" style="margin-top:64px">
-      <span class="eyebrow">Coaching plans</span>
-      <h2>Pick a session, then a plan.</h2>
-      <p>The price is the same whether you train strength, yoga, mobility or combat. Choose a session length, then how long you commit. Longer plans cost less per month. Your first session is always free.</p>
+    <div class="price-hero">
+      <div class="price-card">
+        <span class="flag">Flat rate</span>
+        <div class="price-num"><b>$11</b><span>per class</span></div>
+        <p class="price-sub">One-to-one, live, 50 minutes. Same price for coding, maths, science, English, gen AI, money and movement.</p>
+        <ul class="price-list">
+          <li>Your first <span data-freeclasses>1</span> class free</li>
+          <li>Pay per class, cancel any time</li>
+          <li>The same teacher every session</li>
+          <li>No contracts and no joining fee</li>
+          <li>Money back on your first five paid classes</li>
+        </ul>
+        <div class="local-line" id="localLine">Roughly <b id="localAmt">$11</b> where you are. Converted for convenience only, the price itself never changes.</div>
+      </div>
+
+      <div class="cmp">
+        <table>
+          <thead>
+            <tr><th>What you're comparing</th><th class="us">Banyan</th><th>Typical online tutoring</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Price per class</td><td class="us">$11, always</td><td class="them">$25 to $60, and often higher or lower depending on your country</td></tr>
+            <tr><td>Buying more classes</td><td class="us">Same $11. Volume changes nothing</td><td class="them">Locked packages of 48 to 96 classes, sold as a discount</td></tr>
+            <tr><td>Class format</td><td class="us">Always one-to-one</td><td class="them">Often group classes at the one-to-one price</td></tr>
+            <tr><td>Your teacher</td><td class="us">The same person every class</td><td class="them">Whoever is free that day</td></tr>
+            <tr><td>Curriculum</td><td class="us">Mapped to your state or board</td><td class="them">One global syllabus for everyone</td></tr>
+            <tr><td>Leaving</td><td class="us">Stop whenever you like</td><td class="them">Refund policies buried in the contract</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="price-controls">
-      <div class="mode-toggle" id="modeToggle">
-        <button type="button" class="mode-btn active" data-mode="online">Online · Worldwide</button>
-        <button type="button" class="mode-btn" data-mode="home">In-home · Bengaluru</button>
-      </div>
-      <label class="cur-select">Show prices in
-        <select id="curSelect">
-          <option value="INR">₹ INR</option>
-          <option value="USD">$ USD</option>
-          <option value="EUR">€ EUR</option>
-          <option value="GBP">£ GBP</option>
-          <option value="AED">AED</option>
-          <option value="AUD">A$ AUD</option>
-          <option value="CAD">C$ CAD</option>
-          <option value="SGD">S$ SGD</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="price-controls stack2">
-      <div class="mode-toggle" id="durToggle">
-        <button type="button" class="mode-btn active" data-dur="1">Monthly</button>
-        <button type="button" class="mode-btn" data-dur="3">3 months</button>
-        <button type="button" class="mode-btn" data-dur="6">6 months</button>
-        <button type="button" class="mode-btn" data-dur="12">Yearly</button>
-      </div>
-      <span class="dur-save" id="durSave"></span>
-    </div>
-
-    <div class="plans">
-      <div class="plan-wrap">
-        <div class="plan">
-          <span class="tier">Reset</span>
-          <span class="len">60 minutes</span>
-          <div class="price"><span class="was" data-tier="reset"></span><span class="amt" data-tier="reset"></span> <small>/ month</small></div>
-          <div class="bill" data-bill="reset"></div>
-          <div class="monthly">8 sessions a month, about two a week. <b class="persess" data-tier="reset"></b></div>
-          <ul>
-            <li>A focused full session</li>
-            <li>Great for getting started</li>
-            <li>Warm-up, work, and stretch</li>
-          </ul>
-          <a class="btn btn-ghost plan-cta" data-plan="Reset" data-len="60 min" href="#" target="_blank" rel="noopener">Choose Reset</a>
-        </div>
-      </div>
-
-      <div class="plan-wrap">
-        <div class="plan featured">
-          <span class="badge">Most chosen</span>
-          <span class="tier">Restore</span>
-          <span class="len">90 minutes</span>
-          <div class="price"><span class="was" data-tier="restore"></span><span class="amt" data-tier="restore"></span> <small>/ month</small></div>
-          <div class="bill" data-bill="restore"></div>
-          <div class="monthly">8 sessions a month, about two a week. <b class="persess" data-tier="restore"></b></div>
-          <ul>
-            <li>More time to build and recover</li>
-            <li>Strength plus mobility work</li>
-            <li>The sweet spot for most people</li>
-          </ul>
-          <a class="btn btn-primary plan-cta" data-plan="Restore" data-len="90 min" href="#" target="_blank" rel="noopener">Choose Restore</a>
-        </div>
-      </div>
-
-      <div class="plan-wrap">
-        <div class="plan">
-          <span class="tier">Immerse</span>
-          <span class="len">120 minutes</span>
-          <div class="price"><span class="was" data-tier="immerse"></span><span class="amt" data-tier="immerse"></span> <small>/ month</small></div>
-          <div class="bill" data-bill="immerse"></div>
-          <div class="monthly">8 sessions a month, about two a week. <b class="persess" data-tier="immerse"></b></div>
-          <ul>
-            <li>A full, unhurried session</li>
-            <li>Strength, mobility, and breath</li>
-            <li>For deeper focus days</li>
-          </ul>
-          <a class="btn btn-ghost plan-cta" data-plan="Immerse" data-len="120 min" href="#" target="_blank" rel="noopener">Choose Immerse</a>
-        </div>
-      </div>
-    </div>
-    <p class="price-note">Sessions are one-on-one. In-home is available in Bengaluru only, includes travel, and is billed in ₹. Online is available worldwide. Pay by UPI, card, or bank transfer.</p>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="section alt" id="about">
-  <div class="wrap about-stack">
-    <div class="about-intro">
-      <span class="eyebrow">Why train at home</span>
-      <h2 style="font-size:clamp(2rem,4.4vw,2.9rem);color:var(--text);margin-top:14px">Made for women who'd rather skip the gym.</h2>
-      <p style="color:var(--muted);margin-top:16px;font-size:1.08rem">Crowded floors, mirrors, waiting for equipment, the feeling of being watched. None of that helps you actually show up. Training at home takes all of it away.</p>
-      <p style="color:var(--muted);margin-top:14px;font-size:1.08rem">You get a private, comfortable space, a schedule that bends around work and family, and a plan that meets your body where it is today. That's how a routine actually sticks.</p>
-    </div>
-    <div class="trainer-card trainer-h">
-      <!-- Plush animation. Upload sukoon-trainer.mp4 and sukoon-poster.jpg to the same repo folder as this file. -->
-      <div class="trainer-photo">
-        <video class="trainer-video" autoplay muted loop playsinline poster="sukoon-poster.jpg">
-          <source src="sukoon-trainer.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="trainer-body">
-        <span class="eyebrow">Your trainer</span>
-        <h3>Five years of training, brought to your living room.</h3>
-        <p>I've spent the last five years training seriously, strength work alongside combat sports, so I know first-hand what consistent, well-built training actually takes. I coach the way I train: simple, steady, and made to last.</p>
-        <p>For you, that means a plan shaped around your body and your goals, clear coaching on every movement, and simple nutrition guidance to support it. The aim is real strength and a body you feel good in, built at a healthy, sustainable pace.</p>
-        <div class="trainer-stats">
-          <div class="tstat"><b>5+ yrs</b><span>training</span></div>
-          <div class="tstat"><b>Combat</b><span>sports athlete</span></div>
-          <div class="tstat"><b>1-on-1</b><span>every session</span></div>
-        </div>
-      </div>
+    <div class="promises" style="margin-top:26px">
+      <div class="promise"><h3>No country pricing</h3><p>Most tutoring platforms quietly charge more in some countries and less in others for the identical class. We publish one number and hold it.</p></div>
+      <div class="promise"><h3>No package pressure</h3><p>Nobody will call you to upgrade. Buying a hundred classes costs exactly the same per class as buying one.</p></div>
+      <div class="promise"><h3>No wasted classes</h3><p>Reschedule up to a few hours before. Unused classes stay yours, they don't expire into thin air.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section" id="faq">
+<!-- CURRICULUM -->
+<section class="band tint" id="curriculum">
   <div class="wrap">
-    <div class="section-head" style="margin:0 auto 48px;text-align:center">
-      <span class="eyebrow">Questions</span>
-      <h2>Good to know.</h2>
+    <div class="head">
+      <span class="mono">Curriculum</span>
+      <h2>Built for where you actually study.</h2>
+      <p>A child in Texas isn't taught the same way as a child in California, or Karnataka, or Kent. Pick your place and subject and take the full curriculum with you, free, no email required.</p>
     </div>
-    <div class="faq">
-      <details>
-        <summary>Do I need any equipment?</summary>
-        <p>No. Sessions are built around bodyweight movement, so there's nothing to buy. If you already own a mat or a couple of light items, we can use them, but it's never required.</p>
-      </details>
-      <details>
-        <summary>Which parts of Bengaluru do you cover?</summary>
-        <p>In-home sessions are available across Bengaluru. Online sessions are available anywhere in the world, on your schedule. Message me and I will confirm timing.</p>
-      </details>
-      <details>
-        <summary>How does payment work?</summary>
-        <p>Pay per session or save with a monthly pack of 8 sessions. UPI or cash, whatever's easier for you. No long contracts and no joining fee.</p>
-      </details>
-      <details>
-        <summary>What should I expect in the first session?</summary>
-        <p>We start gentle. The first session is about understanding your goals, your comfort level, and how your body moves, then building a plan from there. Wear something comfortable and have a little open floor space ready.</p>
-      </details>
-      <details>
-        <summary>Can I reschedule?</summary>
-        <p>Yes. Life happens. Just give a little notice on WhatsApp and we'll find another time that works.</p>
-      </details>
-      <details>
-        <summary>How often should I train?</summary>
-        <p>Most people do around two sessions a week, which is what the monthly pack is built for. We can go lighter or heavier depending on your goals and schedule.</p>
-      </details>
+
+    <div class="cur-box">
+      <div class="cur-grid">
+        <div class="cur-field">
+          <label for="curCountry">Country</label>
+          <select id="curCountry"></select>
+        </div>
+        <div class="cur-field" id="regionWrap">
+          <label for="curRegion" id="regionLabel">State</label>
+          <select id="curRegion"></select>
+        </div>
+        <div class="cur-field">
+          <label for="curSubject">Subject</label>
+          <select id="curSubject"></select>
+        </div>
+        <div class="cur-field">
+          <label for="curGrade">Level</label>
+          <select id="curGrade"></select>
+        </div>
+      </div>
+      <div class="cur-actions">
+        <button class="btn btn-primary" id="curDownload">Download curriculum</button>
+        <a class="btn btn-ghost" id="curBook" href="#" target="_blank" rel="noopener">Book a free class in this subject</a>
+      </div>
+      <p class="cur-meta" id="curMeta"></p>
     </div>
   </div>
 </section>
 
-<!-- CONTACT / BOOK -->
-<section class="section dark" id="book">
-  <div class="wrap contact-grid">
-    <div class="contact-copy">
-      <span class="eyebrow">Book a session</span>
-      <h2>Let's find a time that works.</h2>
-      <p>The fastest way to start is WhatsApp. Or leave your details and I will reach out to set up your free consultation.</p>
-      <a class="btn btn-wa wa-big" id="waContact" href="#" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3 0-1.5.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2c.1.2.1.3 0 .5l-.4.6-.3.4c-.2.2-.4.4-.2.7.2.4.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.2.1.9-.1 1.4Z"/></svg>
-        Message on WhatsApp
-      </a>
-      <ul class="reassure">
-        <li>Your first consultation is free and online</li>
-        <li>I usually reply within a day</li>
-        <li>No pressure, no contracts, cancel anytime</li>
-      </ul>
+<!-- CTA -->
+<section class="band" id="start">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Your first class is free.</h2>
+      <p>Pick a subject, meet your teacher, and see how it feels. No payment, no commitment, no pressure.</p>
+      <a class="btn btn-primary" id="waCta" href="#" target="_blank" rel="noopener">Book a free class</a>
     </div>
-
-    <!-- FormSubmit emails you each submission. Replace the email if needed. -->
-    <form class="form" id="leadForm" onsubmit="return false;">
-      <input type="hidden" name="_subject" value="New Sukoon enquiry" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="text" name="_honey" style="display:none" />
-
-      <label for="fname">Your name</label>
-      <input id="fname" name="name" type="text" placeholder="First name" required />
-
-      <label for="fcountry">Where are you based?</label>
-      <select id="fcountry" name="country"></select>
-
-      <label for="fphone">WhatsApp number</label>
-      <div class="phone-row">
-        <input class="code-field" id="fcode" name="country_code" type="text" readonly value="+91" />
-        <input class="num-field" id="fphone" name="phone" type="tel" placeholder="Your number" required />
-      </div>
-
-      <label>What would you like to train?</label>
-      <div class="train-chips" id="fTrain">
-        <label class="train-chip"><input type="checkbox" name="training" value="Strength"><span>Strength</span></label>
-        <label class="train-chip"><input type="checkbox" name="training" value="Yoga"><span>Yoga</span></label>
-        <label class="train-chip"><input type="checkbox" name="training" value="Mobility"><span>Mobility</span></label>
-        <label class="train-chip"><input type="checkbox" name="training" value="Boxing (technique)"><span>Boxing</span></label>
-        <label class="train-chip"><input type="checkbox" name="training" value="Kickboxing (technique)"><span>Kickboxing</span></label>
-        <label class="train-chip"><input type="checkbox" name="training" value="MMA conditioning"><span>MMA conditioning</span></label>
-        <label class="train-chip offline locked"><input type="checkbox" name="training" value="Boxing (sparring)" disabled><span>Boxing sparring</span></label>
-        <label class="train-chip offline locked"><input type="checkbox" name="training" value="Muay Thai pad work" disabled><span>Muay Thai</span></label>
-        <label class="train-chip offline locked"><input type="checkbox" name="training" value="BJJ fundamentals" disabled><span>BJJ</span></label>
-        <label class="train-chip offline locked"><input type="checkbox" name="training" value="Self-defense" disabled><span>Self-defense</span></label>
-      </div>
-      <p class="tiny" id="fTrainNote" style="text-align:left;margin-top:8px">Combat is taught as technique and conditioning online. Full contact unlocks with in-home.</p>
-
-      <label for="ftrainer">Trainer preference</label>
-      <select id="ftrainer" name="trainer">
-        <option>No preference</option>
-        <option>Female trainer</option>
-        <option>Male trainer</option>
-      </select>
-
-      <label for="fmode">How would you like to train?</label>
-      <select id="fmode" name="mode">
-        <option value="online">Online · anywhere</option>
-        <option value="home">In-home · Bengaluru</option>
-      </select>
-
-      <label for="fplan">Plan</label>
-      <select id="fplan" name="plan">
-        <option>Free first session</option>
-        <option>Reset · 60 min</option>
-        <option>Restore · 90 min</option>
-        <option>Immerse · 120 min</option>
-        <option>Not sure yet</option>
-      </select>
-
-      <label for="fdur">Commitment</label>
-      <select id="fdur" name="duration">
-        <option value="1">Monthly</option>
-        <option value="3">3 months</option>
-        <option value="6">6 months</option>
-        <option value="12">Yearly</option>
-      </select>
-
-      <label for="fnote">Anything else? (optional)</label>
-      <textarea id="fnote" name="note" placeholder="Your goal, any injuries, best time to reach you..."></textarea>
-
-      <div class="lead-preview">
-        <div class="pl">Your message</div>
-        <div class="pm" id="leadPreview"></div>
-      </div>
-
-      <div class="actions">
-        <a class="btn btn-wa" id="waSubmit" href="#" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3 0-1.5.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2c.1.2.1.3 0 .5l-.4.6-.3.4c-.2.2-.4.4-.2.7.2.4.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.2.1.9-.1 1.4Z"/></svg>
-          WhatsApp
-        </a>
-        <a class="btn btn-primary" id="emailSubmit" href="#">Email</a>
-      </div>
-      <p class="tiny">Your details are only used to contact you about training. No spam.</p>
-    </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    <div class="foot-inner">
-      <div class="foot-brand">
-        <svg class="foot-mark" viewBox="0 0 200 200" fill="none" stroke="#ec97b3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z"/>
-          <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z" transform="rotate(-40 100 150)"/>
-          <path d="M100,150 C78,118 82,78 100,48 C118,78 122,118 100,150 Z" transform="rotate(40 100 150)"/>
-          <path d="M56,150 Q100,178 144,150"/>
-          <circle cx="100" cy="92" r="6" fill="#fff3f8" stroke="none"/>
-        </svg>
-        <div>
-          <div class="name">Sukoon</div>
-          <div class="sub">Home fitness for women · Bengaluru</div>
-        </div>
-      </div>
-      <div class="foot-links">
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#book">Book</a>
-        <a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
+  <div class="wrap foot">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3F7D5C" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#E2A03F"/></svg>
+      <b>Banyan</b>
     </div>
-    <div class="foot-bottom">
-      Private one-on-one bodyweight training for women. At home in Bengaluru, or online anywhere.<br />
-      Prices and availability may change. © <span id="year"></span> Sukoon.
+    <div class="foot-links">
+      <a href="#subjects">Subjects</a><a href="#how">How it works</a><a href="#start">Book</a>
     </div>
+    <p>Learning that grows with you. © <span id="yr"></span> Banyan.</p>
   </div>
 </footer>
 
 <script>
-  // ---- CONFIG: update this number if needed ----
-  // Indian mobile numbers are 10 digits after the +91 country code.
-  // Format for wa.me is country code + number, digits only, no + or spaces.
-  var WHATSAPP_NUMBER = "919113865545"; // +91 91138 65545
+  var WHATSAPP="919113865545";
+  document.getElementById("waCta").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hi Banyan, I'd like to book a free first class.");
+  document.getElementById("yr").textContent=new Date().getFullYear();
 
-  function waLink(message){
-    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
-  }
-
-  // Default messages
-  document.getElementById("waHero").href    = waLink("Hi Sukoon, I'd like to know more about home training sessions.");
-  document.getElementById("waOffer").href   = waLink("Hi Sukoon, I'd like to book the free consultation.");
-  document.getElementById("waContact").href = waLink("Hi Sukoon, I'd like to book my free consultation.");
-  document.getElementById("waFoot").href    = waLink("Hi Sukoon, I'd like to know more.");
-
-  // Plan buttons -> prefilled WhatsApp
-  document.querySelectorAll(".plan-cta").forEach(function(btn){
-    var plan = btn.getAttribute("data-plan");
-    btn.href = waLink("Hi Sukoon, I'm interested in the " + plan + " plan.");
+  var b=document.getElementById("burger"),n=document.getElementById("navLinks");
+  b.addEventListener("click",function(){
+    var o=n.classList.toggle("open");
+    b.setAttribute("aria-expanded",o?"true":"false");
   });
+  n.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){n.classList.remove("open");b.setAttribute("aria-expanded","false");});});
 
-  // Mobile nav
-  var toggle = document.getElementById("navToggle");
-  var links  = document.getElementById("navLinks");
-  toggle.addEventListener("click", function(){ links.classList.toggle("open"); });
-  links.querySelectorAll("a").forEach(function(a){
-    a.addEventListener("click", function(){ links.classList.remove("open"); });
-  });
+  /* ===== CONFIG YOU CAN EDIT ===== */
+  var FREE_CLASSES = 1;          // set to 1, 2 or 5
+  var PRICE_USD    = 11;         // flat rate, every country
+  /* =============================== */
 
-  // Year
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.querySelectorAll("[data-freeclasses]").forEach(function(el){ el.textContent = FREE_CLASSES; });
 
-  // ---- Localized pricing (hand-set per market, NOT converted) ----
-  // Monthly base = 8 sessions/month. Online is worldwide; in-home is Bengaluru (INR) only.
-  var SYM = {INR:'₹',USD:'$',EUR:'€',GBP:'£',AED:'AED ',AUD:'A$',CAD:'C$',SGD:'S$'};
-  var ONLINE = {
-    INR:{reset:4999, restore:6499, immerse:7999},
-    USD:{reset:149,  restore:199,  immerse:249},
-    EUR:{reset:149,  restore:189,  immerse:239},
-    GBP:{reset:129,  restore:169,  immerse:209},
-    AED:{reset:449,  restore:599,  immerse:749},
-    AUD:{reset:219,  restore:289,  immerse:359},
-    CAD:{reset:199,  restore:269,  immerse:329},
-    SGD:{reset:199,  restore:259,  immerse:319}
+  // Frameworks: what each place actually teaches to.
+  var US_STATES = {
+    "Alabama":"Alabama Course of Study","Alaska":"Alaska State Standards","Arizona":"Arizona Academic Standards",
+    "Arkansas":"Arkansas Academic Standards","California":"California Common Core & NGSS","Colorado":"Colorado Academic Standards",
+    "Connecticut":"Connecticut Core Standards","Delaware":"Delaware Academic Standards","District of Columbia":"DC Academic Standards",
+    "Florida":"Florida B.E.S.T. Standards","Georgia":"Georgia Standards of Excellence","Hawaii":"Hawaii Content Standards",
+    "Idaho":"Idaho Content Standards","Illinois":"Illinois Learning Standards","Indiana":"Indiana Academic Standards",
+    "Iowa":"Iowa Core","Kansas":"Kansas Academic Standards","Kentucky":"Kentucky Academic Standards",
+    "Louisiana":"Louisiana Student Standards","Maine":"Maine Learning Results","Maryland":"Maryland College and Career Ready Standards",
+    "Massachusetts":"Massachusetts Curriculum Frameworks","Michigan":"Michigan Academic Standards","Minnesota":"Minnesota Academic Standards",
+    "Mississippi":"Mississippi College and Career Readiness Standards","Missouri":"Missouri Learning Standards","Montana":"Montana Content Standards",
+    "Nebraska":"Nebraska College and Career Ready Standards","Nevada":"Nevada Academic Content Standards","New Hampshire":"NH College and Career Ready Standards",
+    "New Jersey":"New Jersey Student Learning Standards","New Mexico":"New Mexico Content Standards","New York":"New York State Next Generation Standards",
+    "North Carolina":"NC Standard Course of Study","North Dakota":"North Dakota Academic Content Standards","Ohio":"Ohio Learning Standards",
+    "Oklahoma":"Oklahoma Academic Standards","Oregon":"Oregon Academic Content Standards","Pennsylvania":"PA Core Standards",
+    "Rhode Island":"Rhode Island Academic Standards","South Carolina":"SC College and Career Ready Standards","South Dakota":"South Dakota Content Standards",
+    "Tennessee":"Tennessee Academic Standards","Texas":"Texas Essential Knowledge and Skills (TEKS)","Utah":"Utah Core Standards",
+    "Vermont":"Vermont Framework of Standards","Virginia":"Virginia Standards of Learning (SOL)","Washington":"Washington State Learning Standards",
+    "West Virginia":"West Virginia College and Career Readiness Standards","Wisconsin":"Wisconsin Academic Standards","Wyoming":"Wyoming Content Standards"
   };
-  var HOME_INR = {reset:6999, restore:8499, immerse:9999}; // in-home, Bengaluru, INR only
-  var DUR = {1:0, 3:0.10, 6:0.15, 12:0.20}; // discount off monthly rate
 
-  var priceMode='online', priceCur='INR', priceDur=1;
+  var COUNTRIES = {
+    "United States":{cur:"USD",sym:"$",rate:1,label:"State",regions:US_STATES},
+    "India":{cur:"INR",sym:"\u20b9",rate:88,label:"Board",regions:{"CBSE":"CBSE","ICSE / ISC":"ICSE","State Board":"State Board curriculum","IB":"International Baccalaureate"}},
+    "United Kingdom":{cur:"GBP",sym:"\u00a3",rate:0.79,label:"Nation",regions:{"England":"National Curriculum (England)","Scotland":"Curriculum for Excellence","Wales":"Curriculum for Wales","Northern Ireland":"NI Curriculum"}},
+    "Canada":{cur:"CAD",sym:"C$",rate:1.37,label:"Province",regions:{"Ontario":"Ontario Curriculum","British Columbia":"BC Curriculum","Alberta":"Alberta Programs of Study","Quebec":"Qu\u00e9bec Education Program","Manitoba":"Manitoba Curriculum","Nova Scotia":"Nova Scotia Curriculum"}},
+    "Australia":{cur:"AUD",sym:"A$",rate:1.51,label:"State",regions:{"New South Wales":"NSW Syllabus","Victoria":"Victorian Curriculum","Queensland":"Australian Curriculum (QLD)","Western Australia":"WA Curriculum","South Australia":"Australian Curriculum (SA)"}},
+    "United Arab Emirates":{cur:"AED",sym:"AED ",rate:3.67,label:"Curriculum",regions:{"UAE MoE":"UAE Ministry of Education curriculum","British":"National Curriculum (England)","American":"US Common Core","IB":"International Baccalaureate"}},
+    "Singapore":{cur:"SGD",sym:"S$",rate:1.29,label:"Curriculum",regions:{"MOE":"Singapore MOE syllabus","IB":"International Baccalaureate"}},
+    "New Zealand":{cur:"NZD",sym:"NZ$",rate:1.65,label:"Curriculum",regions:{"National":"The New Zealand Curriculum"}},
+    "Ireland":{cur:"EUR",sym:"\u20ac",rate:0.92,label:"Curriculum",regions:{"National":"Irish National Curriculum"}},
+    "South Africa":{cur:"ZAR",sym:"R",rate:18,label:"Curriculum",regions:{"National":"CAPS"}},
+    "Other":{cur:"USD",sym:"$",rate:1,label:"Curriculum",regions:{"International":"International / IB-aligned"}}
+  };
 
-  function detectRegion(){
-    try{ return (navigator.language||'en-IN').split('-')[1]||'IN'; }catch(e){ return 'IN'; }
+  var SUBJECTS = {
+    "Coding":{
+      "Primary (age 6-10)":["What a computer actually does","Blocks to text: first programs","Sequences, loops and repeats","Making decisions with if","Drawing and animation projects","Debugging: finding your own mistakes","Build: your first game"],
+      "Middle (age 11-13)":["Python basics: variables and types","Loops and conditionals in real problems","Lists and dictionaries","Functions and reusable code","Reading and writing files","Intro to HTML and CSS","Build: a working web page and a Python tool"],
+      "High school (age 14-18)":["Python fundamentals, properly","Data structures: lists, dicts, sets","Functions, modules and clean code","Object-oriented programming","APIs and working with real data","Version control with Git","Build: a portfolio project you can show"],
+      "College and adults":["Python for real work","Data handling with pandas","SQL and databases","APIs, requests and automation","Git, GitHub and collaboration","Testing and debugging like a professional","Build: a deployed project"]
+    },
+    "Gen AI":{
+      "Primary (age 6-10)":["What AI is, in plain words","How machines learn from examples","Talking to AI safely","Using AI to make pictures and stories","Spotting when AI is wrong","Being kind and honest with AI","Project: a story you made with AI"],
+      "Middle (age 11-13)":["How large language models work","Writing better prompts","Using AI to learn, not to cheat","Checking AI answers against sources","Bias and why AI gets things wrong","AI in everyday apps","Project: an AI-assisted research piece"],
+      "High school (age 14-18)":["How LLMs are trained","Prompt design and iteration","Retrieval and giving AI context","Judging output quality and hallucination","Ethics, bias and academic honesty","AI tools for study and creation","Project: an AI workflow you actually use"],
+      "College and adults":["Practical LLM use for work","Prompt engineering that holds up","Using AI for analysis and writing","Automating tasks with AI tools","Building with APIs","Limits, risk and verification","Project: automate one real task end to end"]
+    },
+    "Maths":{
+      "Primary (age 6-10)":["Number sense and place value","Addition and subtraction with meaning","Times tables that stick","Fractions you can picture","Shapes, space and measurement","Word problems without fear","Mental maths confidence"],
+      "Middle (age 11-13)":["Fractions, decimals and percentages","Ratio and proportion","Introduction to algebra","Geometry and angles","Data, graphs and averages","Negative numbers and integers","Problem solving strategies"],
+      "High school (age 14-18)":["Algebra and equations","Functions and graphs","Trigonometry","Probability and statistics","Sequences and series","Introduction to calculus","Exam technique and timed practice"],
+      "College and adults":["Algebra refresher, done properly","Functions and modelling","Statistics for real decisions","Probability and risk","Calculus foundations","Maths for data and coding","Applying maths to your field"]
+    },
+    "Science":{
+      "Primary (age 6-10)":["Living things and habitats","Materials and their properties","Forces you can feel","Light, sound and the senses","Earth, sun and seasons","Simple experiments at home","Asking scientific questions"],
+      "Middle (age 11-13)":["Cells and body systems","Atoms, elements and compounds","Forces and motion","Energy and its forms","Ecosystems and the environment","The solar system","Designing a fair test"],
+      "High school (age 14-18)":["Biology: genetics and evolution","Chemistry: bonding and reactions","Physics: mechanics and electricity","Chemical equations and calculations","Waves, light and sound","Practical work and lab skills","Exam-style questions and technique"],
+      "College and adults":["Scientific reasoning and method","Reading a research paper","Statistics in science","Physics and chemistry foundations","Biology for the informed adult","Evaluating claims and evidence","Science in the news, assessed properly"]
+    },
+    "English":{
+      "Primary (age 6-10)":["Phonics and confident reading","Vocabulary that grows","Sentence building","Story writing","Reading comprehension","Speaking clearly and aloud","Spelling and punctuation"],
+      "Middle (age 11-13)":["Reading longer texts","Grammar that actually helps","Descriptive and narrative writing","Comprehension and inference","Essay structure","Presenting to a room","Vocabulary for school subjects"],
+      "High school (age 14-18)":["Literary analysis","Essay writing and argument","Poetry and prose techniques","Persuasive and formal writing","Comprehension under time","Speaking and listening assessment","Exam technique"],
+      "College and adults":["Professional writing","Email and workplace communication","Presentation and public speaking","Interview language","Accent neutrality and clarity","Report and proposal writing","Confidence in English at work"]
+    },
+    "Financial literacy":{
+      "Primary (age 6-10)":["What money is and where it comes from","Needs versus wants","Saving in a jar and why it works","Earning, spending, giving","Prices and value","Simple budgeting with pocket money","Project: save for a goal"],
+      "Middle (age 11-13)":["Budgeting properly","Banks and how accounts work","Interest, explained simply","Saving goals and habits","Advertising and how it works on you","Digital money and safety","Project: a one-month budget"],
+      "High school (age 14-18)":["Income, tax and payslips","Compound interest and time","Credit, debt and how it traps people","Introduction to investing","Insurance and risk","Scams and financial safety","Project: your first financial plan"],
+      "College and adults":["Building a budget you'll keep","Emergency funds and safety nets","Debt strategy and credit scores","Investing basics: index funds, risk, horizon","Retirement and long-term compounding","Tax literacy","Project: a personal financial roadmap"]
+    },
+    "Movement":{
+      "Primary (age 6-10)":["Moving safely and warming up","Balance and coordination","Basic strength through play","Flexibility and stretching","Posture awareness","Confidence in the body","Building an active habit"],
+      "Middle (age 11-13)":["Warm-up and cool-down routines","Bodyweight strength foundations","Mobility and flexibility","Core and posture","Yoga basics and breathing","Rest and recovery","A weekly routine that fits school"],
+      "High school (age 14-18)":["Strength training fundamentals","Progressive overload, safely","Mobility and injury prevention","Yoga for calm and focus","Nutrition basics","Sleep, stress and performance","Your own training plan"],
+      "College and adults":["Strength built around your body","Hips, core and posture","Yoga and mobility practice","Training around a desk job","Nutrition without fads","Consistency and habit design","A plan you can hold for a year"]
+    }
+  };
+
+  var GRADES = ["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
+
+  var cCountry=document.getElementById("curCountry"),
+      cRegion=document.getElementById("curRegion"),
+      cSubject=document.getElementById("curSubject"),
+      cGrade=document.getElementById("curGrade"),
+      cMeta=document.getElementById("curMeta"),
+      cBook=document.getElementById("curBook"),
+      regionLabel=document.getElementById("regionLabel"),
+      localAmt=document.getElementById("localAmt");
+
+  function fill(sel,arr){ sel.innerHTML=""; arr.forEach(function(v){ var o=document.createElement("option"); o.textContent=v; sel.appendChild(o); }); }
+
+  fill(cCountry,Object.keys(COUNTRIES));
+  fill(cSubject,Object.keys(SUBJECTS));
+  fill(cGrade,GRADES);
+
+  function syncRegions(){
+    var c=COUNTRIES[cCountry.value];
+    regionLabel.textContent=c.label;
+    fill(cRegion,Object.keys(c.regions));
+    var local=Math.round(PRICE_USD*c.rate);
+    localAmt.textContent = c.cur==="USD" ? ("$"+PRICE_USD) : (c.sym+local.toLocaleString()+" ("+c.cur+")");
+    syncMeta();
   }
-  var REGION_CUR={IN:'INR',US:'USD',GB:'GBP',AE:'AED',AU:'AUD',CA:'CAD',SG:'SGD'};
-  var EURO={DE:1,FR:1,ES:1,IT:1,NL:1,IE:1,PT:1,AT:1,BE:1,FI:1,GR:1,LU:1,SK:1,SI:1,LV:1,LT:1,EE:1,CY:1,MT:1};
-
-  function baseFor(tier){
-    if(priceMode==='home') return HOME_INR[tier];
-    return ONLINE[priceCur][tier];
+  function framework(){ return COUNTRIES[cCountry.value].regions[cRegion.value] || cRegion.value; }
+  function syncMeta(){
+    cMeta.innerHTML='Your download is a Banyan curriculum for <b>'+cSubject.value+'</b>, '+cGrade.value.toLowerCase()+
+      ', mapped to <b>'+framework()+'</b>. It is our teaching plan aligned to that framework, not an official government document.';
+    cBook.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
+      "Hi Banyan, I'd like a free class in "+cSubject.value+" ("+cGrade.value+"), based in "+cRegion.value+", "+cCountry.value+".");
   }
-  function curFor(){ return priceMode==='home' ? 'INR' : priceCur; }
-  function money(n){
-    var c=curFor(); var v=Math.round(n);
-    try{ return new Intl.NumberFormat(undefined,{style:'currency',currency:c,maximumFractionDigits:0}).format(v); }
-    catch(e){ return SYM[c]+v.toLocaleString(); }
-  }
-  function effMonthly(tier){ return Math.round(baseFor(tier)*(1-DUR[priceDur])); }
+  cCountry.addEventListener("change",syncRegions);
+  [cRegion,cSubject,cGrade].forEach(function(el){ el.addEventListener("change",syncMeta); });
+  syncRegions();
 
-  function renderPrices(){
-    document.querySelectorAll('.amt[data-tier]').forEach(function(el){
-      el.textContent = money(effMonthly(el.getAttribute('data-tier')));
-    });
-    document.querySelectorAll('.bill[data-bill]').forEach(function(el){
-      var tier=el.getAttribute('data-bill');
-      if(priceDur==1){ el.textContent='Billed monthly, cancel anytime.'; }
-      else{ el.textContent='Billed '+money(effMonthly(tier)*priceDur)+' for '+priceDur+' months.'; }
-    });
-    document.querySelectorAll('.persess[data-tier]').forEach(function(el){
-      el.textContent='That\u2019s '+money(effMonthly(el.getAttribute('data-tier'))/8)+' a session.';
-    });
-    document.querySelectorAll('.was[data-tier]').forEach(function(el){
-      var tier=el.getAttribute('data-tier');
-      if(priceDur==1){ el.textContent=''; el.style.display='none'; }
-      else{ el.style.display='inline'; el.textContent=money(baseFor(tier)); }
-    });
-    document.querySelectorAll('#modeToggle .mode-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-mode')===priceMode); });
-    document.querySelectorAll('#durToggle .mode-btn').forEach(function(b){ b.classList.toggle('active', +b.getAttribute('data-dur')===priceDur); });
-    var save=document.getElementById('durSave');
-    save.textContent = priceMode==='home' ? 'In-home is Bengaluru only, billed in ₹.' : (priceDur>1 ? 'Longer plans save you '+(DUR[priceDur]*100)+'% a month.' : 'Commit longer to pay less per month.');
-    var sel=document.getElementById('curSelect'); if(sel){ sel.disabled=(priceMode==='home'); sel.style.opacity=priceMode==='home'?.5:1; }
-    // plan CTAs -> prefilled WhatsApp with the live price
-    document.querySelectorAll('.plan-cta').forEach(function(btn){
-      var tier=btn.getAttribute('data-plan'); var len=btn.getAttribute('data-len');
-      var key=tier.toLowerCase();
-      var durTxt = priceDur==1 ? 'monthly' : (priceDur+'-month');
-      var modeTxt = priceMode==='home' ? 'in-home in Bengaluru' : 'online';
-      var msg = "Hi Sukoon, I'd like the "+tier+" plan ("+len+"), "+durTxt+", "+modeTxt+". That's "+money(effMonthly(key))+"/month. Can we start with my free first session?";
-      btn.href = waLink(msg);
-    });
-  }
-
-  (function initPricing(){
-    var region=detectRegion();
-    priceCur = REGION_CUR[region] || (EURO[region] ? 'EUR' : 'INR');
-    priceMode = (region==='IN') ? 'home' : 'online';
-    var sel=document.getElementById('curSelect');
-    if(sel){ sel.value=priceCur; sel.addEventListener('change', function(){ priceCur=this.value; renderPrices(); }); }
-    document.querySelectorAll('#modeToggle .mode-btn').forEach(function(b){
-      b.addEventListener('click', function(){ priceMode=this.getAttribute('data-mode'); renderPrices(); });
-    });
-    document.querySelectorAll('#durToggle .mode-btn').forEach(function(b){
-      b.addEventListener('click', function(){ priceDur=+this.getAttribute('data-dur'); renderPrices(); });
-    });
-    renderPrices();
-  })();
-
-  // ---- Booking form: country code, training type, trainer, auto message ----
-  // [name, dial, currency, isIndia]
-  var COUNTRIES=[
-    ["India","+91","INR",true],["United States","+1","USD",false],["United Kingdom","+44","GBP",false],
-    ["Canada","+1","CAD",false],["Australia","+61","AUD",false],["United Arab Emirates","+971","AED",false],
-    ["Singapore","+65","SGD",false],["Germany","+49","EUR",false],["France","+33","EUR",false],
-    ["Spain","+34","EUR",false],["Netherlands","+31","EUR",false],["Ireland","+353","EUR",false],
-    ["New Zealand","+64","AUD",false],["Saudi Arabia","+966","USD",false],["Qatar","+974","USD",false],
-    ["Other / not listed","","USD",false]
-  ];
-  var fCountry=document.getElementById('fcountry');
-  if(fCountry){
-    COUNTRIES.forEach(function(c,i){ var o=document.createElement('option'); o.value=i; o.textContent=c[0]; fCountry.appendChild(o); });
-
-    var fCode=document.getElementById('fcode'), fMode=document.getElementById('fmode');
-    var fName=document.getElementById('fname'), fPlan=document.getElementById('fplan');
-    var fDur=document.getElementById('fdur'), fTrainer=document.getElementById('ftrainer');
-    var fNote=document.getElementById('fnote'), fPhone=document.getElementById('fphone');
-    var preview=document.getElementById('leadPreview'), waSubmit=document.getElementById('waSubmit');
-    var emailSubmit=document.getElementById('emailSubmit');
-    var SUKOON_EMAIL='sukoonblr@gmail.com';
-    var offlineChips=document.querySelectorAll('#fTrain .train-chip.offline');
-
-    function selectedTraining(){
-      return Array.prototype.slice.call(document.querySelectorAll('#fTrain input:checked')).map(function(i){return i.value;});
+  document.getElementById("curDownload").addEventListener("click",function(){
+    var subject=cSubject.value, grade=cGrade.value, region=cRegion.value, country=cCountry.value, fw=framework();
+    var units=SUBJECTS[subject][grade];
+    var rows=units.map(function(u,i){
+      return '<tr><td class="n">'+String(i+1).padStart(2,"0")+'</td><td><b>'+u+'</b></td><td>'+(2+(i%2))+' classes</td></tr>';
+    }).join("");
+    var total=units.reduce(function(a,u,i){return a+2+(i%2);},0);
+    var doc='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Banyan curriculum — '+subject+', '+region+'</title>'+
+      '<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#231F2B;line-height:1.6}'+
+      'h1{font-size:2rem;margin-bottom:4px}h2{font-size:1.1rem;margin-top:34px}'+
+      '.tag{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#3F7D5C}'+
+      'table{width:100%;border-collapse:collapse;margin-top:12px}td{padding:10px 8px;border-bottom:1px solid #E8DED2;font-size:.95rem}'+
+      'td.n{font-family:ui-monospace,monospace;color:#3F7D5C;width:44px}'+
+      '.box{background:#F7F1E8;border-radius:14px;padding:18px;margin-top:26px;font-size:.92rem}'+
+      '.foot{margin-top:34px;padding-top:16px;border-top:1px solid #E8DED2;font-size:.82rem;color:#6B6172}</style></head><body>'+
+      '<p class="tag">Banyan curriculum</p>'+
+      '<h1>'+subject+'</h1>'+
+      '<p><b>'+grade+'</b> &middot; '+region+', '+country+'<br>Mapped to '+fw+'</p>'+
+      '<h2>What this course covers</h2><table>'+rows+'</table>'+
+      '<p style="margin-top:14px"><b>Total: about '+total+' classes.</b> At $'+PRICE_USD+' a class, one-to-one, that is $'+(total*PRICE_USD)+' for the full course. '+
+      'Your first '+FREE_CLASSES+' class'+(FREE_CLASSES>1?"es are":" is")+' free.</p>'+
+      '<div class="box"><b>How we teach it.</b> Every class is one-to-one and live, with the same teacher throughout. '+
+      'We start by finding out what the learner already knows, then move at their pace. Pace changes, the order rarely does, because each unit is built on the one before it.</div>'+
+      '<div class="foot">This is Banyan\u2019s own teaching plan, aligned to '+fw+'. It is not an official document of any education authority. '+
+      'Curriculum last reviewed by Banyan. Questions: wa.me/'+WHATSAPP+'</div></body></html>';
+    var blob=new Blob([doc],{type:"text/html"});
+    var a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="Banyan-"+subject.replace(/\s+/g,"-")+"-"+region.replace(/[^A-Za-z0-9]+/g,"-")+".html";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
+  });
+  var map={code:"s-code",ai:"s-ai",maths:"s-maths",science:"s-science",english:"s-english",money:"s-money",pe:"s-pe"};
+  document.querySelectorAll(".node").forEach(function(g){
+    function go(){
+      var el=document.getElementById(map[g.getAttribute("data-s")]);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth",block:"center"});
+      el.style.boxShadow="0 0 0 2px #3F7D5C";
+      setTimeout(function(){el.style.boxShadow="";},1400);
     }
-    function listText(arr){
-      if(arr.length===0) return 'what you suggest';
-      if(arr.length===1) return arr[0].toLowerCase();
-      return arr.slice(0,-1).map(function(s){return s.toLowerCase();}).join(', ')+' and '+arr[arr.length-1].toLowerCase();
-    }
-    function country(){ return COUNTRIES[+fCountry.value]; }
-    function planKey(){
-      var p=fPlan.value;
-      if(p.indexOf('Reset')===0) return 'reset';
-      if(p.indexOf('Restore')===0) return 'restore';
-      if(p.indexOf('Immerse')===0) return 'immerse';
-      return null;
-    }
-    function quote(){
-      var k=planKey(); if(!k) return '';
-      var home=(fMode.value==='home');
-      var cur=home?'INR':country()[2];
-      var base=home?HOME_INR[k]:(ONLINE[cur]?ONLINE[cur][k]:ONLINE.USD[k]);
-      var d=DUR[+fDur.value]||0; var eff=Math.round(base*(1-d));
-      var sym=SYM[cur]||'';
-      return sym+eff.toLocaleString()+'/month';
-    }
-    function planText(){
-      var p=fPlan.value;
-      if(p==='Free first session') return 'the free first session';
-      if(p==='Not sure yet') return 'a plan (still deciding which)';
-      var durMap={"1":"monthly","3":"3-month","6":"6-month","12":"yearly"};
-      var q=quote();
-      return 'the '+p.replace(' · ',' (')+') '+durMap[fDur.value]+' plan'+(q?' ('+q+')':'');
-    }
-    function trainerText(){
-      var t=fTrainer.value;
-      if(t==='No preference') return 'no trainer preference';
-      return 'a '+t.replace(' trainer','').toLowerCase()+' trainer';
-    }
-    function buildMsg(){
-      var name=(fName.value.trim()||'there');
-      var modeTxt=(fMode.value==='home')?'in-home in Bengaluru':'online';
-      var m='Hi Sukoon. I\'m '+name+' from '+country()[0]+'. ';
-      m+='I\'d like '+planText()+' for '+listText(selectedTraining())+', '+modeTxt+', with '+trainerText()+'.';
-      var note=fNote.value.trim(); if(note) m+='\n\nAbout me: '+note;
-      m+='\n\nLooking forward to my free first session.';
-      return m;
-    }
-    function syncOffline(){
-      var home=(fMode.value==='home');
-      offlineChips.forEach(function(ch){
-        var input=ch.querySelector('input');
-        ch.classList.toggle('locked', !home);
-        input.disabled=!home;
-        if(!home) input.checked=false;
-      });
-      document.getElementById('fTrainNote').textContent = home
-        ? 'Full-contact combat is available in-home in Bengaluru.'
-        : 'Combat is taught as technique and conditioning online. Full contact unlocks with in-home.';
-    }
-    function refresh(){
-      fCode.value=country()[1]||'+';
-      // if in-home chosen, nudge country to India context for the code
-      syncOffline();
-      var msg=buildMsg();
-      preview.textContent=msg;
-      waSubmit.href=waLink(msg);
-      var phone=fPhone.value.trim();
-      var body=msg+(phone?('\n\nMy WhatsApp: '+(country()[1]||'')+' '+phone):'');
-      var subject='New Sukoon enquiry'+(fName.value.trim()?(' \u2014 '+fName.value.trim()):'');
-      emailSubmit.href='mailto:'+SUKOON_EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    }
-
-    fCountry.addEventListener('change', refresh);
-    fMode.addEventListener('change', refresh);
-    [fName,fPhone,fPlan,fDur,fTrainer,fNote].forEach(function(el){ el.addEventListener('input', refresh); el.addEventListener('change', refresh); });
-    document.querySelectorAll('#fTrain input').forEach(function(i){ i.addEventListener('change', refresh); });
-
-    refresh();
-  }
+    g.addEventListener("click",go);
+    g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+  });
 </script>
 </body>
 </html>
