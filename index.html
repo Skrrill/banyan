@@ -55,7 +55,7 @@
   .nav-links a.btn{padding:.6rem 1.25rem;font-size:.9rem}
   .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  .hero{padding:52px 0 26px}
+  .hero{min-height:calc(100svh - var(--navh,72px));display:flex;align-items:center;padding:36px 0}
   .hero-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:38px;align-items:center}
   .hero h1{font-size:clamp(2.5rem,5.2vw,3.9rem);margin:16px 0 14px}
   .hero h1 em{font-style:italic;color:var(--bark)}
@@ -151,8 +151,33 @@
   .foot p{font-size:.85rem;color:var(--ink-soft)}
   .foot-links{display:flex;gap:20px;font-size:.9rem;color:var(--ink-soft)}
 
+
+  /* ---- graphics + motion ---- */
+  .subj .ic{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;margin-bottom:13px}
+  .subj .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .subj:hover .ic{transform:rotate(-6deg) scale(1.06)}
+  .subj .ic{transition:transform .22s cubic-bezier(.34,1.4,.64,1)}
+
+  @keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+  @keyframes sway{from{transform:rotate(-1.1deg)}to{transform:rotate(1.1deg)}}
+  @keyframes drawline{to{stroke-dashoffset:0}}
+  @keyframes floatUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  .canopy{transform-origin:320px 140px;animation:sway 7s ease-in-out infinite alternate}
+  .canopy circle{transform-box:fill-box;transform-origin:center;animation:pop .7s cubic-bezier(.34,1.56,.64,1) backwards}
+  .trunk,.branch{stroke-dasharray:600;stroke-dashoffset:600;animation:drawline 1s ease .15s forwards}
+  .root{stroke-dasharray:200;stroke-dashoffset:200;animation:drawline .6s ease forwards}
+  .node circle{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.34,1.56,.64,1) backwards}
+  .node text{animation:floatUp .5s ease backwards}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.9,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .subj{opacity:0;transform:translateY(18px)}
+  .subj.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1),box-shadow .18s ease}
+
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
+    .hero{min-height:auto;padding:30px 0;display:block}
     .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
     .aud,.price-hero,.cur-grid{grid-template-columns:1fr}
@@ -165,7 +190,9 @@
     .cta-box{padding:32px 20px}
   }
   @media(max-width:560px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} .node text{font-size:13px} }
-  @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto} }
+  @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto}
+    .reveal,.subj{opacity:1!important;transform:none!important}
+    .trunk,.branch,.root{stroke-dashoffset:0!important} }
 </style>
 </head>
 <body>
@@ -350,18 +377,18 @@ var PRICE_USD=11;
 /* ====================== */
 
 var SUBJECT_LIST=[
- {key:"coding",   name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",      who:"School \u00b7 College"},
- {key:"ai",       name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",    who:"College \u00b7 Adults"},
- {key:"maths",    name:"Maths",              short:"Maths",    color:"#D9954A", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",  who:"School"},
- {key:"science",  name:"Science",            short:"Science",  color:"#3E7A59", blurb:"The why behind the syllabus, taught with things you can see, test and question.",      who:"School"},
- {key:"english",  name:"English",            short:"English",  color:"#C08246", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",    who:"School \u00b7 College"},
- {key:"money",    name:"Financial literacy", short:"Money",    color:"#2C5940", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",      who:"College \u00b7 Adults"},
- {key:"testprep", name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the calm to sit down and begin.",     who:"School \u00b7 College"},
- {key:"speaking", name:"Public speaking",    short:"Speaking", color:"#87995A", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",          who:"All ages"},
- {key:"data",     name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",    who:"College \u00b7 Adults"},
- {key:"spanish",  name:"Spanish",            short:"Spanish",  color:"#CC6446", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",        who:"All ages"},
- {key:"chess",    name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.", who:"School"},
- {key:"movement", name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",   who:"All ages"}
+ {key:"coding", icon:'<polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/>',    name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",      who:"School \u00b7 College"},
+ {key:"ai", icon:'<path d="M12 3l1.7 4.6L18.5 9.3l-4.8 1.7L12 15.6l-1.7-4.6L5.5 9.3l4.8-1.7z"/><circle cx="18" cy="17.5" r="2"/>',        name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",    who:"College \u00b7 Adults"},
+ {key:"maths", icon:'<path d="M4 7h6M7 4v6"/><path d="M14.5 6.5h5.5"/><path d="M14.5 10h5.5"/><path d="M4.5 15l4.5 4.5M9 15l-4.5 4.5"/>',     name:"Maths",              short:"Maths",    color:"#D9954A", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",  who:"School"},
+ {key:"science", icon:'<path d="M10 3v6.2L5.3 18A2 2 0 0 0 7 21h10a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M9 3h6"/><path d="M7.5 15h9"/>',   name:"Science",            short:"Science",  color:"#3E7A59", blurb:"The why behind the syllabus, taught with things you can see, test and question.",      who:"School"},
+ {key:"english", icon:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7.5h7M8 11h5"/>',   name:"English",            short:"English",  color:"#C08246", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",    who:"School \u00b7 College"},
+ {key:"money", icon:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9"/><path d="M14.5 9.8h-3.7a1.9 1.9 0 0 0 0 3.8h2.4a1.9 1.9 0 0 1 0 3.8H9.2"/>',     name:"Financial literacy", short:"Money",    color:"#2C5940", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",      who:"College \u00b7 Adults"},
+ {key:"testprep", icon:'<rect x="5" y="4.5" width="14" height="16" rx="2.2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.5 11.5h7M8.5 15h4.5"/>',  name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the calm to sit down and begin.",     who:"School \u00b7 College"},
+ {key:"speaking", icon:'<rect x="9.2" y="3" width="5.6" height="10.5" rx="2.8"/><path d="M5.5 11.2a6.5 6.5 0 0 0 13 0"/><path d="M12 17.8V21"/>',  name:"Public speaking",    short:"Speaking", color:"#87995A", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",          who:"All ages"},
+ {key:"data", icon:'<path d="M3.5 20.5h17"/><path d="M6.5 20.5v-6M11 20.5V7.5M15.5 20.5v-9M20 20.5V4.5"/>',      name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",    who:"College \u00b7 Adults"},
+ {key:"spanish", icon:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.6 2.6 14.4 0 17M12 3.5c-2.6 2.6-2.6 14.4 0 17"/>',   name:"Spanish",            short:"Spanish",  color:"#CC6446", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",        who:"All ages"},
+ {key:"chess", icon:'<path d="M8.5 21h7"/><path d="M10 21l.9-5h2.2l.9 5"/><path d="M12 3.6a3 3 0 0 1 2 5.3c1 .8 1.3 1.9 1.3 3.1H8.7c0-1.2.3-2.3 1.3-3.1a3 3 0 0 1 2-5.3z"/>',     name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.", who:"School"},
+ {key:"movement", icon:'<circle cx="12" cy="4.8" r="2.2"/><path d="M12 8v6.5"/><path d="M8.4 10.6h7.2"/><path d="M8.6 21l3.4-6.5L15.4 21"/>',  name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",   who:"All ages"}
 ];
 
 var GRADES=["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
@@ -451,6 +478,14 @@ $("waCta").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hi Banyan
 $("yr").textContent=new Date().getFullYear();
 $("freeLine").textContent = FREE_CLASSES===1 ? "Your first class is free" : ("Your first "+FREE_CLASSES+" classes are free");
 
+function setNavH(){
+  var h=document.querySelector("header").offsetHeight;
+  document.documentElement.style.setProperty("--navh",h+"px");
+}
+setNavH();
+window.addEventListener("resize",setNavH);
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(setNavH);}
+
 var burger=$("burger"), navLinks=$("navLinks");
 burger.addEventListener("click",function(){
   var open=navLinks.classList.toggle("open");
@@ -464,7 +499,7 @@ var grid=$("subjectGrid");
 SUBJECT_LIST.forEach(function(s,i){
   var el=document.createElement("article");
   el.className="subj"; el.id="s-"+s.key;
-  el.innerHTML='<div class="dot" style="background:'+s.color+'">'+String(i+1).padStart(2,"0")+'</div>'+
+  el.innerHTML='<div class="ic" style="background:'+s.color+'"><svg viewBox="0 0 24 24">'+s.icon+'</svg></div>'+
     '<h3>'+s.name+'</h3><p>'+s.blurb+'</p><div class="who">'+s.who+'</div>';
   grid.appendChild(el);
 });
@@ -474,18 +509,21 @@ SUBJECT_LIST.forEach(function(s,i){
   var svg=$("tree"), NS="http://www.w3.org/2000/svg";
   function mk(t,a){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);return n;}
 
-  var canopy=[
-    {cx:320,cy:100,rx:252,ry:72,o:.10},{cx:320,cy:88,rx:208,ry:60,o:.13},
-    {cx:186,cy:100,rx:98,ry:50,o:.15},{cx:454,cy:100,rx:98,ry:50,o:.15},
-    {cx:258,cy:70,rx:86,ry:44,o:.17},{cx:382,cy:70,rx:86,ry:44,o:.17},
-    {cx:320,cy:58,rx:68,ry:38,o:.20},{cx:124,cy:116,rx:56,ry:30,o:.13},
-    {cx:516,cy:116,rx:56,ry:30,o:.13}
+  var g=mk("g",{class:"canopy"});
+  var crown=[
+    {c:"#CBDDCD",r:[[196,116,66],[444,116,66],[320,92,86],[142,136,46],[498,136,46]]},
+    {c:"#A6C7AF",r:[[252,104,54],[388,104,54],[320,80,50],[178,124,36],[462,124,36]]},
+    {c:"#7DAE8D",r:[[320,112,42],[236,130,30],[404,130,30]]}
   ];
-  canopy.forEach(function(c){svg.appendChild(mk("ellipse",{cx:c.cx,cy:c.cy,rx:c.rx,ry:c.ry,fill:"#3E7A59","fill-opacity":c.o}));});
-  [[146,74],[498,76],[236,44],[404,44],[320,32],[94,104],[548,104]].forEach(function(p){
-    svg.appendChild(mk("circle",{cx:p[0],cy:p[1],r:7,fill:"#3E7A59","fill-opacity":.2}));
+  var ci=0;
+  crown.forEach(function(layer){
+    layer.r.forEach(function(p){
+      var c=mk("circle",{cx:p[0],cy:p[1],r:p[2],fill:layer.c});
+      c.style.animationDelay=(ci*0.045)+"s"; ci++;
+      g.appendChild(c);
+    });
   });
-
+  svg.appendChild(g);
   svg.appendChild(mk("path",{class:"trunk",d:"M320 440V150"}));
   svg.appendChild(mk("path",{class:"branch",d:"M62 206 Q192 176 320 172"}));
   svg.appendChild(mk("path",{class:"branch",d:"M320 172 Q448 176 578 206"}));
@@ -499,21 +537,26 @@ SUBJECT_LIST.forEach(function(s,i){
     var x=XS[i];
     var low=(i%2===1);
     var yDot=low?352:296;
-    svg.appendChild(mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-13)}));
-    var g=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
-    g.appendChild(mk("circle",{cx:x,cy:yDot,r:11,fill:s.color}));
+    var rp=mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-13)});
+    rp.style.animationDelay=(0.9+i*0.05)+"s";
+    svg.appendChild(rp);
+    var ng=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
+    var dot=mk("circle",{cx:x,cy:yDot,r:11,fill:s.color});
+    dot.style.animationDelay=(1.3+i*0.05)+"s";
+    ng.appendChild(dot);
     var tx=mk("text",{x:x,y:yDot+27,"text-anchor":"middle"});
+    tx.style.animationDelay=(1.45+i*0.05)+"s";
     tx.textContent=s.short;
-    g.appendChild(tx);
+    ng.appendChild(tx);
     function go(){
       var card=$("s-"+s.key); if(!card) return;
       card.scrollIntoView({behavior:"smooth",block:"center"});
       card.style.boxShadow="0 0 0 2px "+s.color;
       setTimeout(function(){card.style.boxShadow="";},1500);
     }
-    g.addEventListener("click",go);
-    g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
-    svg.appendChild(g);
+    ng.addEventListener("click",go);
+    ng.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+    svg.appendChild(ng);
   });
 })();
 
@@ -572,6 +615,32 @@ $("curDownload").addEventListener("click",function(){
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
 });
+
+/* ---------- scroll reveal ---------- */
+(function(){
+  var targets=[].slice.call(document.querySelectorAll(".head, .aud-card, .step, .price-card, .cmp, .cur-box, .cta-box"));
+  targets.forEach(function(t){t.classList.add("reveal");});
+  var cards=[].slice.call(document.querySelectorAll(".subj"));
+  if(!("IntersectionObserver" in window)){
+    targets.concat(cards).forEach(function(t){t.classList.add("in");}); return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  },{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+  targets.forEach(function(t){io.observe(t);});
+  var cio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var idx=cards.indexOf(e.target);
+        e.target.style.transitionDelay=((idx%4)*0.07)+"s";
+        e.target.classList.add("in"); cio.unobserve(e.target);
+      }
+    });
+  },{threshold:.12});
+  cards.forEach(function(c){cio.observe(c);});
+})();
 </script>
 </body>
 </html>
