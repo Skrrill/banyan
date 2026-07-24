@@ -202,6 +202,20 @@
   .f-done a{color:var(--bark-deep);font-weight:600;text-decoration:underline}
   @media(max-width:560px){ .f-row{grid-template-columns:1fr} .book-card{padding:26px 20px} }
 
+
+  .who-chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+  .who-chip{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:.6rem 1.1rem;font-family:var(--body);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer;transition:.16s}
+  .who-chip:hover{border-color:var(--bark)}
+  .who-chip[aria-pressed="true"]{background:var(--bark);border-color:var(--bark);color:#fff}
+  .learner{border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:16px;margin-bottom:12px;position:relative}
+  .learner .lrow{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:12px}
+  .learner .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bark);margin-bottom:10px;display:block}
+  .learner .rm{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:1.15rem;line-height:1;padding:2px 6px;border-radius:8px}
+  .learner .rm:hover{background:var(--bg-2);color:#A8412C}
+  .add-more{background:none;border:1.5px dashed var(--line);border-radius:14px;padding:.7rem 1.1rem;width:100%;font-family:var(--body);font-weight:600;font-size:.92rem;color:var(--bark-deep);cursor:pointer;margin-bottom:6px}
+  .add-more:hover{border-color:var(--bark);background:var(--bg)}
+  @media(max-width:560px){ .learner .lrow{grid-template-columns:1fr} }
+
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
     .hero{min-height:auto;padding:30px 0;display:block}
@@ -380,7 +394,7 @@
     <div class="book-card">
       <div id="bookForm">
         <h2>Book your free class.</h2>
-        <p class="sub">Three quick things and we will message you to fix a time. No payment, no commitment.</p>
+        <p class="sub">A few details and we will be in touch within a day to fix a time. No payment, no commitment.</p>
 
         <div class="f-row">
           <div class="f-field">
@@ -388,38 +402,55 @@
             <input id="bName" type="text" placeholder="First name" autocomplete="given-name" />
           </div>
           <div class="f-field">
-            <label for="bCountry">Country</label>
-            <select id="bCountry"></select>
+            <label for="bEmail">Email</label>
+            <input id="bEmail" type="email" placeholder="you@email.com" autocomplete="email" />
           </div>
         </div>
 
-        <div class="f-row" style="grid-template-columns:1fr">
+        <div class="f-row">
           <div class="f-field">
-            <label for="bPhone">WhatsApp number</label>
+            <label for="bCountry">Country</label>
+            <select id="bCountry"></select>
+          </div>
+          <div class="f-field">
+            <label for="bPhone">Phone number</label>
             <div class="f-phone">
-              <input class="dial" id="bDial" type="text" value="+91" readonly tabindex="-1" aria-label="Country dialling code" />
+              <input class="dial" id="bDial" type="text" value="+1" readonly tabindex="-1" aria-label="Country dialling code" />
               <input class="num" id="bPhone" type="tel" inputmode="numeric" placeholder="Your number" autocomplete="tel" />
             </div>
           </div>
         </div>
 
-        <div class="f-row" style="grid-template-columns:1fr">
-          <div class="f-field">
-            <label for="bSubject">What would you like to learn?</label>
-            <select id="bSubject"></select>
+        <div class="f-field" style="margin-bottom:10px">
+          <label>Who is this for?</label>
+          <div class="who-chips" id="whoChips">
+            <button type="button" class="who-chip" data-who="self" aria-pressed="false">Just me</button>
+            <button type="button" class="who-chip" data-who="child" aria-pressed="true">My child</button>
+            <button type="button" class="who-chip" data-who="children" aria-pressed="false">More than one child</button>
           </div>
         </div>
 
-        <a class="btn btn-primary f-go" id="bGo" href="#" target="_blank" rel="noopener">Book my free class</a>
+        <div id="learners"></div>
+        <button type="button" class="add-more" id="addLearner">+ Add another child</button>
+
+        <div class="f-row" style="grid-template-columns:1fr;margin-top:14px">
+          <div class="f-field">
+            <label for="bNote">Anything we should know? <span style="text-transform:none;letter-spacing:0;font-family:var(--body);color:var(--ink-soft)">(optional)</span></label>
+            <input id="bNote" type="text" placeholder="e.g. struggles with fractions, best after 5pm" />
+          </div>
+        </div>
+
+        <button class="btn btn-primary f-go" id="bGo" type="button">Book my free class</button>
         <p class="f-err" id="bErr"></p>
-        <p class="f-alt">Prefer email? <a id="bMail" href="#">Send it that way instead</a></p>
-        <p class="f-tiny">We only use your details to arrange your class.</p>
+        <p class="f-alt">On WhatsApp? <a id="bWa" href="#" target="_blank" rel="noopener">Message us there instead</a></p>
+        <p class="f-tiny">We only use your details to arrange your class. No spam, ever.</p>
       </div>
 
       <div class="f-done" id="bDone">
         <div class="tick"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></div>
-        <h3>Sent. Talk in a moment.</h3>
-        <p>WhatsApp should have opened with your message ready. If it did not, <a id="bRetry" href="#" target="_blank" rel="noopener">tap here to open it</a>.</p>
+        <h3>Got it. Thank you.</h3>
+        <p id="bDoneMsg">We have your details and will email you within a day to fix a time.</p>
+        <p class="f-tiny" style="margin-top:14px">Prefer to talk sooner? <a id="bRetry" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
       </div>
     </div>
   </div>
@@ -688,18 +719,22 @@ $("curDownload").addEventListener("click",function(){
    third-party service to rate-limit, break or shut down.
    Optional: paste a Google Apps Script URL below and every
    submission is also silently logged to your own sheet.        */
-var LOG_ENDPOINT=""; /* e.g. "https://script.google.com/macros/s/XXXX/exec" */
+var LOG_ENDPOINT="https://script.google.com/macros/s/AKfycbwEvnM7vVU6RaXAdJaUwHjmPdqfaXrbnpkFO45FqeojTKXag_7uNUM4xYliZ0GdST6y5g/exec";
+
+var SCHOOL_GRADES=["Kindergarten","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6",
+  "Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12","Not sure"];
+var ADULT_LEVELS=["College student","Adult / working","Not sure"];
 
 (function bookingForm(){
-  var bName=$("bName"), bCountry=$("bCountry"), bDial=$("bDial"), bPhone=$("bPhone"),
-      bSubject=$("bSubject"), bGo=$("bGo"), bErr=$("bErr"), bMail=$("bMail"),
-      bForm=$("bookForm"), bDone=$("bDone"), bRetry=$("bRetry");
+  var bName=$("bName"), bEmail=$("bEmail"), bCountry=$("bCountry"), bDial=$("bDial"),
+      bPhone=$("bPhone"), bGo=$("bGo"), bErr=$("bErr"), bWa=$("bWa"), bNote=$("bNote"),
+      bForm=$("bookForm"), bDone=$("bDone"), bRetry=$("bRetry"), bDoneMsg=$("bDoneMsg"),
+      whoChips=$("whoChips"), learners=$("learners"), addBtn=$("addLearner");
   if(!bName) return;
 
-  fill(bCountry,Object.keys(COUNTRIES));
-  fill(bSubject,SUBJECT_LIST.map(function(s){return s.name;}));
+  var who="child";
 
-  /* smart default: guess their country from the browser, they rarely touch it */
+  fill(bCountry,Object.keys(COUNTRIES));
   var LOCALE_MAP={US:"United States",IN:"India",GB:"United Kingdom",CA:"Canada",AU:"Australia",
     AE:"United Arab Emirates",SG:"Singapore",NZ:"New Zealand",IE:"Ireland",ZA:"South Africa"};
   try{
@@ -707,60 +742,149 @@ var LOG_ENDPOINT=""; /* e.g. "https://script.google.com/macros/s/XXXX/exec" */
     if(region && LOCALE_MAP[region]) bCountry.value=LOCALE_MAP[region];
   }catch(e){}
 
-  function digits(s){ return (s||"").replace(/[^0-9]/g,""); }
+  function digits(s){return (s||"").replace(/[^0-9]/g,"");}
+  function dial(){return COUNTRIES[bCountry.value].dial||"";}
+  function fullPhone(){return dial()+" "+digits(bPhone.value);}
 
-  function message(){
-    var name=bName.value.trim()||"there";
-    var dial=COUNTRIES[bCountry.value].dial||"";
-    return "Hi Banyan, I'm "+name+" from "+bCountry.value+". "+
-           "I'd like to book my free first class in "+bSubject.value+". "+
-           "My number is "+dial+" "+digits(bPhone.value)+".";
+  /* ---- learner rows ---- */
+  function makeLearner(index){
+    var wrap=document.createElement("div");
+    wrap.className="learner";
+    var grades=(who==="self"?ADULT_LEVELS:SCHOOL_GRADES);
+    var gradeOpts=grades.map(function(g){return '<option>'+g+'</option>';}).join("");
+    var subjOpts=SUBJECT_LIST.map(function(s){return '<option>'+s.name+'</option>';}).join("");
+    var nameCol = who==="self" ? "" :
+      '<div class="f-field"><label>Child\u2019s name</label><input class="lname" type="text" placeholder="First name" /></div>';
+    wrap.innerHTML=
+      (who==="children"?'<span class="tag">Child '+(index+1)+'</span>':'')+
+      '<div class="lrow"'+(who==="self"?' style="grid-template-columns:1fr 1fr"':'')+'>'+
+        nameCol+
+        '<div class="f-field"><label>'+(who==="self"?"Level":"Grade")+'</label><select class="lgrade">'+gradeOpts+'</select></div>'+
+        '<div class="f-field"><label>Subject</label><select class="lsubject">'+subjOpts+'</select></div>'+
+      '</div>';
+    if(who==="children"){
+      var rm=document.createElement("button");
+      rm.type="button"; rm.className="rm"; rm.innerHTML="&times;";
+      rm.setAttribute("aria-label","Remove this child");
+      rm.addEventListener("click",function(){
+        if(learners.children.length>1){ wrap.remove(); renumber(); }
+      });
+      wrap.appendChild(rm);
+    }
+    return wrap;
+  }
+  function renumber(){
+    [].slice.call(learners.children).forEach(function(el,i){
+      var t=el.querySelector(".tag"); if(t) t.textContent="Child "+(i+1);
+    });
+  }
+  function rebuild(){
+    learners.innerHTML="";
+    learners.appendChild(makeLearner(0));
+    addBtn.style.display = (who==="children") ? "block" : "none";
+    bErr.textContent="";
+  }
+  addBtn.addEventListener("click",function(){
+    if(learners.children.length>=6){ bErr.textContent="Six is plenty for one message, we will sort the rest by email."; return; }
+    learners.appendChild(makeLearner(learners.children.length));
+    renumber();
+  });
+
+  whoChips.querySelectorAll(".who-chip").forEach(function(chip){
+    chip.addEventListener("click",function(){
+      whoChips.querySelectorAll(".who-chip").forEach(function(c){c.setAttribute("aria-pressed","false");});
+      chip.setAttribute("aria-pressed","true");
+      who=chip.getAttribute("data-who");
+      rebuild(); sync();
+    });
+  });
+
+  function collect(){
+    return [].slice.call(learners.children).map(function(el){
+      var n=el.querySelector(".lname");
+      return {
+        name: who==="self" ? (bName.value.trim()||"Self") : (n?n.value.trim():""),
+        grade: el.querySelector(".lgrade").value,
+        subject: el.querySelector(".lsubject").value
+      };
+    });
   }
 
   function sync(){
-    bDial.value=COUNTRIES[bCountry.value].dial||"+";
-    var msg=message();
-    bGo.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
-    bRetry.href=bGo.href;
-    bMail.href="mailto:"+BANYAN_EMAIL+"?subject="+encodeURIComponent("Free class request \u2014 "+(bName.value.trim()||"new enquiry"))+
-               "&body="+encodeURIComponent(msg);
+    bDial.value=dial()||"+";
+    var ls=collect();
+    var subj=ls.length?ls[0].subject:"a subject";
+    bWa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(
+      "Hi Banyan, I'm "+(bName.value.trim()||"there")+" from "+bCountry.value+
+      ". I'd like a free first class"+(ls.length>1?(" for "+ls.length+" children"):(" in "+subj))+".");
+    if(bRetry) bRetry.href=bWa.href;
     bErr.textContent="";
   }
 
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);}
+
   function valid(){
-    if(!bName.value.trim()){ bErr.textContent="Add your name so we know who to greet."; bName.focus(); return false; }
-    if(digits(bPhone.value).length<6){ bErr.textContent="Add a WhatsApp number we can reach you on."; bPhone.focus(); return false; }
+    if(!bName.value.trim()){bErr.textContent="Add your name so we know who to greet.";bName.focus();return false;}
+    if(!validEmail(bEmail.value.trim())){bErr.textContent="Add an email we can reach you on.";bEmail.focus();return false;}
+    if(digits(bPhone.value).length<6){bErr.textContent="Add a phone number we can reach you on.";bPhone.focus();return false;}
+    if(who!=="self"){
+      var missing=collect().filter(function(l){return !l.name;});
+      if(missing.length){bErr.textContent=(collect().length>1?"Add a name for each child.":"Add your child\u2019s name.");return false;}
+    }
     return true;
   }
 
-  /* fire-and-forget log, never blocks the handoff */
-  function logIt(){
-    if(!LOG_ENDPOINT) return;
-    try{
-      var payload=JSON.stringify({
-        name:bName.value.trim(), country:bCountry.value,
-        phone:(COUNTRIES[bCountry.value].dial||"")+" "+digits(bPhone.value),
-        subject:bSubject.value, at:new Date().toISOString()
-      });
-      if(navigator.sendBeacon){ navigator.sendBeacon(LOG_ENDPOINT, payload); }
-      else { fetch(LOG_ENDPOINT,{method:"POST",mode:"no-cors",body:payload,keepalive:true}).catch(function(){}); }
-    }catch(e){}
+  function payload(){
+    return {
+      name:bName.value.trim(), email:bEmail.value.trim(), phone:fullPhone(),
+      country:bCountry.value, note:(bNote?bNote.value.trim():""),
+      learners:collect(), at:new Date().toISOString()
+    };
   }
 
-  [bName,bPhone].forEach(function(el){ el.addEventListener("input",sync); });
-  [bCountry,bSubject].forEach(function(el){ el.addEventListener("change",sync); });
+  function messageText(d){
+    var lines=["New free class request","",
+      "Name: "+d.name,"Email: "+d.email,"Phone: "+d.phone,"Country: "+d.country,""];
+    d.learners.forEach(function(l,i){
+      lines.push((d.learners.length>1?("Learner "+(i+1)+": "):"Learner: ")+l.name+" \u2014 "+l.grade+" \u2014 "+l.subject);
+    });
+    if(d.note) lines.push("","Note: "+d.note);
+    return lines.join("\n");
+  }
 
-  bGo.addEventListener("click",function(e){
-    if(!valid()){ e.preventDefault(); return; }
-    sync(); logIt();
-    setTimeout(function(){ bForm.style.display="none"; bDone.classList.add("on"); },400);
-  });
-  bMail.addEventListener("click",function(e){
-    if(!valid()){ e.preventDefault(); return; }
-    sync(); logIt();
+  function showDone(txt){
+    if(txt && bDoneMsg) bDoneMsg.textContent=txt;
+    bForm.style.display="none";
+    bDone.classList.add("on");
+    bDone.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+
+  bGo.addEventListener("click",function(){
+    if(!valid()) return;
+    var d=payload();
+    if(LOG_ENDPOINT){
+      bGo.disabled=true; bGo.textContent="Sending\u2026";
+      fetch(LOG_ENDPOINT,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body:JSON.stringify(d),keepalive:true})
+        .then(function(){ showDone("We have your details and will email you within a day to fix a time."); })
+        .catch(function(){
+          window.location.href="mailto:"+BANYAN_EMAIL+"?subject="+
+            encodeURIComponent("Free class request \u2014 "+d.name)+"&body="+encodeURIComponent(messageText(d));
+          showDone("Your email app should have opened with the details ready to send.");
+        });
+    }else{
+      window.location.href="mailto:"+BANYAN_EMAIL+"?subject="+
+        encodeURIComponent("Free class request \u2014 "+d.name)+"&body="+encodeURIComponent(messageText(d));
+      showDone("Your email app should have opened with the details ready to send.");
+    }
   });
 
-  sync();
+  [bName,bEmail,bPhone].forEach(function(el){el.addEventListener("input",sync);});
+  [bCountry].forEach(function(el){el.addEventListener("change",sync);});
+  learners.addEventListener("change",sync);
+
+  rebuild(); sync();
 })();
 
 /* ---------- scroll reveal ---------- */
