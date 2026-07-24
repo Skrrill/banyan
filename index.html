@@ -175,6 +175,33 @@
   .subj{opacity:0;transform:translateY(18px)}
   .subj.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1),box-shadow .18s ease}
 
+
+  /* ---- booking form ---- */
+  .book-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:34px;max-width:620px;margin:0 auto;box-shadow:var(--shadow)}
+  .book-card h2{font-size:clamp(1.7rem,3.4vw,2.3rem);text-align:center}
+  .book-card .sub{text-align:center;color:var(--ink-soft);margin:10px auto 26px;max-width:34em}
+  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  .f-field label{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  .f-field input,.f-field select{width:100%;font-family:var(--body);font-size:1rem;padding:.82rem .95rem;border:1.5px solid var(--line);border-radius:13px;background:var(--bg);color:var(--ink)}
+  .f-field input:focus,.f-field select:focus{outline:none;border-color:var(--bark);box-shadow:0 0 0 3px rgba(62,122,89,.18)}
+  .f-field input::placeholder{color:var(--ink-soft);opacity:.65}
+  .f-phone{display:flex;gap:9px}
+  .f-phone .dial{flex:0 0 84px;text-align:center;font-weight:600;background:var(--bg-2);cursor:default}
+  .f-phone input.num{flex:1}
+  .f-go{width:100%;margin-top:20px;font-size:1.05rem;padding:1rem}
+  .f-alt{text-align:center;margin-top:14px;font-size:.88rem;color:var(--ink-soft)}
+  .f-alt a{color:var(--bark-deep);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .f-err{color:#A8412C;font-size:.86rem;margin-top:10px;text-align:center;min-height:1.2em}
+  .f-tiny{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-top:12px}
+  .f-done{display:none;text-align:center;padding:12px 0}
+  .f-done.on{display:block}
+  .f-done .tick{width:54px;height:54px;border-radius:50%;background:var(--bark);display:grid;place-items:center;margin:0 auto 14px}
+  .f-done .tick svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .f-done h3{font-size:1.35rem;margin-bottom:6px}
+  .f-done p{color:var(--ink-soft);font-size:.95rem}
+  .f-done a{color:var(--bark-deep);font-weight:600;text-decoration:underline}
+  @media(max-width:560px){ .f-row{grid-template-columns:1fr} .book-card{padding:26px 20px} }
+
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
     .hero{min-height:auto;padding:30px 0;display:block}
@@ -350,10 +377,50 @@
 
 <section class="band" id="start">
   <div class="wrap">
-    <div class="cta-box">
-      <h2>Your first class is free.</h2>
-      <p>Pick a subject, meet your teacher, and see how it feels. No payment, no commitment, no pressure.</p>
-      <a class="btn btn-primary" id="waCta" href="#" target="_blank" rel="noopener">Book a free class</a>
+    <div class="book-card">
+      <div id="bookForm">
+        <h2>Book your free class.</h2>
+        <p class="sub">Three quick things and we will message you to fix a time. No payment, no commitment.</p>
+
+        <div class="f-row">
+          <div class="f-field">
+            <label for="bName">Your name</label>
+            <input id="bName" type="text" placeholder="First name" autocomplete="given-name" />
+          </div>
+          <div class="f-field">
+            <label for="bCountry">Country</label>
+            <select id="bCountry"></select>
+          </div>
+        </div>
+
+        <div class="f-row" style="grid-template-columns:1fr">
+          <div class="f-field">
+            <label for="bPhone">WhatsApp number</label>
+            <div class="f-phone">
+              <input class="dial" id="bDial" type="text" value="+91" readonly tabindex="-1" aria-label="Country dialling code" />
+              <input class="num" id="bPhone" type="tel" inputmode="numeric" placeholder="Your number" autocomplete="tel" />
+            </div>
+          </div>
+        </div>
+
+        <div class="f-row" style="grid-template-columns:1fr">
+          <div class="f-field">
+            <label for="bSubject">What would you like to learn?</label>
+            <select id="bSubject"></select>
+          </div>
+        </div>
+
+        <a class="btn btn-primary f-go" id="bGo" href="#" target="_blank" rel="noopener">Book my free class</a>
+        <p class="f-err" id="bErr"></p>
+        <p class="f-alt">Prefer email? <a id="bMail" href="#">Send it that way instead</a></p>
+        <p class="f-tiny">We only use your details to arrange your class.</p>
+      </div>
+
+      <div class="f-done" id="bDone">
+        <div class="tick"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></div>
+        <h3>Sent. Talk in a moment.</h3>
+        <p>WhatsApp should have opened with your message ready. If it did not, <a id="bRetry" href="#" target="_blank" rel="noopener">tap here to open it</a>.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -374,6 +441,7 @@
 var WHATSAPP="919113865545";
 var FREE_CLASSES=1;
 var PRICE_USD=11;
+var BANYAN_EMAIL="sukoonblr@gmail.com";  /* change to your Banyan inbox */
 /* ====================== */
 
 var SUBJECT_LIST=[
@@ -459,22 +527,21 @@ var UNITS={
 var US_STATES={"Alabama":"Alabama Course of Study","Alaska":"Alaska State Standards","Arizona":"Arizona Academic Standards","Arkansas":"Arkansas Academic Standards","California":"California Common Core and NGSS","Colorado":"Colorado Academic Standards","Connecticut":"Connecticut Core Standards","Delaware":"Delaware Academic Standards","District of Columbia":"DC Academic Standards","Florida":"Florida B.E.S.T. Standards","Georgia":"Georgia Standards of Excellence","Hawaii":"Hawaii Content Standards","Idaho":"Idaho Content Standards","Illinois":"Illinois Learning Standards","Indiana":"Indiana Academic Standards","Iowa":"Iowa Core","Kansas":"Kansas Academic Standards","Kentucky":"Kentucky Academic Standards","Louisiana":"Louisiana Student Standards","Maine":"Maine Learning Results","Maryland":"Maryland College and Career Ready Standards","Massachusetts":"Massachusetts Curriculum Frameworks","Michigan":"Michigan Academic Standards","Minnesota":"Minnesota Academic Standards","Mississippi":"Mississippi College and Career Readiness Standards","Missouri":"Missouri Learning Standards","Montana":"Montana Content Standards","Nebraska":"Nebraska College and Career Ready Standards","Nevada":"Nevada Academic Content Standards","New Hampshire":"New Hampshire College and Career Ready Standards","New Jersey":"New Jersey Student Learning Standards","New Mexico":"New Mexico Content Standards","New York":"New York State Next Generation Standards","North Carolina":"North Carolina Standard Course of Study","North Dakota":"North Dakota Academic Content Standards","Ohio":"Ohio Learning Standards","Oklahoma":"Oklahoma Academic Standards","Oregon":"Oregon Academic Content Standards","Pennsylvania":"Pennsylvania Core Standards","Rhode Island":"Rhode Island Academic Standards","South Carolina":"South Carolina College and Career Ready Standards","South Dakota":"South Dakota Content Standards","Tennessee":"Tennessee Academic Standards","Texas":"Texas Essential Knowledge and Skills (TEKS)","Utah":"Utah Core Standards","Vermont":"Vermont Framework of Standards","Virginia":"Virginia Standards of Learning (SOL)","Washington":"Washington State Learning Standards","West Virginia":"West Virginia College and Career Readiness Standards","Wisconsin":"Wisconsin Academic Standards","Wyoming":"Wyoming Content Standards"};
 
 var COUNTRIES={
- "United States":{cur:"USD",sym:"$",rate:1,label:"State",regions:US_STATES},
- "India":{cur:"INR",sym:"\u20b9",rate:88,label:"Board",regions:{"CBSE":"CBSE","ICSE / ISC":"ICSE","State Board":"State Board curriculum","IB":"International Baccalaureate"}},
- "United Kingdom":{cur:"GBP",sym:"\u00a3",rate:0.79,label:"Nation",regions:{"England":"National Curriculum (England)","Scotland":"Curriculum for Excellence","Wales":"Curriculum for Wales","Northern Ireland":"Northern Ireland Curriculum"}},
- "Canada":{cur:"CAD",sym:"C$",rate:1.37,label:"Province",regions:{"Ontario":"Ontario Curriculum","British Columbia":"BC Curriculum","Alberta":"Alberta Programs of Study","Quebec":"Qu\u00e9bec Education Program","Manitoba":"Manitoba Curriculum","Nova Scotia":"Nova Scotia Curriculum"}},
- "Australia":{cur:"AUD",sym:"A$",rate:1.51,label:"State",regions:{"New South Wales":"NSW Syllabus","Victoria":"Victorian Curriculum","Queensland":"Australian Curriculum (QLD)","Western Australia":"WA Curriculum","South Australia":"Australian Curriculum (SA)"}},
- "United Arab Emirates":{cur:"AED",sym:"AED ",rate:3.67,label:"Curriculum",regions:{"UAE MoE":"UAE Ministry of Education curriculum","British":"National Curriculum (England)","American":"US Common Core","IB":"International Baccalaureate"}},
- "Singapore":{cur:"SGD",sym:"S$",rate:1.29,label:"Curriculum",regions:{"MOE":"Singapore MOE syllabus","IB":"International Baccalaureate"}},
- "New Zealand":{cur:"NZD",sym:"NZ$",rate:1.65,label:"Curriculum",regions:{"National":"The New Zealand Curriculum"}},
- "Ireland":{cur:"EUR",sym:"\u20ac",rate:0.92,label:"Curriculum",regions:{"National":"Irish National Curriculum"}},
- "South Africa":{cur:"ZAR",sym:"R",rate:18,label:"Curriculum",regions:{"National":"CAPS"}},
- "Other":{cur:"USD",sym:"$",rate:1,label:"Curriculum",regions:{"International":"International / IB-aligned"}}
+ "United States":{dial:"+1",cur:"USD",sym:"$",rate:1,label:"State",regions:US_STATES},
+ "India":{dial:"+91",cur:"INR",sym:"\u20b9",rate:88,label:"Board",regions:{"CBSE":"CBSE","ICSE / ISC":"ICSE","State Board":"State Board curriculum","IB":"International Baccalaureate"}},
+ "United Kingdom":{dial:"+44",cur:"GBP",sym:"\u00a3",rate:0.79,label:"Nation",regions:{"England":"National Curriculum (England)","Scotland":"Curriculum for Excellence","Wales":"Curriculum for Wales","Northern Ireland":"Northern Ireland Curriculum"}},
+ "Canada":{dial:"+1",cur:"CAD",sym:"C$",rate:1.37,label:"Province",regions:{"Ontario":"Ontario Curriculum","British Columbia":"BC Curriculum","Alberta":"Alberta Programs of Study","Quebec":"Qu\u00e9bec Education Program","Manitoba":"Manitoba Curriculum","Nova Scotia":"Nova Scotia Curriculum"}},
+ "Australia":{dial:"+61",cur:"AUD",sym:"A$",rate:1.51,label:"State",regions:{"New South Wales":"NSW Syllabus","Victoria":"Victorian Curriculum","Queensland":"Australian Curriculum (QLD)","Western Australia":"WA Curriculum","South Australia":"Australian Curriculum (SA)"}},
+ "United Arab Emirates":{dial:"+971",cur:"AED",sym:"AED ",rate:3.67,label:"Curriculum",regions:{"UAE MoE":"UAE Ministry of Education curriculum","British":"National Curriculum (England)","American":"US Common Core","IB":"International Baccalaureate"}},
+ "Singapore":{dial:"+65",cur:"SGD",sym:"S$",rate:1.29,label:"Curriculum",regions:{"MOE":"Singapore MOE syllabus","IB":"International Baccalaureate"}},
+ "New Zealand":{dial:"+64",cur:"NZD",sym:"NZ$",rate:1.65,label:"Curriculum",regions:{"National":"The New Zealand Curriculum"}},
+ "Ireland":{dial:"+353",cur:"EUR",sym:"\u20ac",rate:0.92,label:"Curriculum",regions:{"National":"Irish National Curriculum"}},
+ "South Africa":{dial:"+27",cur:"ZAR",sym:"R",rate:18,label:"Curriculum",regions:{"National":"CAPS"}},
+ "Other":{dial:"",cur:"USD",sym:"$",rate:1,label:"Curriculum",regions:{"International":"International / IB-aligned"}}
 };
 
 function $(id){return document.getElementById(id);}
 
-$("waCta").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hi Banyan, I'd like to book a free first class.");
 $("yr").textContent=new Date().getFullYear();
 $("freeLine").textContent = FREE_CLASSES===1 ? "Your first class is free" : ("Your first "+FREE_CLASSES+" classes are free");
 
@@ -615,6 +682,86 @@ $("curDownload").addEventListener("click",function(){
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
 });
+
+/* ================= BOOKING FORM =================
+   Delivery is by plain links (WhatsApp / email) so there is no
+   third-party service to rate-limit, break or shut down.
+   Optional: paste a Google Apps Script URL below and every
+   submission is also silently logged to your own sheet.        */
+var LOG_ENDPOINT=""; /* e.g. "https://script.google.com/macros/s/XXXX/exec" */
+
+(function bookingForm(){
+  var bName=$("bName"), bCountry=$("bCountry"), bDial=$("bDial"), bPhone=$("bPhone"),
+      bSubject=$("bSubject"), bGo=$("bGo"), bErr=$("bErr"), bMail=$("bMail"),
+      bForm=$("bookForm"), bDone=$("bDone"), bRetry=$("bRetry");
+  if(!bName) return;
+
+  fill(bCountry,Object.keys(COUNTRIES));
+  fill(bSubject,SUBJECT_LIST.map(function(s){return s.name;}));
+
+  /* smart default: guess their country from the browser, they rarely touch it */
+  var LOCALE_MAP={US:"United States",IN:"India",GB:"United Kingdom",CA:"Canada",AU:"Australia",
+    AE:"United Arab Emirates",SG:"Singapore",NZ:"New Zealand",IE:"Ireland",ZA:"South Africa"};
+  try{
+    var region=(navigator.language||"").split("-")[1];
+    if(region && LOCALE_MAP[region]) bCountry.value=LOCALE_MAP[region];
+  }catch(e){}
+
+  function digits(s){ return (s||"").replace(/[^0-9]/g,""); }
+
+  function message(){
+    var name=bName.value.trim()||"there";
+    var dial=COUNTRIES[bCountry.value].dial||"";
+    return "Hi Banyan, I'm "+name+" from "+bCountry.value+". "+
+           "I'd like to book my free first class in "+bSubject.value+". "+
+           "My number is "+dial+" "+digits(bPhone.value)+".";
+  }
+
+  function sync(){
+    bDial.value=COUNTRIES[bCountry.value].dial||"+";
+    var msg=message();
+    bGo.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+    bRetry.href=bGo.href;
+    bMail.href="mailto:"+BANYAN_EMAIL+"?subject="+encodeURIComponent("Free class request \u2014 "+(bName.value.trim()||"new enquiry"))+
+               "&body="+encodeURIComponent(msg);
+    bErr.textContent="";
+  }
+
+  function valid(){
+    if(!bName.value.trim()){ bErr.textContent="Add your name so we know who to greet."; bName.focus(); return false; }
+    if(digits(bPhone.value).length<6){ bErr.textContent="Add a WhatsApp number we can reach you on."; bPhone.focus(); return false; }
+    return true;
+  }
+
+  /* fire-and-forget log, never blocks the handoff */
+  function logIt(){
+    if(!LOG_ENDPOINT) return;
+    try{
+      var payload=JSON.stringify({
+        name:bName.value.trim(), country:bCountry.value,
+        phone:(COUNTRIES[bCountry.value].dial||"")+" "+digits(bPhone.value),
+        subject:bSubject.value, at:new Date().toISOString()
+      });
+      if(navigator.sendBeacon){ navigator.sendBeacon(LOG_ENDPOINT, payload); }
+      else { fetch(LOG_ENDPOINT,{method:"POST",mode:"no-cors",body:payload,keepalive:true}).catch(function(){}); }
+    }catch(e){}
+  }
+
+  [bName,bPhone].forEach(function(el){ el.addEventListener("input",sync); });
+  [bCountry,bSubject].forEach(function(el){ el.addEventListener("change",sync); });
+
+  bGo.addEventListener("click",function(e){
+    if(!valid()){ e.preventDefault(); return; }
+    sync(); logIt();
+    setTimeout(function(){ bForm.style.display="none"; bDone.classList.add("on"); },400);
+  });
+  bMail.addEventListener("click",function(e){
+    if(!valid()){ e.preventDefault(); return; }
+    sync(); logIt();
+  });
+
+  sync();
+})();
 
 /* ---------- scroll reveal ---------- */
 (function(){
