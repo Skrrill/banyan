@@ -30,6 +30,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  html{overflow-x:hidden}
   body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   h1,h2,h3,h4,.brand b,.price-num b{font-family:var(--disp);font-weight:600;line-height:1.1;letter-spacing:-.015em}
@@ -171,6 +172,8 @@
   .node text{animation:floatUp .5s ease backwards}
 
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.9,.3,1)}
+  .tstack,.why-grid{min-width:0}
+  .tcard,.why-card{min-width:0;max-width:100%}
   .reveal.in{opacity:1;transform:none}
   .subj{opacity:0;transform:translateY(18px)}
   .subj.in{opacity:1;transform:none;transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.3,1),box-shadow .18s ease}
@@ -216,6 +219,71 @@
   .add-more:hover{border-color:var(--bark);background:var(--bg)}
   @media(max-width:560px){ .learner .lrow{grid-template-columns:1fr} }
 
+
+  /* ---- founder ---- */
+  .founder-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:center}
+  .founder-photo{aspect-ratio:4/5;border-radius:24px;background:linear-gradient(150deg,var(--bark),var(--bark-deep));display:grid;place-items:center;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+  .founder-photo img{width:100%;height:100%;object-fit:cover}
+  .founder-photo .ph{color:rgba(255,255,255,.7);font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:20px}
+  .founder-photo .ph svg{width:46px;height:46px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.4;margin-bottom:12px}
+  .founder-body h2{font-size:clamp(1.8rem,3.7vw,2.5rem)}
+  .founder-body .sig{margin-top:20px;font-family:var(--disp);font-style:italic;font-size:1.15rem;color:var(--bark-deep)}
+  .founder-body .sig span{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+  .lede-quote{font-family:var(--disp);font-size:1.3rem;line-height:1.5;color:var(--ink);margin:0 0 18px}
+  .founder-body p{color:var(--ink-soft);margin-bottom:12px}
+
+  /* ---- why $11 ---- */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .why-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .why-card .ic{width:40px;height:40px;border-radius:12px;background:var(--bg-2);display:grid;place-items:center;margin-bottom:14px}
+  .why-card .ic svg{width:21px;height:21px;stroke:var(--bark-deep);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .why-card h3{font-size:1.1rem;margin-bottom:6px}
+  .why-card p{font-size:.92rem;color:var(--ink-soft)}
+  .why-banner{background:var(--bark);color:#fff;border-radius:20px;padding:26px 30px;margin-top:22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+  .why-banner p{color:rgba(255,255,255,.9);max-width:44em}
+  .why-banner b{color:#fff}
+
+  /* ---- demo / what a class looks like ---- */
+  .demo-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+  .demo-frame{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#241c16}
+  .demo-frame .screen{aspect-ratio:16/10;background:linear-gradient(135deg,#3E7A59,#2C5940);display:grid;place-items:center;position:relative}
+  .demo-frame video,.demo-frame img{width:100%;display:block}
+  .demo-frame .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;cursor:pointer}
+  .demo-frame .play svg{width:26px;height:26px;fill:var(--bark-deep);margin-left:3px}
+  .demo-frame .cap{background:#241c16;color:rgba(255,255,255,.6);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;text-align:center}
+  .demo-list{list-style:none}
+  .demo-list li{padding:12px 0 12px 34px;position:relative;border-bottom:1px solid var(--line)}
+  .demo-list li:last-child{border-bottom:none}
+  .demo-list li b{display:block;font-size:1.02rem;color:var(--ink)}
+  .demo-list li span{font-size:.9rem;color:var(--ink-soft)}
+  .demo-list li .num{position:absolute;left:0;top:12px;width:24px;height:24px;border-radius:50%;background:var(--bark);color:#fff;font-family:var(--mono);font-size:.7rem;display:grid;place-items:center}
+
+  /* ---- testimonials ---- */
+  .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
+  .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
+  .tcard p{font-size:.98rem;color:var(--ink);flex:1;line-height:1.55}
+  .tcard .who{margin-top:16px;display:flex;align-items:center;gap:11px}
+  .tcard .who .av{width:38px;height:38px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;font-family:var(--disp);font-weight:600;color:var(--bark-deep)}
+  .tcard .who b{font-size:.9rem}
+  .tcard .who span{display:block;font-size:.78rem;color:var(--ink-soft)}
+  .t-note{margin-top:18px;font-size:.86rem;color:var(--ink-soft);text-align:center}
+
+  /* ---- faq ---- */
+  .faq{max-width:760px;margin:0 auto}
+  .faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+  .faq summary{padding:18px 22px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:1.02rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .chev{flex:none;width:20px;height:20px;transition:transform .2s;stroke:var(--bark);fill:none;stroke-width:2}
+  .faq details[open] summary .chev{transform:rotate(180deg)}
+  .faq details p{padding:0 22px 20px;color:var(--ink-soft);font-size:.96rem;margin:0}
+
+  @media(max-width:900px){
+    .founder-grid,.demo-grid{grid-template-columns:1fr}
+    .why-grid,.tstack{grid-template-columns:1fr}
+    .founder-photo{max-width:340px;margin:0 auto}
+  }
+
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
     .hero{min-height:auto;padding:30px 0;display:block}
@@ -251,7 +319,8 @@
       <a href="#subjects">Subjects</a>
       <a href="#who">Who it's for</a>
       <a href="#pricing">Pricing</a>
-      <a href="#curriculum">Curriculum</a>
+      <a href="#founder">Why Banyan</a>
+      <a href="#faq">FAQ</a>
       <a class="btn btn-primary" href="#start">Start free</a>
     </nav>
   </div>
@@ -312,6 +381,88 @@
         <h3>Parents</h3>
         <p>One tutor, one plan, one place. You will know exactly what your child is working on.</p>
         <ul><li>First class free</li><li>Progress you can check</li><li>Timings that fit your day</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="band" id="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <!-- Replace this block with: <img src="your-photo.jpg" alt="Raj, founder of Banyan" /> -->
+        <div class="ph">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          Your photo here
+        </div>
+      </div>
+      <div class="founder-body">
+        <span class="mono">Why Banyan exists</span>
+        <h2>I worked inside edtech. I left to fix it.</h2>
+        <p class="lede-quote">"I saw good families pushed into 96-class packages they did not need, sold by scripts, at prices that changed depending on where they lived. I could not keep doing that."</p>
+        <p>I am a computer science student who loves teaching, and I built Banyan myself, the site, the curriculum, all of it. Before this I worked at an education company and saw how the industry really operates: pressure to upsell, locked contracts, per-country pricing, and children treated as revenue rather than learners.</p>
+        <p>Banyan is the opposite of that. One fair price everywhere. No packages, no pressure, no contracts. Real teachers who are paid well, chosen for how clearly they explain and how kindly they teach. Every plan built around the child in front of us, not a script. That is the whole idea, and I would rather grow slowly and honestly than quickly and cheaply.</p>
+        <div class="sig">Raj<span>Founder, Banyan</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY $11 -->
+<section class="band tint" id="why">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">The honest price</span>
+      <h2>Why it is $11, not $40.</h2>
+      <p>A fair price should not feel suspicious. Here is exactly how we keep it low without cutting a single corner on the teaching.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 21V9l6-5 6 5v12"/><path d="M10 21v-6h4v6"/></svg></div>
+        <h3>No middlemen</h3>
+        <p>You reach the teacher directly. No sales floor, no call centre, no layers taking a cut of every class you pay for.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/></svg></div>
+        <h3>No package trap</h3>
+        <p>We do not need you locked into 96 classes to survive. You pay per class, so we only earn if you keep choosing to stay.</p>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
+        <h3>Teachers paid well</h3>
+        <p>Low price does not mean underpaid teachers. It means the money goes to teaching, not to advertising and overhead. Our teachers are paid properly.</p>
+      </div>
+    </div>
+    <div class="why-banner">
+      <p><b>Same price, everywhere on earth.</b> A family in Ohio and a family in Chennai pay the identical $11. Most platforms quietly charge each country a different rate. We publish one number and never move it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT A CLASS LOOKS LIKE -->
+<section class="band" id="demo">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">Inside a class</span>
+      <h2>See exactly what you are signing up for.</h2>
+      <p>No black box. A Banyan class is one teacher, one learner, and a plan you can both see.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-frame">
+        <!-- Replace .screen block with: <video controls poster="thumb.jpg"><source src="demo.mp4" type="video/mp4"></video> -->
+        <div class="screen">
+          <div class="play" role="button" tabindex="0" aria-label="Play demo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="cap">Sample class \u00b7 add your recorded demo here</div>
+      </div>
+      <div>
+        <ul class="demo-list">
+          <li><span class="num">1</span><b>We meet your learner where they are</b><span>The first class is a friendly check of what they know and what they find hard.</span></li>
+          <li><span class="num">2</span><b>One clear plan, not random worksheets</b><span>Each lesson builds on the last, so progress is steady and visible.</span></li>
+          <li><span class="num">3</span><b>The same teacher, every time</b><span>Someone who remembers your child, their pace and their wins.</span></li>
+          <li><span class="num">4</span><b>You can see the progress</b><span>Lessons done, skills unlocked, and honest notes you can actually read.</span></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -389,6 +540,47 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="band tint" id="voices">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">Founding students</span>
+      <h2>Real words from real learners.</h2>
+      <p>We are new and honest about it. These are our founding students, and we would rather show you a few true voices than a wall of invented five-stars.</p>
+    </div>
+    <div class="tstack" id="tstack">
+      <!-- Replace each card's text and name with a REAL quote once you have it. -->
+      <div class="tcard">
+        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
+        <p>Add a real sentence from a founding student or parent here. One honest, specific line about what changed for them.</p>
+        <div class="who"><div class="av">A</div><div><b>Founding student</b><span>Subject \u00b7 Country</span></div></div>
+      </div>
+      <div class="tcard">
+        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
+        <p>A second genuine quote goes here. Specific beats glowing: "my daughter stopped dreading maths" lands harder than "great service".</p>
+        <div class="who"><div class="av">B</div><div><b>Founding parent</b><span>Subject \u00b7 Country</span></div></div>
+      </div>
+      <div class="tcard">
+        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
+        <p>A third real quote here. Keep the person\u2019s first name and city if they are happy for you to use them, it adds trust.</p>
+        <div class="who"><div class="av">C</div><div><b>Founding student</b><span>Subject \u00b7 Country</span></div></div>
+      </div>
+    </div>
+    <p class="t-note">Run your first free classes this week, ask each learner for one honest line, and swap these in. Real and recent beats polished and fake, every time.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="mono">Questions parents ask</span>
+      <h2>The things you are probably wondering.</h2>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
 <section class="band" id="start">
   <div class="wrap">
     <div class="book-card">
@@ -462,7 +654,7 @@
       <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#3E7A59" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 34V14"/><path d="M20 16c-6-2-10 0-12 4M20 16c6-2 10 0 12 4"/><path d="M8 20v8M32 20v8M14 24v6M26 24v6"/></g><circle cx="20" cy="10" r="6" fill="#D9954A"/></svg>
       <b>Banyan</b>
     </div>
-    <div class="foot-links"><a href="#subjects">Subjects</a><a href="#pricing">Pricing</a><a href="#start">Book</a></div>
+    <div class="foot-links"><a href="#founder">Why Banyan</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#start">Book</a></div>
     <p>Learning that grows with you. &copy; <span id="yr"></span> Banyan.</p>
   </div>
 </footer>
@@ -887,9 +1079,38 @@ var ADULT_LEVELS=["College student","Adult / working","Not sure"];
   rebuild(); sync();
 })();
 
+/* ---------- FAQ ---------- */
+(function(){
+  var FAQ=[
+    ["Is the first class really free?","Yes. Your first class is genuinely free, no card, no catch. It is a real lesson so you can see how we teach before deciding anything."],
+    ["How does the $11 price work?","It is $11 per class, one-to-one, the same in every country. You pay per class, so there is nothing to buy up front and nothing to lock into. Cancel whenever you like."],
+    ["Who are the teachers?","Every teacher is chosen for how clearly they explain and how well they communicate, then paid properly for it. You get the same teacher each class, someone who gets to know your learner."],
+    ["What times are classes? I am in a different timezone.","Classes are online and scheduled around you. Tell us your timezone and preferred times when you book, and we fit around school or work, wherever you are in the world."],
+    ["What do we need for a class?","Just a laptop or tablet with a camera and internet. We use a normal video call and a shared board. Nothing to install or buy."],
+    ["Can I book for more than one child?","Yes. The booking form lets you add each child with their own grade and subject in one go, so you do not have to fill it in twice."],
+    ["What if it is not the right fit?","Then you stop, no contract and no fee. Because you pay per class, you are never tied in. The first class is free precisely so you can decide with no risk."],
+    ["Is it safe for my child?","Classes are one-to-one with a chosen teacher, and you are welcome to sit in, especially for younger children. We take child safety seriously and are glad to answer anything before you start."]
+  ];
+  var wrap=document.getElementById("faqList"); if(!wrap) return;
+  var chev='<svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>';
+  FAQ.forEach(function(f){
+    var d=document.createElement("details");
+    d.innerHTML="<summary>"+f[0]+chev+"</summary><p>"+f[1]+"</p>";
+    wrap.appendChild(d);
+  });
+})();
+
+/* ---------- demo play button (placeholder friendly) ---------- */
+(function(){
+  var play=document.querySelector("#demo .play"); if(!play) return;
+  function msg(){ alert("Add your recorded demo class here: replace the .screen block in the HTML with a <video> tag. Instructions are in the comment right above it."); }
+  play.addEventListener("click",msg);
+  play.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();msg();} });
+})();
+
 /* ---------- scroll reveal ---------- */
 (function(){
-  var targets=[].slice.call(document.querySelectorAll(".head, .aud-card, .step, .price-card, .cmp, .cur-box, .cta-box"));
+  var targets=[].slice.call(document.querySelectorAll(".head, .aud-card, .step, .price-card, .cmp, .cur-box, .cta-box, .founder-grid, .why-card, .why-banner, .demo-grid, .tcard, .faq details, .book-card"));
   targets.forEach(function(t){t.classList.add("reveal");});
   var cards=[].slice.call(document.querySelectorAll(".subj"));
   if(!("IntersectionObserver" in window)){
