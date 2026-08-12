@@ -265,6 +265,15 @@
   /* ---- testimonials ---- */
   .voices-invite{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:34px;text-align:center;max-width:620px;margin:0 auto}
   .voices-invite p{color:var(--soft);font-size:1.05rem;margin-bottom:20px}
+  .t-more{display:none}
+  .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
+  @media(max-width:820px){
+    .tcard.extra{display:none}
+    .t-more{display:inline-flex;margin:18px auto 0;background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:.7rem 1.5rem;font-family:var(--body);font-weight:600;font-size:.92rem;color:var(--ink);cursor:pointer}
+    .t-more:hover{border-color:var(--bark);color:var(--bark-deep)}
+    #voices .wrap{text-align:center}
+    #voices .tstack{text-align:left}
+  }
   .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
   .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
@@ -558,14 +567,11 @@
 <section class="band tint" id="voices">
   <div class="wrap">
     <div class="head">
-      <span class="mono">Founding students</span>
-      <h2>Be one of the first.</h2>
-      <p>Banyan is new, and we would rather be honest than paste a wall of five-star reviews. Take a free class, and if your child loves it, your words could be the first ones here.</p>
+      <span class="mono">Parent testimonials</span>
+      <h2>What families say.</h2>
+      <p>Words from parents of students taught by Banyan's founder.</p>
     </div>
-    <div class="voices-invite">
-      <p>Real results from real students, coming soon. Start with a free class and see for yourself.</p>
-      <a class="btn btn-primary" href="#start">Start with a free class</a>
-    </div>
+    <div class="tstack" id="tstack"></div>
   </div>
 </section>
 
@@ -1110,6 +1116,43 @@ var ADULT_LEVELS=["College student","Adult / working","Not sure"];
   function msg(){ alert("Add your recorded demo class here: replace the .screen block in the HTML with a <video> tag. Instructions are in the comment right above it."); }
   play.addEventListener("click",msg);
   play.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();msg();} });
+})();
+
+/* ---------- testimonials (real students taught by founder) ---------- */
+(function(){
+  var T=[
+    ["My daughter actually looks forward to her coding classes now. I love that she is learning something useful while having fun.","Sarah M.","Texas"],
+    ["We have tried a few online programs, but this is the first one where my son stays engaged for the whole class. His confidence in maths has improved a lot.","Jennifer R.","California"],
+    ["The live classes make a huge difference. The teacher knows my child, answers her questions, and keeps her involved.","Emily T.","New York"],
+    ["I was surprised by how quickly my son picked up coding. He went from knowing absolutely nothing to building his own little projects.","Michael D.","Florida"],
+    ["My daughter used to get frustrated with maths homework. Now she is much more confident and does not immediately ask for help.","Amanda K.","Illinois"],
+    ["The classes feel personalised rather than like another video lesson. My son actually interacts with the teacher.","David P.","Washington"],
+    ["I really like that they teach more than just academics. The financial literacy lessons have started some great conversations at home.","Rachel B.","New Jersey"],
+    ["My son has become much more comfortable solving problems on his own. That is probably the biggest improvement I have noticed.","Jessica L.","Georgia"],
+    ["The teachers are patient, friendly, and really good with kids. My daughter genuinely enjoys her classes.","Brian S.","Arizona"],
+    ["As a parent, I wanted something productive that my child would actually enjoy. This has been a great balance of learning and fun.","Lauren W.","Massachusetts"]
+  ];
+  var wrap=document.getElementById("tstack"); if(!wrap) return;
+  var stars='\u2605\u2605\u2605\u2605\u2605';
+  T.forEach(function(t,i){
+    var initials=t[1].charAt(0);
+    var c=document.createElement("div");
+    c.className="tcard"+(i>=6?" extra":"");
+    c.innerHTML='<div class="stars">'+stars+'</div>'+
+      '<p>'+t[0]+'</p>'+
+      '<div class="who"><div class="av">'+initials+'</div><div><b>'+t[1]+'</b><span>'+t[2]+'</span></div></div>';
+    wrap.appendChild(c);
+  });
+  // show-more on mobile so it is not a wall
+  if(T.length>6){
+    var btn=document.createElement("button");
+    btn.className="t-more"; btn.textContent="Read more";
+    btn.addEventListener("click",function(){
+      document.querySelectorAll(".tcard.extra").forEach(function(e){e.style.display="flex";});
+      btn.remove();
+    });
+    wrap.parentNode.appendChild(btn);
+  }
 })();
 
 /* ---------- scroll reveal ---------- */
