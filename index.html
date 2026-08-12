@@ -12,16 +12,16 @@
 <style>
   :root{
     /* warm, easy on the eyes */
-    --bg:#F3EADB;          /* page */
-    --bg-2:#EBDFCB;        /* alternating band */
-    --surface:#FCF8F1;     /* cards */
-    --ink:#2A231E;
-    --ink-soft:#7A6A59;
+    --bg:#EBDFC9;          /* page */
+    --bg-2:#E1D2B8;        /* alternating band */
+    --surface:#F7F0E2;     /* cards */
+    --ink:#231C17;
+    --ink-soft:#6F5F4C;
     --bark:#3E7A59;
     --bark-deep:#2C5940;
     --amber:#D9954A;
     --rose:#C2708A;
-    --line:#DDCEB8;
+    --line:#D3C1A5;
     --r:20px;
     --disp:"Newsreader",Georgia,serif;
     --body:"Figtree",system-ui,sans-serif;
@@ -74,10 +74,13 @@
   .node{cursor:pointer}
   .node circle{transition:r .18s ease}
   .node text{
-    font-family:var(--body);font-size:11.5px;font-weight:600;fill:var(--ink-soft);
+    font-family:var(--body);font-size:14px;font-weight:600;fill:var(--ink);
     paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round;
   }
-  .node:hover circle,.node:focus circle{r:13}
+  .node .ring{fill:none;stroke-width:2;opacity:.35;transform-box:fill-box;transform-origin:center;animation:nodePulse 2.6s ease-in-out infinite}
+  @keyframes nodePulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.35);opacity:0}}
+  .node:hover .ring,.node:focus .ring{opacity:0}
+  .node:hover circle,.node:focus circle{r:17}
   .node:hover text,.node:focus text{fill:var(--ink)}
   .tree-cap{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 
@@ -85,6 +88,7 @@
   .band.tint{background:var(--bg-2)}
   .head{max-width:620px;margin-bottom:38px}
   .head h2{font-size:clamp(1.85rem,3.8vw,2.55rem);margin-top:12px}
+  .head h2 em,h2 em,h1 em{font-style:italic;color:var(--bark)}
   .head p{color:var(--ink-soft);margin-top:12px;font-size:1.04rem}
 
   .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -286,6 +290,7 @@
 
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
+    .wrap{padding-left:22px;padding-right:22px}
     .hero{min-height:auto;padding:30px 22px;display:block}
     .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
@@ -331,7 +336,7 @@
     <div>
       <span class="mono">One tree, many branches</span>
       <h1>Everything worth learning, in <em>one place</em>.</h1>
-      <p class="lede">Twelve subjects, one teacher who knows your child, and one price anywhere in the world. Live, one-to-one, eleven dollars a class.</p>
+      <p class="lede">Five subjects, one teacher who truly knows your child, and one price anywhere in the world. Live, one-to-one, eleven dollars a class.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#start">Start with a free class</a>
         <a class="btn btn-ghost" href="#subjects">See the subjects</a>
@@ -353,7 +358,7 @@
   <div class="wrap">
     <div class="head">
       <span class="mono">The branches</span>
-      <h2>Twelve subjects. One way of teaching.</h2>
+      <h2>Five subjects. <em>One</em> way of teaching.</h2>
       <p>Every subject runs the same way: a short intake, a plan built for that learner, live one-to-one classes, and progress you can see.</p>
     </div>
     <div class="subjects" id="subjectGrid"></div>
@@ -668,19 +673,12 @@ var BANYAN_EMAIL="sukoonblr@gmail.com";  /* change to your Banyan inbox */
 /* ====================== */
 
 var SUBJECT_LIST=[
- {key:"coding", icon:'<polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/>',    name:"Coding",             short:"Coding",   color:"#4E7FA8", blurb:"Python, web and real projects. From first line of code to something they built.",      who:"School \u00b7 College"},
- {key:"ai", icon:'<path d="M12 3l1.7 4.6L18.5 9.3l-4.8 1.7L12 15.6l-1.7-4.6L5.5 9.3l4.8-1.7z"/><circle cx="18" cy="17.5" r="2"/>',        name:"Gen AI",             short:"Gen AI",   color:"#7A6BB5", blurb:"How to use AI well: prompting, tools, judgement, and where it gets things wrong.",    who:"College \u00b7 Adults"},
- {key:"maths", icon:'<path d="M4 7h6M7 4v6"/><path d="M14.5 6.5h5.5"/><path d="M14.5 10h5.5"/><path d="M4.5 15l4.5 4.5M9 15l-4.5 4.5"/>',     name:"Maths",              short:"Maths",    color:"#D9954A", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",  who:"School"},
- {key:"science", icon:'<path d="M10 3v6.2L5.3 18A2 2 0 0 0 7 21h10a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M9 3h6"/><path d="M7.5 15h9"/>',   name:"Science",            short:"Science",  color:"#3E7A59", blurb:"The why behind the syllabus, taught with things you can see, test and question.",      who:"School"},
- {key:"english", icon:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7.5h7M8 11h5"/>',   name:"English",            short:"English",  color:"#C08246", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",    who:"School \u00b7 College"},
- {key:"money", icon:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9"/><path d="M14.5 9.8h-3.7a1.9 1.9 0 0 0 0 3.8h2.4a1.9 1.9 0 0 1 0 3.8H9.2"/>',     name:"Financial literacy", short:"Money",    color:"#2C5940", blurb:"Saving, budgeting, compounding and how money works. The class nobody taught us.",      who:"College \u00b7 Adults"},
- {key:"testprep", icon:'<rect x="5" y="4.5" width="14" height="16" rx="2.2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.5 11.5h7M8.5 15h4.5"/>',  name:"Test prep",          short:"Test prep",color:"#B4553F", blurb:"SAT, ACT and school exams. Technique, timing and the calm to sit down and begin.",     who:"School \u00b7 College"},
- {key:"speaking", icon:'<rect x="9.2" y="3" width="5.6" height="10.5" rx="2.8"/><path d="M5.5 11.2a6.5 6.5 0 0 0 13 0"/><path d="M12 17.8V21"/>',  name:"Public speaking",    short:"Speaking", color:"#87995A", blurb:"Debate, presentations and interviews. Being heard properly when it counts.",          who:"All ages"},
- {key:"data", icon:'<path d="M3.5 20.5h17"/><path d="M6.5 20.5v-6M11 20.5V7.5M15.5 20.5v-9M20 20.5V4.5"/>',      name:"Data & analytics",   short:"Data",     color:"#5C6B8A", blurb:"Spreadsheets, SQL and reading numbers honestly. The skill every job now asks for.",    who:"College \u00b7 Adults"},
- {key:"spanish", icon:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.6 2.6 14.4 0 17M12 3.5c-2.6 2.6-2.6 14.4 0 17"/>',   name:"Spanish",            short:"Spanish",  color:"#CC6446", blurb:"Conversational Spanish from day one, taught by speaking rather than by lists.",        who:"All ages"},
- {key:"chess", icon:'<path d="M8.5 21h7"/><path d="M10 21l.9-5h2.2l.9 5"/><path d="M12 3.6a3 3 0 0 1 2 5.3c1 .8 1.3 1.9 1.3 3.1H8.7c0-1.2.3-2.3 1.3-3.1a3 3 0 0 1 2-5.3z"/>',     name:"Chess",              short:"Chess",    color:"#6B5B4A", blurb:"Openings, tactics and patience. The quiet game that teaches children to think ahead.", who:"School"},
- {key:"movement", icon:'<circle cx="12" cy="4.8" r="2.2"/><path d="M12 8v6.5"/><path d="M8.4 10.6h7.2"/><path d="M8.6 21l3.4-6.5L15.4 21"/>',  name:"Movement",           short:"Movement", color:"#C2708A", blurb:"Strength, yoga and mobility. Our physical education arm, and where Banyan started.",   who:"All ages"}
-];
+ {key:"coding", icon:'<polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/>',    name:"Coding",             short:"Coding",   color:"#3F6E8C", blurb:"Python, web and real projects. From the first line of code to something they built themselves.",  who:"School \u00b7 College"},
+ {key:"maths", icon:'<path d="M4 7h6M7 4v6"/><path d="M14.5 6.5h5.5"/><path d="M14.5 10h5.5"/><path d="M4.5 15l4.5 4.5M9 15l-4.5 4.5"/>',     name:"Maths",              short:"Maths",    color:"#C4863B", blurb:"Built from the ground up so it makes sense, not memorised. Confidence before speed.",  who:"School \u00b7 College"},
+ {key:"science", icon:'<path d="M10 3v6.2L5.3 18A2 2 0 0 0 7 21h10a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M9 3h6"/><path d="M7.5 15h9"/>',   name:"Science",            short:"Science",  color:"#357057", blurb:"The why behind the syllabus, taught with things you can see, test and question.",      who:"School"},
+ {key:"english", icon:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7.5h7M8 11h5"/>',   name:"English",            short:"English",  color:"#A96C3C", blurb:"Speaking, writing and being understood. For exams, for interviews, for the world.",    who:"School \u00b7 College"},
+ {key:"money", icon:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9"/><path d="M14.5 9.8h-3.7a1.9 1.9 0 0 0 0 3.8h2.4a1.9 1.9 0 0 1 0 3.8H9.2"/>',     name:"Financial literacy", short:"Money",    color:"#2C5940", blurb:"Saving, budgeting, compounding and how money actually works. The class nobody taught us.", who:"College \u00b7 Adults"}
+]
 
 var GRADES=["Primary (age 6-10)","Middle (age 11-13)","High school (age 14-18)","College and adults"];
 
@@ -819,23 +817,27 @@ SUBJECT_LIST.forEach(function(s,i){
   svg.appendChild(mk("path",{class:"branch",d:"M320 172 Q448 176 578 206"}));
   svg.appendChild(mk("path",{d:"M40 440h560",stroke:"#DDCEB8","stroke-width":3,"stroke-linecap":"round",fill:"none"}));
 
-  // explicit x positions: nothing lands within 55px of the trunk
-  var XS=[265,225,185,145,105,65, 375,415,455,495,535,575];
+  // 5 subjects: spread evenly across the branch span, all on one row, big and tappable
+  var N = SUBJECT_LIST.length;
+  var spanL = 84, spanR = 556;                 // horizontal span for nodes
   function branchY(x){ return 172 + Math.abs(x-320)*0.132; }
 
   SUBJECT_LIST.forEach(function(s,i){
-    var x=XS[i];
-    var low=(i%2===1);
-    var yDot=low?352:296;
-    var rp=mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-13)});
-    rp.style.animationDelay=(0.9+i*0.05)+"s";
+    var frac = (i/(N-1)); var x = N>1 ? Math.round(spanL + (spanR-spanL)*frac) : 320; if(Math.abs(x-320)<12){ x += 34; }
+    var yDot = 300;
+    var rp=mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-18)});
+    rp.style.animationDelay=(0.9+i*0.07)+"s";
     svg.appendChild(rp);
-    var ng=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Go to "+s.name});
-    var dot=mk("circle",{cx:x,cy:yDot,r:11,fill:s.color});
-    dot.style.animationDelay=(1.3+i*0.05)+"s";
+    var ng=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Open "+s.name});
+    // pulsing ring signals "tap me"
+    var ring=mk("circle",{class:"ring",cx:x,cy:yDot,r:16,stroke:s.color});
+    ring.style.animationDelay=(1.6+i*0.12)+"s";
+    ng.appendChild(ring);
+    var dot=mk("circle",{cx:x,cy:yDot,r:15,fill:s.color});
+    dot.style.animationDelay=(1.3+i*0.07)+"s";
     ng.appendChild(dot);
-    var tx=mk("text",{x:x,y:yDot+27,"text-anchor":"middle"});
-    tx.style.animationDelay=(1.45+i*0.05)+"s";
+    var tx=mk("text",{x:x,y:yDot+34,"text-anchor":"middle"});
+    tx.style.animationDelay=(1.45+i*0.07)+"s";
     tx.textContent=s.short;
     ng.appendChild(tx);
     function go(){
