@@ -12,16 +12,16 @@
 <style>
   :root{
     /* warm, easy on the eyes */
-    --bg:#EBDFC9;          /* page */
-    --bg-2:#E1D2B8;        /* alternating band */
-    --surface:#F7F0E2;     /* cards */
-    --ink:#231C17;
-    --ink-soft:#6F5F4C;
-    --bark:#3E7A59;
-    --bark-deep:#2C5940;
-    --amber:#D9954A;
+    --bg:#E7E3D6;          /* page */
+    --bg-2:#DED8C6;        /* alternating band */
+    --surface:#F2EEE3;     /* cards */
+    --ink:#2B2A24;
+    --ink-soft:#6E695C;
+    --bark:#4A7A5E;
+    --bark-deep:#3A6149;
+    --amber:#C79350;
     --rose:#C2708A;
-    --line:#D3C1A5;
+    --line:#D2CCBD;
     --r:20px;
     --disp:"Newsreader",Georgia,serif;
     --body:"Figtree",system-ui,sans-serif;
@@ -59,7 +59,7 @@
   .hero{min-height:calc(100svh - var(--navh,72px));display:flex;align-items:center;padding:36px 24px}
   .hero-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:38px;align-items:center}
   .hero h1{font-size:clamp(2.5rem,5.2vw,3.9rem);margin:16px 0 14px}
-  .hero h1 em{font-style:italic;color:var(--bark)}
+  .hero h1 em{font-style:normal;color:var(--bark)}
   .hero p.lede{font-size:1.1rem;color:var(--ink-soft);max-width:32em}
   .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
   .hero-note{margin-top:20px;font-size:.9rem;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
@@ -74,7 +74,7 @@
   .node{cursor:pointer}
   .node circle{transition:r .18s ease}
   .node text{
-    font-family:var(--body);font-size:14px;font-weight:600;fill:var(--ink);
+    font-family:var(--body);font-size:17px;font-weight:600;fill:var(--ink);
     paint-order:stroke fill;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round;
   }
   .node .ring{fill:none;stroke-width:2;opacity:.35;transform-box:fill-box;transform-origin:center;animation:nodePulse 2.6s ease-in-out infinite}
@@ -88,7 +88,7 @@
   .band.tint{background:var(--bg-2)}
   .head{max-width:620px;margin-bottom:38px}
   .head h2{font-size:clamp(1.85rem,3.8vw,2.55rem);margin-top:12px}
-  .head h2 em,h2 em,h1 em{font-style:italic;color:var(--bark)}
+  .head h2 em,h2 em,h1 em{font-style:normal;color:var(--bark)}
   .head p{color:var(--ink-soft);margin-top:12px;font-size:1.04rem}
 
   .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -231,7 +231,7 @@
   .founder-photo .ph{color:rgba(255,255,255,.7);font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:20px}
   .founder-photo .ph svg{width:46px;height:46px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.4;margin-bottom:12px}
   .founder-body h2{font-size:clamp(1.8rem,3.7vw,2.5rem)}
-  .founder-body .sig{margin-top:20px;font-family:var(--disp);font-style:italic;font-size:1.15rem;color:var(--bark-deep)}
+  .founder-body .sig{margin-top:20px;font-family:var(--disp);font-style:normal;font-size:1.15rem;color:var(--bark-deep)}
   .founder-body .sig span{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
   .lede-quote{font-family:var(--disp);font-size:1.3rem;line-height:1.5;color:var(--ink);margin:0 0 18px}
   .founder-body p{color:var(--ink-soft);margin-bottom:12px}
@@ -814,29 +814,37 @@ SUBJECT_LIST.forEach(function(s,i){
   svg.appendChild(g);
   svg.appendChild(mk("path",{class:"trunk",d:"M320 440V150"}));
   svg.appendChild(mk("path",{class:"branch",d:"M62 206 Q192 176 320 172"}));
-  svg.appendChild(mk("path",{class:"branch",d:"M320 172 Q448 176 578 206"}));
+  svg.appendChild(mk("path",{class:"branch",d:"M320 172 Q460 176 600 206"}));
   svg.appendChild(mk("path",{d:"M40 440h560",stroke:"#DDCEB8","stroke-width":3,"stroke-linecap":"round",fill:"none"}));
 
-  // 5 subjects: spread evenly across the branch span, all on one row, big and tappable
+  // 5 subjects in one clean row. Trunk sits at x=320, in the empty gap
+  // between the left pair and the right trio, so no node lands on it.
   var N = SUBJECT_LIST.length;
-  var spanL = 84, spanR = 556;                 // horizontal span for nodes
   function branchY(x){ return 172 + Math.abs(x-320)*0.132; }
 
+  // positions: [x, yDot]  — 2 left of trunk, 3 right, trunk gap around 320
+  var POS = [
+    [110, 300],   // left
+    [215, 300],   // left
+    [400, 300],   // right
+    [490, 300],   // right
+    [580, 300]    // right
+  ];
+
   SUBJECT_LIST.forEach(function(s,i){
-    var frac = (i/(N-1)); var x = N>1 ? Math.round(spanL + (spanR-spanL)*frac) : 320; if(Math.abs(x-320)<12){ x += 34; }
-    var yDot = 300;
-    var rp=mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-18)});
+    var p = POS[i] || [120,300];
+    var x = p[0], yDot = p[1];
+    var rp=mk("path",{class:"root",d:"M"+x+" "+branchY(x).toFixed(1)+"V"+(yDot-19)});
     rp.style.animationDelay=(0.9+i*0.07)+"s";
     svg.appendChild(rp);
     var ng=mk("g",{class:"node",tabindex:"0",role:"button","aria-label":"Open "+s.name});
-    // pulsing ring signals "tap me"
-    var ring=mk("circle",{class:"ring",cx:x,cy:yDot,r:16,stroke:s.color});
+    var ring=mk("circle",{class:"ring",cx:x,cy:yDot,r:17,stroke:s.color});
     ring.style.animationDelay=(1.6+i*0.12)+"s";
     ng.appendChild(ring);
-    var dot=mk("circle",{cx:x,cy:yDot,r:15,fill:s.color});
+    var dot=mk("circle",{cx:x,cy:yDot,r:16,fill:s.color});
     dot.style.animationDelay=(1.3+i*0.07)+"s";
     ng.appendChild(dot);
-    var tx=mk("text",{x:x,y:yDot+34,"text-anchor":"middle"});
+    var tx=mk("text",{x:x,y:yDot+36,"text-anchor":"middle"});
     tx.style.animationDelay=(1.45+i*0.07)+"s";
     tx.textContent=s.short;
     ng.appendChild(tx);
