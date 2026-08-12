@@ -56,7 +56,7 @@
   .nav-links a.btn{padding:.6rem 1.25rem;font-size:.9rem}
   .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  .hero{min-height:calc(100svh - var(--navh,72px));display:flex;align-items:center;padding:36px 0}
+  .hero{min-height:calc(100svh - var(--navh,72px));display:flex;align-items:center;padding:36px 24px}
   .hero-grid{display:grid;grid-template-columns:1fr 1.06fr;gap:38px;align-items:center}
   .hero h1{font-size:clamp(2.5rem,5.2vw,3.9rem);margin:16px 0 14px}
   .hero h1 em{font-style:italic;color:var(--bark)}
@@ -286,7 +286,7 @@
 
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
-    .hero{min-height:auto;padding:30px 0;display:block}
+    .hero{min-height:auto;padding:30px 22px;display:block}
     .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
     .aud,.price-hero,.cur-grid{grid-template-columns:1fr}
