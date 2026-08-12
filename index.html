@@ -231,7 +231,7 @@
   .founder-photo .ph{color:rgba(255,255,255,.7);font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:20px}
   .founder-photo .ph svg{width:46px;height:46px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.4;margin-bottom:12px}
   .founder-body h2{font-size:clamp(1.8rem,3.7vw,2.5rem)}
-  .founder-body .sig{margin-top:20px;font-family:var(--disp);font-style:normal;font-size:1.15rem;color:var(--bark-deep)}
+  .founder-body .sig{margin-top:20px;font-family:var(--body);font-weight:600;font-size:1.05rem;color:var(--bark-deep)}
   .founder-body .sig span{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
   .lede-quote{font-family:var(--disp);font-size:1.3rem;line-height:1.5;color:var(--ink);margin:0 0 18px}
   .founder-body p{color:var(--ink-soft);margin-bottom:12px}
@@ -263,6 +263,8 @@
   .demo-list li .num{position:absolute;left:0;top:12px;width:24px;height:24px;border-radius:50%;background:var(--bark);color:#fff;font-family:var(--mono);font-size:.7rem;display:grid;place-items:center}
 
   /* ---- testimonials ---- */
+  .voices-invite{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:34px;text-align:center;max-width:620px;margin:0 auto}
+  .voices-invite p{color:var(--soft);font-size:1.05rem;margin-bottom:20px}
   .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
   .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
@@ -291,7 +293,12 @@
   @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
     .wrap{padding-left:22px;padding-right:22px}
-    .hero{min-height:auto;padding:30px 22px;display:block}
+    .hero{min-height:auto;padding:26px 22px;display:block}
+    .tree-wrap{max-width:300px;margin:0 auto 6px}
+    .hero h1{font-size:clamp(2rem,8vw,2.6rem);margin:10px 0 12px}
+    .hero p.lede{font-size:1.02rem}
+    .hero-cta{margin-top:20px}
+    .hero .mono{font-size:.64rem}
     .hero-grid{grid-template-columns:1fr;gap:12px}
     .tree-wrap{order:-1}
     .aud,.price-hero,.cur-grid{grid-template-columns:1fr}
@@ -307,6 +314,11 @@
   @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto}
     .reveal,.subj{opacity:1!important;transform:none!important}
     .trunk,.branch,.root{stroke-dashoffset:0!important} }
+  @media(max-width:560px){
+    .cmp table{table-layout:fixed}
+    .cmp th,.cmp td{padding:11px 10px;font-size:.82rem;word-break:normal;hyphens:none}
+    .cmp th:first-child,.cmp td:first-child{width:26%}
+  }
 </style>
 </head>
 <body>
@@ -349,7 +361,6 @@
     </div>
     <div class="tree-wrap">
       <svg class="tree" id="tree" viewBox="0 0 640 470" role="img" aria-label="A banyan tree whose hanging roots are the subjects Banyan teaches"></svg>
-      <p class="tree-cap">Tap a root to open that subject</p>
     </div>
   </div>
 </section>
@@ -405,9 +416,7 @@
       <div class="founder-body">
         <span class="mono">Why Banyan exists</span>
         <h2>I worked inside edtech. I left to fix it.</h2>
-        <p class="lede-quote">"I saw good families pushed into 96-class packages they did not need, sold by scripts, at prices that changed depending on where they lived. I could not keep doing that."</p>
-        <p>I am a computer science student who loves teaching, and I built Banyan myself, the site, the curriculum, all of it. Before this I worked at an education company and saw how the industry really operates: pressure to upsell, locked contracts, per-country pricing, and children treated as revenue rather than learners.</p>
-        <p>Banyan is the opposite of that. One fair price everywhere. No packages, no pressure, no contracts. Real teachers who are paid well, chosen for how clearly they explain and how kindly they teach. Every plan built around the child in front of us, not a script. That is the whole idea, and I would rather grow slowly and honestly than quickly and cheaply.</p>
+        <p>I saw families pushed into class packages they did not need, at prices that changed by country, with children treated as revenue. Banyan is the opposite: one fair price everywhere, no packages, no contracts, and a real teacher who knows your child. I would rather grow slowly and honestly than quickly and cheaply.</p>
         <div class="sig">Raj<span>Founder, Banyan</span></div>
       </div>
     </div>
@@ -550,28 +559,13 @@
   <div class="wrap">
     <div class="head">
       <span class="mono">Founding students</span>
-      <h2>Real words from real learners.</h2>
-      <p>We are new and honest about it. These are our founding students, and we would rather show you a few true voices than a wall of invented five-stars.</p>
+      <h2>Be one of the first.</h2>
+      <p>Banyan is new, and we would rather be honest than paste a wall of five-star reviews. Take a free class, and if your child loves it, your words could be the first ones here.</p>
     </div>
-    <div class="tstack" id="tstack">
-      <!-- Replace each card's text and name with a REAL quote once you have it. -->
-      <div class="tcard">
-        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
-        <p>Add a real sentence from a founding student or parent here. One honest, specific line about what changed for them.</p>
-        <div class="who"><div class="av">A</div><div><b>Founding student</b><span>Subject \u00b7 Country</span></div></div>
-      </div>
-      <div class="tcard">
-        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
-        <p>A second genuine quote goes here. Specific beats glowing: "my daughter stopped dreading maths" lands harder than "great service".</p>
-        <div class="who"><div class="av">B</div><div><b>Founding parent</b><span>Subject \u00b7 Country</span></div></div>
-      </div>
-      <div class="tcard">
-        <div class="stars">\u2605\u2605\u2605\u2605\u2605</div>
-        <p>A third real quote here. Keep the person\u2019s first name and city if they are happy for you to use them, it adds trust.</p>
-        <div class="who"><div class="av">C</div><div><b>Founding student</b><span>Subject \u00b7 Country</span></div></div>
-      </div>
+    <div class="voices-invite">
+      <p>Real results from real students, coming soon. Start with a free class and see for yourself.</p>
+      <a class="btn btn-primary" href="#start">Start with a free class</a>
     </div>
-    <p class="t-note">Run your first free classes this week, ask each learner for one honest line, and swap these in. Real and recent beats polished and fake, every time.</p>
   </div>
 </section>
 
