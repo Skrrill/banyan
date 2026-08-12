@@ -283,7 +283,11 @@
     #voices .wrap{text-align:center}
     #voices .tstack{text-align:left}
   }
-  .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  /* when the testimonials count leaves one alone on the last row, center it */
+  .tstack .tcard:last-child:nth-child(3n+1){grid-column:1 / -1;max-width:33%;justify-self:center}
+  @media(max-width:1100px){ .tstack{grid-template-columns:repeat(2,1fr)} .tstack .tcard:last-child:nth-child(3n+1){grid-column:auto;max-width:none} .tstack .tcard:last-child:nth-child(2n+1){grid-column:1 / -1;max-width:50%;justify-self:center} }
+  .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;justify-content:center}
+  .tstack > *{min-width:0}
   .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
   .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
   .tcard p{font-size:.98rem;color:var(--ink);flex:1;line-height:1.55}
@@ -296,6 +300,7 @@
   /* ---- faq ---- */
   .faq-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
   .faq-head{text-align:left;margin:0;position:sticky;top:90px}
+  .faq-cta{margin-top:22px}
   .faq-head h2{margin-top:12px}
   .faq-head p{color:var(--soft);margin-top:14px;font-size:.98rem}
   .faq{max-width:none;margin:0}
@@ -598,6 +603,7 @@
       <span class="mono">Questions parents ask</span>
       <h2>The things you are probably wondering.</h2>
       <p>Still unsure about something? Take a free class, it is the fastest way to see if Banyan is right for your child.</p>
+      <a class="btn btn-primary faq-cta" href="#start">Book a free class</a>
     </div>
     <div class="faq" id="faqList"></div>
   </div>
