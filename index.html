@@ -91,8 +91,9 @@
   .head h2 em,h2 em,h1 em{font-style:normal;color:var(--bark)}
   .head p{color:var(--ink-soft);margin-top:12px;font-size:1.04rem}
 
-  .subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .subj{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .18s ease,box-shadow .18s ease}
+  .subjects{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;justify-content:center}
+  .subjects > *{min-width:0}
+  .subj{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;transition:transform .18s ease,box-shadow .18s ease}
   .subj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
   .subj .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;color:#fff;margin-bottom:12px}
   .subj h3{font-size:1.16rem;margin-bottom:5px}
@@ -184,7 +185,15 @@
 
 
   /* ---- booking form ---- */
-  .book-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:34px;max-width:620px;margin:0 auto;box-shadow:var(--shadow)}
+  .book-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:0;max-width:1000px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+  .book-aside{background:linear-gradient(160deg,var(--bark),var(--bark-deep));color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:center}
+  .book-aside h2{color:#fff;font-size:1.7rem;line-height:1.15;margin-bottom:14px}
+  .book-aside p{color:rgba(255,255,255,.9);font-size:.98rem;margin-bottom:22px}
+  .book-aside ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .book-aside li{position:relative;padding-left:28px;font-size:.95rem;color:rgba(255,255,255,.95)}
+  .book-aside li svg{position:absolute;left:0;top:2px;width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .book-card{padding:38px 34px}
+  @media(max-width:820px){ .book-wrap{grid-template-columns:1fr} .book-aside{padding:30px 26px} }
   .book-card h2{font-size:clamp(1.7rem,3.4vw,2.3rem);text-align:center}
   .book-card .sub{text-align:center;color:var(--ink-soft);margin:10px auto 26px;max-width:34em}
   .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -285,7 +294,12 @@
   .t-note{margin-top:18px;font-size:.86rem;color:var(--ink-soft);text-align:center}
 
   /* ---- faq ---- */
-  .faq{max-width:760px;margin:0 auto}
+  .faq-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+  .faq-head{text-align:left;margin:0;position:sticky;top:90px}
+  .faq-head h2{margin-top:12px}
+  .faq-head p{color:var(--soft);margin-top:14px;font-size:.98rem}
+  .faq{max-width:none;margin:0}
+  @media(max-width:820px){ .faq-wrap{grid-template-columns:1fr;gap:20px} .faq-head{position:static} }
   .faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
   .faq summary{padding:18px 22px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:1.02rem}
   .faq summary::-webkit-details-marker{display:none}
@@ -299,7 +313,9 @@
     .founder-photo{max-width:340px;margin:0 auto}
   }
 
-  @media(max-width:1000px){ .subjects{grid-template-columns:repeat(2,1fr)} .steps{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:1100px){ .subjects{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:1000px){ .steps{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:720px){ .subjects{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
     .wrap{padding-left:22px;padding-right:22px}
     .hero{min-height:auto;padding:26px 22px;display:block}
@@ -319,7 +335,7 @@
     .cmp{overflow-x:auto}
     .cta-box{padding:32px 20px}
   }
-  @media(max-width:560px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} .node text{font-size:13px} }
+  @media(max-width:520px){ .subjects{grid-template-columns:1fr} .steps{grid-template-columns:1fr} .node text{font-size:13px} }
   @media(prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto}
     .reveal,.subj{opacity:1!important;transform:none!important}
     .trunk,.branch,.root{stroke-dashoffset:0!important} }
@@ -577,10 +593,11 @@
 
 <!-- FAQ -->
 <section class="band" id="faq">
-  <div class="wrap">
-    <div class="head">
+  <div class="wrap faq-wrap">
+    <div class="head faq-head">
       <span class="mono">Questions parents ask</span>
       <h2>The things you are probably wondering.</h2>
+      <p>Still unsure about something? Take a free class, it is the fastest way to see if Banyan is right for your child.</p>
     </div>
     <div class="faq" id="faqList"></div>
   </div>
@@ -588,10 +605,21 @@
 
 <section class="band" id="start">
   <div class="wrap">
+    <div class="book-wrap">
+      <div class="book-aside">
+        <h2>Book your free class.</h2>
+        <p>One real lesson, one-to-one, completely free. If your child loves it, you continue. If not, no harm done.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>First class is genuinely free</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>No payment or card needed</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>We reply within a day</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>No lock-in, cancel anytime</li>
+        </ul>
+      </div>
     <div class="book-card">
       <div id="bookForm">
-        <h2>Book your free class.</h2>
-        <p class="sub">A few details and we will be in touch within a day to fix a time. No payment, no commitment.</p>
+        <h2 class="book-card-h">A few details.</h2>
+        <p class="sub">Tell us who it is for and we will be in touch within a day to fix a time.</p>
 
         <div class="f-row">
           <div class="f-field">
@@ -649,6 +677,7 @@
         <p id="bDoneMsg">We have your details and will email you within a day to fix a time.</p>
         <p class="f-tiny" style="margin-top:14px">Prefer to talk sooner? <a id="bRetry" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
       </div>
+    </div>
     </div>
   </div>
 </section>
