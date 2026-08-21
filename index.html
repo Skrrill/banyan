@@ -84,7 +84,7 @@
   .node:hover text,.node:focus text{fill:var(--ink)}
   .tree-cap{text-align:center;margin-top:6px;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 
-  section.band{padding:76px 0}
+  section.band{padding:60px 0}
   .band.tint{background:var(--bg-2)}
   .head{max-width:620px;margin-bottom:38px}
   .head h2{font-size:clamp(1.85rem,3.8vw,2.55rem);margin-top:12px}
@@ -284,9 +284,8 @@
     #voices .tstack{text-align:left}
   }
   /* when the testimonials count leaves one alone on the last row, center it */
-  .tstack .tcard:last-child:nth-child(3n+1){grid-column:1 / -1;max-width:33%;justify-self:center}
-  @media(max-width:1100px){ .tstack{grid-template-columns:repeat(2,1fr)} .tstack .tcard:last-child:nth-child(3n+1){grid-column:auto;max-width:none} .tstack .tcard:last-child:nth-child(2n+1){grid-column:1 / -1;max-width:50%;justify-self:center} }
-  .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;justify-content:center}
+  .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tstack .tcard:nth-child(10){display:none}
   .tstack > *{min-width:0}
   .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
   .tcard .stars{color:var(--amber);font-size:1rem;letter-spacing:2px;margin-bottom:12px}
@@ -298,8 +297,8 @@
   .t-note{margin-top:18px;font-size:.86rem;color:var(--ink-soft);text-align:center}
 
   /* ---- faq ---- */
-  .faq-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
-  .faq-head{text-align:left;margin:0;position:sticky;top:90px}
+  .faq-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+  .faq-head{text-align:left;margin:0}
   .faq-cta{margin-top:22px}
   .faq-head h2{margin-top:12px}
   .faq-head p{color:var(--soft);margin-top:14px;font-size:.98rem}
@@ -314,11 +313,12 @@
 
   @media(max-width:900px){
     .founder-grid,.demo-grid{grid-template-columns:1fr}
-    .why-grid,.tstack{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr} .tstack{grid-template-columns:1fr}
     .founder-photo{max-width:340px;margin:0 auto}
   }
 
-  @media(max-width:1100px){ .subjects{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:1100px){ .subjects{grid-template-columns:repeat(3,1fr)} .tstack{grid-template-columns:repeat(2,1fr)} }
+  @media(min-width:821px) and (max-width:1100px){ .tstack .tcard:nth-child(10){display:flex} }
   @media(max-width:1000px){ .steps{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:720px){ .subjects{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:900px){
@@ -1171,7 +1171,7 @@ var ADULT_LEVELS=["College student","Adult / working","Not sure"];
     var btn=document.createElement("button");
     btn.className="t-more"; btn.textContent="Read more";
     btn.addEventListener("click",function(){
-      document.querySelectorAll(".tcard.extra").forEach(function(e){e.style.display="flex";});
+      document.querySelectorAll(".tcard.extra").forEach(function(e){e.style.display="flex";}); var t10=document.querySelector(".tstack .tcard:nth-child(10)"); if(t10) t10.style.display="flex";
       btn.remove();
     });
     wrap.parentNode.appendChild(btn);
