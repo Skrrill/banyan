@@ -437,11 +437,7 @@
   <div class="wrap">
     <div class="founder-grid">
       <div class="founder-photo">
-        <!-- Replace this block with: <img src="your-photo.jpg" alt="Raj, founder of Banyan" /> -->
-        <div class="ph">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-          Your photo here
-        </div>
+        <img src="media/founder.jpg" alt="Raj, founder of Banyan" />
       </div>
       <div class="founder-body">
         <span class="mono">Why Banyan exists</span>
@@ -494,11 +490,10 @@
     </div>
     <div class="demo-grid">
       <div class="demo-frame">
-        <!-- Replace .screen block with: <video controls poster="thumb.jpg"><source src="demo.mp4" type="video/mp4"></video> -->
-        <div class="screen">
-          <div class="play" role="button" tabindex="0" aria-label="Play demo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="cap">Sample class \u00b7 add your recorded demo here</div>
+        <video controls playsinline preload="metadata" poster="media/inside-a-class-poster.jpg">
+          <source src="media/inside-a-class.mp4" type="video/mp4" />
+        </video>
+        <div class="cap">A look at how a Banyan class works</div>
       </div>
       <div>
         <ul class="demo-list">
@@ -1145,13 +1140,6 @@ var ADULT_LEVELS=["College student","Adult / working","Not sure"];
   });
 })();
 
-/* ---------- demo play button (placeholder friendly) ---------- */
-(function(){
-  var play=document.querySelector("#demo .play"); if(!play) return;
-  function msg(){ alert("Add your recorded demo class here: replace the .screen block in the HTML with a <video> tag. Instructions are in the comment right above it."); }
-  play.addEventListener("click",msg);
-  play.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();msg();} });
-})();
 
 /* ---------- testimonials (real students taught by founder) ---------- */
 (function(){
