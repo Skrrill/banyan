@@ -553,18 +553,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="band" id="voices">
-  <div class="wrap">
-    <div class="head">
-      <span class="mono">Parent testimonials</span>
-      <h2>What families say.</h2>
-      <p>Words from parents of students taught by Banyan's founder.</p>
-    </div>
-    <div class="tstack" id="tstack"></div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="band tint" id="faq">
   <div class="wrap faq-wrap">
@@ -1115,43 +1103,6 @@ var ADULT_LEVELS=["College student","Adult / working","Not sure"];
   });
 })();
 
-
-/* ---------- testimonials (real students taught by founder) ---------- */
-(function(){
-  var T=[
-    ["My daughter actually looks forward to her coding classes now. I love that she is learning something useful while having fun.","Sarah M.","Texas"],
-    ["We have tried a few online programs, but this is the first one where my son stays engaged for the whole class. His confidence in maths has improved a lot.","Jennifer R.","California"],
-    ["The live classes make a huge difference. The teacher knows my child, answers her questions, and keeps her involved.","Emily T.","New York"],
-    ["I was surprised by how quickly my son picked up coding. He went from knowing absolutely nothing to building his own little projects.","Michael D.","Florida"],
-    ["My daughter used to get frustrated with maths homework. Now she is much more confident and does not immediately ask for help.","Amanda K.","Illinois"],
-    ["The classes feel personalised rather than like another video lesson. My son actually interacts with the teacher.","David P.","Washington"],
-    ["I really like that they teach more than just academics. The financial literacy lessons have started some great conversations at home.","Rachel B.","New Jersey"],
-    ["My son has become much more comfortable solving problems on his own. That is probably the biggest improvement I have noticed.","Jessica L.","Georgia"],
-    ["The teachers are patient, friendly, and really good with kids. My daughter genuinely enjoys her classes.","Brian S.","Arizona"],
-    ["As a parent, I wanted something productive that my child would actually enjoy. This has been a great balance of learning and fun.","Lauren W.","Massachusetts"]
-  ];
-  var wrap=document.getElementById("tstack"); if(!wrap) return;
-  var stars='\u2605\u2605\u2605\u2605\u2605';
-  T.forEach(function(t,i){
-    var initials=t[1].charAt(0);
-    var c=document.createElement("div");
-    c.className="tcard"+(i>=6?" extra":"");
-    c.innerHTML='<div class="stars">'+stars+'</div>'+
-      '<p>'+t[0]+'</p>'+
-      '<div class="who"><div class="av">'+initials+'</div><div><b>'+t[1]+'</b><span>'+t[2]+'</span></div></div>';
-    wrap.appendChild(c);
-  });
-  // show-more on mobile so it is not a wall
-  if(T.length>6){
-    var btn=document.createElement("button");
-    btn.className="t-more"; btn.textContent="Read more";
-    btn.addEventListener("click",function(){
-      document.querySelectorAll(".tcard.extra").forEach(function(e){e.style.display="flex";}); var t10=document.querySelector(".tstack .tcard:nth-child(10)"); if(t10) t10.style.display="flex";
-      btn.remove();
-    });
-    wrap.parentNode.appendChild(btn);
-  }
-})();
 
 /* ---------- scroll reveal ---------- */
 (function(){
